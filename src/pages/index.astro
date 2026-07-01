@@ -1,40 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import CrystallineGlyph from "../components/CrystallineGlyph.astro";
+import ServiceIllustration from "../components/ServiceIllustration.astro";
 import { SITE, caseStudies, nextMoves, offers } from "../data/site";
 
-// Growth-loop diagram geometry (five connected stages, clockwise).
-const loopStages = ["Positioning", "Content", "Experience", "Conversion", "Measurement"];
-const LCX = 330, LCY = 225, LR = 148, LBL = LR + 40, GAP = (18 * Math.PI) / 180;
-const ang = (i: number) => ((-90 + i * 72) * Math.PI) / 180;
-const polar = (a: number, r: number): [number, number] => [LCX + r * Math.cos(a), LCY + r * Math.sin(a)];
-const rr = (n: number) => Math.round(n * 10) / 10;
-
-const loopNodes = loopStages.map((label, i) => {
-  const a = ang(i);
-  const [x, y] = polar(a, LR);
-  const [lx, ly] = polar(a, LBL);
-  const ca = Math.cos(a), sa = Math.sin(a);
-  const anchor = ca > 0.3 ? "start" : ca < -0.3 ? "end" : "middle";
-  const dy = sa > 0.3 ? 22 : sa < -0.3 ? -12 : 8;
-  return { label, x: rr(x), y: rr(y), lx: rr(lx), ly: rr(ly + dy), anchor, accent: i === 3 };
-});
-
-const loopArcs = loopStages.map((_, i) => {
-  const a0 = ang(i) + GAP, a1 = ang((i + 1) % 5) - GAP;
-  const [sx, sy] = polar(a0, LR), [ex, ey] = polar(a1, LR);
-  const dx = -Math.sin(a1), dy = Math.cos(a1), px = -dy, py = dx;
-  const tip = [ex + dx * 8, ey + dy * 8];
-  const b1 = [ex - dx * 2 + px * 4.5, ey - dy * 2 + py * 4.5];
-  const b2 = [ex - dx * 2 - px * 4.5, ey - dy * 2 - py * 4.5];
-  return {
-    d: `M ${rr(sx)} ${rr(sy)} A ${LR} ${LR} 0 0 1 ${rr(ex)} ${rr(ey)}`,
-    head: `M ${rr(tip[0])} ${rr(tip[1])} L ${rr(b1[0])} ${rr(b1[1])} L ${rr(b2[0])} ${rr(b2[1])} Z`
-  };
-});
-
 const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
-const nextGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
 ---
 
 <BaseLayout>
@@ -53,13 +22,13 @@ const nextGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
       </div>
       <p class="hero-meta">Independent studio · Williamsburg, New York</p>
     </div>
-    <canvas class="salt-field" data-salt aria-hidden="true"></canvas>
+    <canvas class="hero-salt-field" data-hero-salt aria-hidden="true"></canvas>
   </section>
 
   <section class="offers-band" aria-label="What we work across">
     {offers.map((offer, index) => (
       <a href="#contact" data-reveal>
-        <CrystallineGlyph kind={offerGlyphs[index]} />
+        <ServiceIllustration kind={offerGlyphs[index]} />
         <strong>{offer.title}</strong>
         <span>{offer.text}</span>
       </a>
@@ -78,14 +47,48 @@ const nextGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
       </p>
     </div>
     <figure class="loop-figure">
-      <CrystallineGlyph kind="divider" class="loop-divider" />
-      <svg viewBox="0 0 660 480" role="img" aria-label="A growth loop: positioning, content, experience, conversion, and measurement, each feeding the next.">
-        {loopArcs.map((a) => <path class="loop-arc" d={a.d} />)}
-        {loopArcs.map((a) => <path class="loop-head" d={a.head} />)}
-        {loopNodes.map((n) => <circle class={n.accent ? "loop-node accent" : "loop-node"} cx={n.x} cy={n.y} r="8" />)}
-        {loopNodes.map((n) => (
-          <text class="loop-label" x={n.lx} y={n.ly} text-anchor={n.anchor}>{n.label}</text>
-        ))}
+      <svg class="loop-diagram" viewBox="0 0 660 480" role="img" aria-label="A connected growth loop: positioning feeds content, content feeds experience, experience feeds conversion, conversion feeds measurement, and measurement informs positioning.">
+        <defs>
+          <marker id="loop-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M2 2 L10 6 L2 10 Z" />
+          </marker>
+        </defs>
+        <circle class="loop-orbit" cx="330" cy="238" r="126" />
+        <path class="loop-flow" d="M330 112 A126 126 0 1 1 329 112" />
+        <g class="loop-runner">
+          <circle cx="330" cy="112" r="8" />
+        </g>
+        <g class="loop-hub">
+          <path class="hub-plane pale" d="M282 224l48-70 64 56-40 86-68-14z" />
+          <path class="hub-plane teal" d="M282 224l48 12 24 60-68-14z" />
+          <path class="hub-plane blue" d="M330 154v82l64-26z" />
+          <path class="hub-plane stone" d="M330 236l64-26-40 86z" />
+        </g>
+        <g class="loop-stage stage-positioning">
+          <circle cx="330" cy="80" r="7" />
+          <text x="330" y="42" text-anchor="middle">Positioning</text>
+        </g>
+        <g class="loop-stage stage-content">
+          <circle cx="482" cy="190" r="7" />
+          <text x="532" y="196">Content</text>
+        </g>
+        <g class="loop-stage stage-experience">
+          <circle cx="424" cy="368" r="7" />
+          <text x="450" y="416">Experience</text>
+        </g>
+        <g class="loop-stage stage-conversion">
+          <circle cx="236" cy="368" r="7" />
+          <text x="210" y="416" text-anchor="end">Conversion</text>
+        </g>
+        <g class="loop-stage stage-measurement">
+          <circle cx="178" cy="190" r="7" />
+          <text x="128" y="196" text-anchor="end">Measurement</text>
+        </g>
+        <path class="loop-connector" d="M330 112 C380 118 448 142 482 190" marker-end="url(#loop-arrow)" />
+        <path class="loop-connector" d="M482 190 C486 250 466 326 424 368" marker-end="url(#loop-arrow)" />
+        <path class="loop-connector accent" d="M424 368 C372 398 284 398 236 368" marker-end="url(#loop-arrow)" />
+        <path class="loop-connector" d="M236 368 C194 326 174 250 178 190" marker-end="url(#loop-arrow)" />
+        <path class="loop-connector" d="M178 190 C212 142 280 118 330 112" marker-end="url(#loop-arrow)" />
       </svg>
     </figure>
   </section>
@@ -107,7 +110,6 @@ const nextGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
           aria-pressed={index === 0 ? "true" : "false"}
         >
           <span>{String(index + 1).padStart(2, "0")}</span>
-          <CrystallineGlyph kind={nextGlyphs[index]} />
           <strong>{item.title}</strong>
           <em>{item.text}</em>
         </button>

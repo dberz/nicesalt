@@ -1,0 +1,69 @@
+---
+type Kind = "strategy" | "content" | "conversion" | "analytics";
+
+interface Props {
+  kind: Kind;
+}
+
+const { kind } = Astro.props;
+---
+
+<figure class:list={["service-illustration", `service-illustration--${kind}`]} aria-hidden="true">
+  {kind === "strategy" && (
+    <svg viewBox="0 0 260 150" fill="none">
+      <rect class="si-panel" x="26" y="28" width="154" height="92" rx="10" />
+      <path class="si-block teal" d="M46 50h54v18H46z" />
+      <path class="si-line" d="M46 82h104M46 98h74" />
+      <path class="si-line muted" d="M116 50h40M116 66h26" />
+      <circle class="si-node teal" cx="180" cy="62" r="8" />
+      <circle class="si-node blue" cx="214" cy="96" r="8" />
+      <path class="si-path" d="M180 62c24 6 34 18 34 34" />
+      <path class="si-plane pale" d="M166 98l28-42 42 34-30 48z" />
+      <path class="si-plane blue" d="M194 56l4 56 38-22z" />
+      <path class="si-plane teal" d="M166 98l32 14 8 26-40-8z" />
+      <path class="si-plane stone" d="M198 112l38-22-30 48z" />
+      <path class="si-plane coral" d="M188 24h42v18l-42-10z" />
+    </svg>
+  )}
+
+  {kind === "content" && (
+    <svg viewBox="0 0 260 150" fill="none">
+      <rect class="si-panel" x="26" y="26" width="102" height="96" rx="10" />
+      <path class="si-block teal" d="M46 48h28v28H46z" />
+      <path class="si-block blue" d="M78 48h24v28H78z" />
+      <path class="si-line" d="M46 92h58M46 108h38" />
+      <rect class="si-card" x="156" y="28" width="68" height="42" rx="8" />
+      <rect class="si-card" x="156" y="88" width="68" height="42" rx="8" />
+      <path class="si-line muted" d="M178 44h28M178 104h28" />
+      <path class="si-path" d="M128 54h28M128 104h28" />
+      <path class="si-plane coral" d="M218 68l24 14-24 14z" />
+    </svg>
+  )}
+
+  {kind === "conversion" && (
+    <svg viewBox="0 0 260 150" fill="none">
+      <path class="si-plane pale" d="M40 28h122l-42 48v48H82V76z" />
+      <path class="si-plane teal" d="M40 28h62v48H82z" />
+      <path class="si-plane blue" d="M102 28h60l-42 48h-18z" />
+      <path class="si-line muted" d="M82 124h58" />
+      <rect class="si-panel" x="172" y="54" width="64" height="58" rx="10" />
+      <path class="si-line" d="M188 76h30M188 92h20" />
+      <path class="si-plane coral" d="M144 78l30 18-30 18z" />
+      <path class="si-path" d="M120 76h38" />
+    </svg>
+  )}
+
+  {kind === "analytics" && (
+    <svg viewBox="0 0 260 150" fill="none">
+      <rect class="si-panel" x="32" y="26" width="178" height="98" rx="12" />
+      <path class="si-block teal" d="M56 88h24v20H56z" />
+      <path class="si-block blue" d="M94 68h24v40H94z" />
+      <path class="si-block stone" d="M132 48h24v60h-24z" />
+      <path class="si-line muted" d="M56 88l50-28 38 18 42-42" />
+      <circle class="si-node teal" cx="106" cy="60" r="7" />
+      <circle class="si-node blue" cx="186" cy="36" r="7" />
+      <path class="si-plane coral" d="M174 36l18-24 18 24z" />
+      <path class="si-line" d="M56 44h46M56 58h30" />
+    </svg>
+  )}
+</figure>
