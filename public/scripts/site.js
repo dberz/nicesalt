@@ -8,6 +8,37 @@ if (header) {
   window.addEventListener("scroll", setHeader, { passive: true });
 }
 
+// Mobile nav toggle
+const navToggle = document.querySelector("[data-nav-toggle]");
+const primaryNav = document.querySelector("[data-nav]");
+if (navToggle && primaryNav) {
+  const closeNav = () => {
+    navToggle.setAttribute("aria-expanded", "false");
+    primaryNav.classList.remove("is-open");
+  };
+  navToggle.addEventListener("click", () => {
+    const open = navToggle.getAttribute("aria-expanded") === "true";
+    navToggle.setAttribute("aria-expanded", String(!open));
+    primaryNav.classList.toggle("is-open", !open);
+  });
+  primaryNav.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeNav));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeNav(); });
+}
+
+// Contact form: give clicking "Send inquiry" a visible loading state instead
+// of appearing to do nothing during the round trip to formsubmit.co
+const contactForm = document.querySelector(".contact-form");
+if (contactForm) {
+  contactForm.addEventListener("submit", () => {
+    const submitBtn = contactForm.querySelector("button[type='submit']");
+    if (submitBtn && !submitBtn.disabled) {
+      submitBtn.disabled = true;
+      submitBtn.dataset.label = submitBtn.textContent;
+      submitBtn.textContent = "Sending…";
+    }
+  });
+}
+
 // Hero: salt pours in, settles into a wide mound, and ends with all the salt
 // resting in the pile. The cursor pushes falling grains and carves the pile.
 function initSaltPour(canvas) {

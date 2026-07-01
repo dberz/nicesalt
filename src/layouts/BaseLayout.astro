@@ -54,7 +54,19 @@ const structuredData = [...baseJsonLd(), ...jsonLd];
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header" data-header>
       <a class="wordmark" href="/" aria-label="NiceSalt home">NiceSalt</a>
-      <nav aria-label="Primary navigation">
+      <button
+        class="nav-toggle"
+        type="button"
+        data-nav-toggle
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Toggle menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav aria-label="Primary navigation" id="primary-nav" data-nav>
         <a href="/#system">Approach</a>
         <a href="/case-studies/">Work</a>
         <a href="/#next">Start</a>

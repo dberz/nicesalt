@@ -103,7 +103,7 @@ export const faqs = [
   {
     question: "What does NiceSalt do?",
     answer:
-      "We help expert-led teams grow by connecting positioning, content, UX, conversion, and measurement into one system — and building the surfaces, content, and AI agents that run it."
+      "We handle the thinking and the building: positioning and messaging, the site or product itself, the content that supports it, and the measurement that tells you whether any of it actually worked."
   },
   {
     question: "Who do you work best with?",

@@ -5,7 +5,7 @@ export function canonical(path = "/") {
 }
 
 export function metaTitle(title?: string) {
-  return title ? `${title} | ${SITE.name}` : `${SITE.name} | High-craft web, product, content, and AI work`;
+  return title ? `${title} | ${SITE.name}` : `${SITE.name} | A growth system for expert-led brands`;
 }
 
 export function baseJsonLd() {
