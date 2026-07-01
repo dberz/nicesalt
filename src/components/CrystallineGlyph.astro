@@ -1,0 +1,125 @@
+---
+type Kind = "hero" | "strategy" | "content" | "conversion" | "analytics" | "build" | "ai" | "divider";
+
+interface Props {
+  kind?: Kind;
+  label?: string;
+  class?: string;
+}
+
+const { kind = "strategy", label, class: className = "" } = Astro.props;
+const decorative = !label;
+---
+
+<span
+  class:list={["crystal-glyph", `crystal-glyph--${kind}`, className]}
+  aria-hidden={decorative ? "true" : undefined}
+  role={decorative ? undefined : "img"}
+  aria-label={label}
+>
+  {kind === "hero" && (
+    <svg viewBox="0 0 520 420" fill="none">
+      <path class="cg-line muted" d="M74 262h78l45-78h96l55 64h92" />
+      <path class="cg-line dotted" d="M142 110c44 16 75 42 94 78M330 126c-27 20-46 45-58 76M390 248c-26 42-67 65-123 68" />
+      <path class="cg-plane pale" d="M196 184l58-88 88 72-49 116-96-4z" />
+      <path class="cg-plane blue" d="M254 96l10 118 78-46z" />
+      <path class="cg-plane teal" d="M196 184l68 30 29 70-96-4z" />
+      <path class="cg-plane stone" d="M264 214l78-46-49 116z" />
+      <path class="cg-plane coral" d="M116 270l40-24 36 28-42 34z" />
+      <path class="cg-plane sage" d="M350 232l54-34 44 42-58 34z" />
+      <rect class="cg-panel" x="64" y="78" width="136" height="92" rx="10" />
+      <path class="cg-line" d="M90 108h72M90 132h48M90 148h72" />
+      <rect class="cg-panel" x="344" y="86" width="112" height="126" rx="10" />
+      <path class="cg-line" d="M372 120h52M372 144h34M372 168h58" />
+      <circle class="cg-node teal" cx="196" cy="184" r="8" />
+      <circle class="cg-node blue" cx="342" cy="168" r="8" />
+      <circle class="cg-node coral" cx="390" cy="274" r="7" />
+    </svg>
+  )}
+
+  {kind === "strategy" && (
+    <svg viewBox="0 0 120 120" fill="none">
+      <path class="cg-line" d="M22 78h24l16-34h35" />
+      <path class="cg-line dotted" d="M36 34c20 4 33 15 40 32" />
+      <path class="cg-plane teal" d="M18 78l28-16 20 22-30 18z" />
+      <path class="cg-plane blue" d="M62 44l22-24 18 34-30 16z" />
+      <path class="cg-plane stone" d="M46 62l16-18 10 26-6 14z" />
+      <path class="cg-plane coral" d="M82 74l18-10 10 16-20 10z" />
+      <circle class="cg-node blue" cx="62" cy="44" r="4" />
+      <circle class="cg-node teal" cx="46" cy="62" r="4" />
+    </svg>
+  )}
+
+  {kind === "content" && (
+    <svg viewBox="0 0 120 120" fill="none">
+      <rect class="cg-panel" x="18" y="24" width="68" height="58" rx="7" />
+      <path class="cg-plane teal" d="M31 42h24v24H31z" />
+      <path class="cg-plane blue" d="M55 42h18v24H55z" />
+      <path class="cg-line" d="M30 92h58M30 104h38M64 38h58M92 52h20" />
+      <path class="cg-line dotted" d="M82 26c18 12 24 28 18 48" />
+      <path class="cg-plane coral" d="M88 74l18-10 10 18-20 9z" />
+    </svg>
+  )}
+
+  {kind === "conversion" && (
+    <svg viewBox="0 0 120 120" fill="none">
+      <path class="cg-line" d="M20 60h70" />
+      <path class="cg-plane pale" d="M26 38l34-18 34 18v44l-34 18-34-18z" />
+      <path class="cg-plane teal" d="M26 38l34 20v42L26 82z" />
+      <path class="cg-plane blue" d="M60 58l34-20v44l-34 18z" />
+      <path class="cg-plane coral" d="M78 48l22 12-22 12z" />
+      <circle class="cg-node teal" cx="26" cy="60" r="4" />
+      <circle class="cg-node blue" cx="94" cy="60" r="4" />
+    </svg>
+  )}
+
+  {kind === "analytics" && (
+    <svg viewBox="0 0 120 120" fill="none">
+      <rect class="cg-panel" x="20" y="24" width="80" height="72" rx="8" />
+      <path class="cg-line" d="M34 76l16-18 18 10 20-28" />
+      <path class="cg-plane teal" d="M34 76l16-18 10 24-22 8z" />
+      <path class="cg-plane blue" d="M68 68l20-28 8 40-28 10z" />
+      <path class="cg-plane coral" d="M52 88h14v14H52z" />
+      <circle class="cg-node teal" cx="50" cy="58" r="4" />
+      <circle class="cg-node blue" cx="88" cy="40" r="4" />
+    </svg>
+  )}
+
+  {kind === "build" && (
+    <svg viewBox="0 0 120 120" fill="none">
+      <rect class="cg-panel" x="16" y="22" width="88" height="68" rx="8" />
+      <path class="cg-line" d="M30 42h30M30 58h48M30 74h28" />
+      <path class="cg-plane teal" d="M72 42l18-10 16 18-18 12z" />
+      <path class="cg-plane blue" d="M72 72l18-10 16 18-18 12z" />
+      <path class="cg-plane coral" d="M54 94h18v18H54z" />
+      <path class="cg-line dotted" d="M88 62v18M72 94c20-8 30-22 30-42" />
+    </svg>
+  )}
+
+  {kind === "ai" && (
+    <svg viewBox="0 0 120 120" fill="none">
+      <path class="cg-line" d="M26 58h68M60 24v72M36 36l48 48M84 36 36 84" />
+      <path class="cg-plane pale" d="M44 28h32l16 28-16 28H44L28 56z" />
+      <path class="cg-plane blue" d="M44 28l16 28-16 28-16-28z" />
+      <path class="cg-plane teal" d="M60 56l16-28 16 28-16 28z" />
+      <path class="cg-plane coral" d="M52 50h16v16H52z" />
+      <circle class="cg-node blue" cx="60" cy="24" r="4" />
+      <circle class="cg-node teal" cx="94" cy="58" r="4" />
+      <circle class="cg-node coral" cx="36" cy="84" r="4" />
+    </svg>
+  )}
+
+  {kind === "divider" && (
+    <svg viewBox="0 0 760 112" fill="none">
+      <path class="cg-line muted" d="M12 58h156l42-28h110l58 52h158l42-32h170" />
+      <path class="cg-line dotted" d="M214 30c60 38 116 39 168 4M472 82c52-34 98-36 138-8" />
+      <path class="cg-plane teal" d="M184 42l38-22 42 28-40 24z" />
+      <path class="cg-plane blue" d="M348 22l58 34-56 34-58-34z" />
+      <path class="cg-plane stone" d="M522 36l42-22 42 28-44 24z" />
+      <path class="cg-plane coral" d="M642 48l28-16 26 20-30 18z" />
+      <circle class="cg-node teal" cx="168" cy="58" r="5" />
+      <circle class="cg-node blue" cx="406" cy="56" r="5" />
+      <circle class="cg-node coral" cx="696" cy="52" r="5" />
+    </svg>
+  )}
+</span>

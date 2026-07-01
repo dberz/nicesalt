@@ -1,0 +1,78 @@
+---
+import "../styles/global.css";
+import { SITE } from "../data/site";
+import { baseJsonLd, canonical, metaTitle } from "../utils/seo";
+
+type Props = {
+  title?: string;
+  description?: string;
+  path?: string;
+  image?: string;
+  jsonLd?: unknown[];
+};
+
+const {
+  title,
+  description = SITE.description,
+  path = "/",
+  image = "/images/og/nicesalt-og.png",
+  jsonLd = []
+} = Astro.props;
+
+const pageUrl = canonical(path);
+const pageTitle = metaTitle(title);
+const imageUrl = canonical(image);
+const structuredData = [...baseJsonLd(), ...jsonLd];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={pageUrl} />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#f6f0e7" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" data-header>
+      <a class="wordmark" href="/" aria-label="NiceSalt home">NiceSalt</a>
+      <nav aria-label="Primary navigation">
+        <a href="/#system">Approach</a>
+        <a href="/case-studies/">Work</a>
+        <a href="/#next">Start</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <a class="wordmark" href="/">NiceSalt</a>
+      <p>One growth system for expert-led teams — positioning, content, conversion, and measurement.</p>
+      <div>
+        <a href="/case-studies/">Work</a>
+        <a href="/llms.txt">LLMs.txt</a>
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      </div>
+    </footer>
+    <script src="/scripts/site.js" is:inline></script>
+  </body>
+</html>

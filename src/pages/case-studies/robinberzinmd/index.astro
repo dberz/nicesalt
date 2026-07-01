@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { caseStudies } from "../../../data/site";
+import { caseStudyJsonLd } from "../../../utils/seo";
+
+const study = caseStudies.find((item) => item.slug === "robinberzinmd")!;
+---
+
+<BaseLayout
+  title={`${study.name} case study`}
+  description={study.summary}
+  path="/case-studies/robinberzinmd/"
+  image={study.image}
+  jsonLd={caseStudyJsonLd(study.slug)}
+>
+  <section class="case-hero">
+    <p class="kicker">{study.label}</p>
+    <h1>{study.name}</h1>
+    <p>{study.summary}</p>
+    <a class="text-link" href={study.url} target="_blank" rel="noopener noreferrer">Visit live site</a>
+  </section>
+  <section class="case-image">
+    <img src={study.image} alt={study.alt} loading="eager" decoding="async" />
+  </section>
+  <section class="case-body">
+    <div>
+      <h2>The problem</h2>
+      <p>{study.problem}</p>
+      <h2 class="case-gap">The outcome</h2>
+      <p>{study.outcome}</p>
+    </div>
+    <div>
+      <h2>What we did</h2>
+      <ul>
+        {study.work.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
