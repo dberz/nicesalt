@@ -9,8 +9,8 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
 <BaseLayout>
   <section class="hero" data-hero-field>
     <div class="hero-copy">
-      <p class="kicker">NiceSalt · Digital studio</p>
-      <h1>We build the part that makes the rest work.</h1>
+      <p class="kicker">For expert-led brands</p>
+      <h1>A small digital studio with great taste.</h1>
       <p class="lede">
         Most sites built for experts undersell them — thin positioning,
         content that doesn't compound, a path to contact that quietly leaks.
@@ -20,7 +20,6 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
         <a class="button primary" href="#next">Find the next move</a>
         <a class="button ghost" href="/case-studies/">See selected work</a>
       </div>
-      <p class="hero-meta">Independent studio · Williamsburg, New York</p>
     </div>
     <canvas class="hero-salt-field" data-hero-salt aria-hidden="true"></canvas>
   </section>
@@ -37,8 +36,8 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
 
   <section class="system-section" id="system" aria-labelledby="system-title" data-reveal>
     <div class="system-copy">
-      <p class="kicker">How it connects</p>
-      <h2 id="system-title">The advantage is in the loop.</h2>
+      <p class="kicker">The approach</p>
+      <h2 id="system-title">We run the whole loop.</h2>
       <p>
         Most teams run content, UX, and analytics as separate projects — a
         blog contractor here, a design freelancer there, an analytics
@@ -97,7 +96,10 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
     <div class="section-heading">
       <p class="kicker">Start here</p>
       <h2 id="next-title">Where are you stuck?</h2>
-      <p>Pick what's closest — it just gives us a useful first note.</p>
+      <p>
+        Everything we build is multi-surface and AI-ready by default. Pick
+        what's closest — it just gives us a useful first note.
+      </p>
     </div>
     <div class="next-grid" data-next-move>
       {nextMoves.map((item, index) => (
@@ -117,10 +119,9 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
     </div>
   </section>
 
-  <section class="work-section" aria-labelledby="work-title">
+  <section class="work-section" aria-label="Selected work">
     <div class="section-heading compact">
-      <p class="kicker">Selected work</p>
-      <h2 id="work-title">Two recent examples.</h2>
+      <h2>Selected work</h2>
     </div>
     <div class="work-list">
       {caseStudies.map((study) => (
