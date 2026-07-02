@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ServiceIllustration from "../components/ServiceIllustration.astro";
-import { SITE, caseStudies, nextMoves, offers } from "../data/site";
+import { SITE, caseStudies, faqs, nextMoves, offers } from "../data/site";
 
 const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
 ---
@@ -24,14 +24,20 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
     <canvas class="hero-salt-field" data-hero-salt aria-hidden="true"></canvas>
   </section>
 
-  <section class="offers-band" aria-label="What we work across">
-    {offers.map((offer, index) => (
-      <a href="#contact" data-reveal>
-        <ServiceIllustration kind={offerGlyphs[index]} />
-        <strong>{offer.title}</strong>
-        <span>{offer.text}</span>
-      </a>
-    ))}
+  <section class="offers-section" aria-labelledby="offers-title">
+    <div class="section-heading compact">
+      <p class="kicker">What we do</p>
+      <h2 id="offers-title">Four disciplines. One system.</h2>
+    </div>
+    <div class="offers-band" aria-label="What we work across">
+      {offers.map((offer, index) => (
+        <a href="#contact" data-reveal>
+          <ServiceIllustration kind={offerGlyphs[index]} />
+          <strong>{offer.title}</strong>
+          <span>{offer.text}</span>
+        </a>
+      ))}
+    </div>
   </section>
 
   <section class="system-section" id="system" aria-labelledby="system-title" data-reveal>
@@ -55,37 +61,42 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
         <circle class="loop-orbit" cx="330" cy="238" r="126" />
         <path class="loop-flow" d="M330 112 A126 126 0 1 1 329 112" />
         <g class="loop-runner">
-          <circle cx="330" cy="112" r="8" />
+          <path class="loop-runner-grain" d="M330 105 L335 112 L330 119 L325 112 Z" />
         </g>
         <g class="loop-hub">
-          <path class="hub-plane pale" d="M282 224l48-70 64 56-40 86-68-14z" />
-          <path class="hub-plane teal" d="M282 224l48 12 24 60-68-14z" />
-          <path class="hub-plane blue" d="M330 154v82l64-26z" />
-          <path class="hub-plane stone" d="M330 236l64-26-40 86z" />
+          <path class="hub-plane pale" d="M330 184 L291 238 L330 238 Z" />
+          <path class="hub-plane teal" d="M330 184 L369 238 L330 238 Z" />
+          <path class="hub-plane blue" d="M330 292 L369 238 L330 238 Z" />
+          <path class="hub-plane stone" d="M330 292 L291 238 L330 238 Z" />
+          <path class="hub-seam" d="M330 184V292M291 238H369" />
+          <path class="hub-outline" d="M330 184 L369 238 L330 292 L291 238 Z" />
         </g>
+        <circle class="loop-hub-node teal" cx="438" cy="238" r="5" />
+        <circle class="loop-hub-node blue" cx="276" cy="348" r="5" />
+        <circle class="loop-hub-node stone" cx="226" cy="220" r="5" />
         <g class="loop-stage stage-positioning">
           <circle cx="330" cy="80" r="7" />
           <text x="330" y="42" text-anchor="middle">Positioning</text>
         </g>
         <g class="loop-stage stage-content">
           <circle cx="482" cy="190" r="7" />
-          <text x="532" y="196">Content</text>
+          <text x="512" y="196">Content</text>
         </g>
         <g class="loop-stage stage-experience">
           <circle cx="424" cy="368" r="7" />
-          <text x="450" y="416">Experience</text>
+          <text x="436" y="416">Experience</text>
         </g>
         <g class="loop-stage stage-conversion">
           <circle cx="236" cy="368" r="7" />
-          <text x="210" y="416" text-anchor="end">Conversion</text>
+          <text x="226" y="416" text-anchor="end">Conversion</text>
         </g>
         <g class="loop-stage stage-measurement">
           <circle cx="178" cy="190" r="7" />
-          <text x="128" y="196" text-anchor="end">Measurement</text>
+          <text x="148" y="196" text-anchor="end">Measurement</text>
         </g>
         <path class="loop-connector" d="M330 112 C380 118 448 142 482 190" marker-end="url(#loop-arrow)" />
         <path class="loop-connector" d="M482 190 C486 250 466 326 424 368" marker-end="url(#loop-arrow)" />
-        <path class="loop-connector accent" d="M424 368 C372 398 284 398 236 368" marker-end="url(#loop-arrow)" />
+        <path class="loop-connector" d="M424 368 C372 398 284 398 236 368" marker-end="url(#loop-arrow)" />
         <path class="loop-connector" d="M236 368 C194 326 174 250 178 190" marker-end="url(#loop-arrow)" />
         <path class="loop-connector" d="M178 190 C212 142 280 118 330 112" marker-end="url(#loop-arrow)" />
       </svg>
@@ -97,8 +108,8 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
       <p class="kicker">Start here</p>
       <h2 id="next-title">Where are you stuck?</h2>
       <p>
-        Everything we build is multi-surface and AI-ready by default. Pick
-        what's closest — it just gives us a useful first note.
+        Most projects start as one of these four problems. Pick the closest —
+        it gives your first note a useful starting point.
       </p>
     </div>
     <div class="next-grid" data-next-move>
@@ -117,6 +128,10 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
         </button>
       ))}
     </div>
+    <p class="next-followup" data-next-followup>
+      <span>Sounds right?</span>
+      <a class="text-link" href="#contact">Tell us about it</a>
+    </p>
   </section>
 
   <section class="work-section" aria-label="Selected work">
@@ -140,11 +155,28 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
     </div>
   </section>
 
+  <section class="notes-section" aria-labelledby="faq-title" data-reveal>
+    <div class="section-heading compact">
+      <p class="kicker">Good questions</p>
+      <h2 id="faq-title">Before you write.</h2>
+    </div>
+    <div class="notes-list">
+      {faqs.map((faq) => (
+        <div class="note-row">
+          <h3>{faq.question}</h3>
+          <p>{faq.answer}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
   <section class="contact-section" id="contact" aria-labelledby="contact-title">
     <div class="section-heading">
       <p class="kicker">Contact</p>
       <h2 id="contact-title">Tell us what you're working on.</h2>
       <p>
+        NiceSalt is the consulting practice of
+        <a class="text-link inline" href={SITE.principal.url} rel="me">{SITE.principal.name}</a>.
         You work directly with the person doing the work — no account
         managers, no hand-offs. Most of what we've shipped is in health,
         science, and media. A short note is enough to start.

@@ -4,7 +4,11 @@ export const SITE = {
   email: "hello@nicesalt.com",
   description:
     "NiceSalt is a digital studio for expert-led teams. We connect positioning, content, UX, conversion, and measurement into one growth system.",
-  formAction: "https://formsubmit.co/hello@nicesalt.com"
+  formAction: "https://formsubmit.co/hello@nicesalt.com",
+  principal: {
+    name: "David Berzin",
+    url: "https://davidberzin.com"
+  }
 };
 
 // The connected disciplines we work across — the growth loop, not isolated builds.

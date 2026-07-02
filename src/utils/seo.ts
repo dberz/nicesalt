@@ -16,7 +16,12 @@ export function baseJsonLd() {
       name: SITE.name,
       url: SITE.url,
       email: SITE.email,
-      description: SITE.description
+      description: SITE.description,
+      founder: {
+        "@type": "Person",
+        name: SITE.principal.name,
+        url: SITE.principal.url
+      }
     },
     {
       "@context": "https://schema.org",

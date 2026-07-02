@@ -1,4 +1,9 @@
 ---
+/**
+ * Service icons — one story per icon, told with the minimum cast:
+ * one focal crystal, one support shape, one connector, one coral accent.
+ * Geometry and palette per docs/illustration-style.md.
+ */
 type Kind = "strategy" | "content" | "conversion" | "analytics";
 
 interface Props {
@@ -10,60 +15,79 @@ const { kind } = Astro.props;
 
 <figure class:list={["service-illustration", `service-illustration--${kind}`]} aria-hidden="true">
   {kind === "strategy" && (
+    <!-- A page with structure; the crystal is what it earns. -->
     <svg viewBox="0 0 260 150" fill="none">
-      <rect class="si-panel" x="26" y="28" width="154" height="92" rx="10" />
-      <path class="si-block teal" d="M46 50h54v18H46z" />
-      <path class="si-line" d="M46 82h104M46 98h74" />
-      <path class="si-line muted" d="M116 50h40M116 66h26" />
-      <circle class="si-node teal" cx="180" cy="62" r="8" />
-      <circle class="si-node blue" cx="214" cy="96" r="8" />
-      <path class="si-path" d="M180 62c24 6 34 18 34 34" />
-      <path class="si-plane pale" d="M166 98l28-42 42 34-30 48z" />
-      <path class="si-plane blue" d="M194 56l4 56 38-22z" />
-      <path class="si-plane teal" d="M166 98l32 14 8 26-40-8z" />
-      <path class="si-plane stone" d="M198 112l38-22-30 48z" />
-      <path class="si-plane coral" d="M188 24h42v18l-42-10z" />
+      <rect class="si-panel" x="24" y="30" width="120" height="84" rx="10" />
+      <path class="si-block teal" d="M42 48h48v16H42z" />
+      <path class="si-line" d="M42 80h72M42 94h50" />
+      <path class="si-path" d="M144 74c16 2 26 8 32 14" />
+      <g class="si-crystal si-crystal--full">
+        <path class="si-crystal-facet pale" d="M198 62 L176.4 92 L198 92 Z" />
+        <path class="si-crystal-facet teal" d="M198 62 L219.6 92 L198 92 Z" />
+        <path class="si-crystal-facet blue" d="M198 122 L219.6 92 L198 92 Z" />
+        <path class="si-crystal-facet stone" d="M198 122 L176.4 92 L198 92 Z" />
+        <path class="si-crystal-seam" d="M198 62V122M176.4 92H219.6" />
+        <path class="si-crystal-outline" d="M198 62 L219.6 92 L198 122 L176.4 92 Z" />
+      </g>
+      <path class="si-plane coral" d="M203 54l16-6v11z" />
     </svg>
   )}
 
   {kind === "content" && (
+    <!-- One article, distributed: a source panel fanning into grains. -->
     <svg viewBox="0 0 260 150" fill="none">
-      <rect class="si-panel" x="26" y="26" width="102" height="96" rx="10" />
-      <path class="si-block teal" d="M46 48h28v28H46z" />
-      <path class="si-block blue" d="M78 48h24v28H78z" />
-      <path class="si-line" d="M46 92h58M46 108h38" />
-      <rect class="si-card" x="156" y="28" width="68" height="42" rx="8" />
-      <rect class="si-card" x="156" y="88" width="68" height="42" rx="8" />
-      <path class="si-line muted" d="M178 44h28M178 104h28" />
-      <path class="si-path" d="M128 54h28M128 104h28" />
-      <path class="si-plane coral" d="M218 68l24 14-24 14z" />
+      <rect class="si-panel" x="28" y="44" width="82" height="62" rx="10" />
+      <path class="si-block teal" d="M42 58h24v16H42z" />
+      <path class="si-line" d="M42 90h52" />
+      <path class="si-path" d="M110 62c28-12 46-18 66-21M110 75h70M110 88c28 12 46 18 64 21" />
+      <path class="si-plane coral" d="M150 70l11 5-11 5z" />
+      <g class="si-grain">
+        <path class="si-crystal-tone teal" d="M188 40 L195.2 50 L188 60 L180.8 50 Z" />
+        <path class="si-crystal-seam" d="M188 40V60M180.8 50H195.2" />
+      </g>
+      <g class="si-grain">
+        <path class="si-crystal-tone blue" d="M194 63 L202.6 75 L194 87 L185.4 75 Z" />
+        <path class="si-crystal-seam" d="M194 63V87M185.4 75H202.6" />
+      </g>
+      <g class="si-grain">
+        <path class="si-crystal-tone stone" d="M186 101 L192.5 110 L186 119 L179.5 110 Z" />
+        <path class="si-crystal-seam" d="M186 101V119M179.5 110H192.5" />
+      </g>
     </svg>
   )}
 
   {kind === "conversion" && (
+    <!-- Wide attention in, one crystal out. -->
     <svg viewBox="0 0 260 150" fill="none">
-      <path class="si-plane pale" d="M40 28h122l-42 48v48H82V76z" />
-      <path class="si-plane teal" d="M40 28h62v48H82z" />
-      <path class="si-plane blue" d="M102 28h60l-42 48h-18z" />
-      <path class="si-line muted" d="M82 124h58" />
-      <rect class="si-panel" x="172" y="54" width="64" height="58" rx="10" />
-      <path class="si-line" d="M188 76h30M188 92h20" />
-      <path class="si-plane coral" d="M144 78l30 18-30 18z" />
-      <path class="si-path" d="M120 76h38" />
+      <path class="si-plane teal" d="M44 30h60v46h-20z" />
+      <path class="si-plane blue" d="M104 30h60l-40 46h-20z" />
+      <path class="si-plane pale" d="M96 76h16v10H96z" />
+      <path class="si-plane coral" d="M100 92l4 7 4-7z" />
+      <g class="si-crystal si-crystal--full">
+        <path class="si-crystal-facet pale" d="M104 104 L93.9 118 L104 118 Z" />
+        <path class="si-crystal-facet teal" d="M104 104 L114.1 118 L104 118 Z" />
+        <path class="si-crystal-facet blue" d="M104 132 L114.1 118 L104 118 Z" />
+        <path class="si-crystal-facet stone" d="M104 132 L93.9 118 L104 118 Z" />
+        <path class="si-crystal-seam" d="M104 104V132M93.9 118H114.1" />
+        <path class="si-crystal-outline" d="M104 104 L114.1 118 L104 132 L93.9 118 Z" />
+      </g>
+      <path class="si-line muted" d="M70 140h68" />
     </svg>
   )}
 
   {kind === "analytics" && (
+    <!-- Bars measure; the trend line grows a grain. -->
     <svg viewBox="0 0 260 150" fill="none">
-      <rect class="si-panel" x="32" y="26" width="178" height="98" rx="12" />
-      <path class="si-block teal" d="M56 88h24v20H56z" />
-      <path class="si-block blue" d="M94 68h24v40H94z" />
-      <path class="si-block stone" d="M132 48h24v60h-24z" />
-      <path class="si-line muted" d="M56 88l50-28 38 18 42-42" />
-      <circle class="si-node teal" cx="106" cy="60" r="7" />
-      <circle class="si-node blue" cx="186" cy="36" r="7" />
-      <path class="si-plane coral" d="M174 36l18-24 18 24z" />
-      <path class="si-line" d="M56 44h46M56 58h30" />
+      <path class="si-line muted" d="M40 122h180" />
+      <path class="si-block teal" d="M62 92h22v30H62z" />
+      <path class="si-block blue" d="M100 74h22v48h-22z" />
+      <path class="si-block stone" d="M138 54h22v68h-22z" />
+      <path class="si-path" d="M73 82c31-18 66-34 100-46" />
+      <g class="si-grain">
+        <path class="si-crystal-tone teal" d="M184 21 L191.2 31 L184 41 L176.8 31 Z" />
+        <path class="si-crystal-seam" d="M184 21V41M176.8 31H191.2" />
+      </g>
+      <path class="si-plane coral" d="M198 24l14-8-2 13z" />
     </svg>
   )}
 </figure>

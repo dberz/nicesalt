@@ -25,6 +25,11 @@
   --blue: #4f6b71;
   --sage: #879581;
   --gold: #c6a94c;
+  --facet-pale: #e1e2da;
+  --facet-teal: #62978c;
+  --facet-blue: #5d7c88;
+  --facet-stone: #9da599;
+  --facet-coral: #c0764c;
 
   /* Layout */
   --max: 1180px;
@@ -177,6 +182,10 @@ h3 {
   background-size: 100% 1.5px;
 }
 
+.text-link.inline::after {
+  content: none;
+}
+
 /* --------------------------------------------------------------------------
    Skip link
    -------------------------------------------------------------------------- */
@@ -225,6 +234,9 @@ h3 {
 }
 
 .wordmark {
+  align-items: center;
+  display: inline-flex;
+  gap: 9px;
   font-family: var(--font-display);
   font-size: 25px;
   font-weight: 900;
@@ -232,6 +244,29 @@ h3 {
   text-decoration: none;
   color: var(--ink);
   transition: opacity 0.2s var(--ease);
+}
+
+/* Brand crystal — facet colors shared with icons and the hero animation */
+.salt-mark {
+  display: block;
+  flex: none;
+}
+
+.sm-facet.pale { fill: color-mix(in srgb, var(--paper-soft) 78%, var(--sage) 22%); }
+.sm-facet.teal { fill: color-mix(in srgb, var(--sage) 58%, #2f9a9c 42%); }
+.sm-facet.blue { fill: color-mix(in srgb, var(--blue) 78%, #8fb8d8 22%); }
+.sm-facet.stone { fill: color-mix(in srgb, var(--line-2) 70%, var(--ink) 30%); }
+
+.sm-seam {
+  stroke: color-mix(in srgb, var(--paper-soft) 72%, transparent);
+  stroke-width: 1.6;
+}
+
+.sm-outline {
+  fill: none;
+  stroke: color-mix(in srgb, var(--ink) 22%, transparent);
+  stroke-linejoin: round;
+  stroke-width: 1.4;
 }
 
 .wordmark:hover {
@@ -392,6 +427,21 @@ h3 {
   transform: none;
 }
 
+.button.small {
+  min-height: 40px;
+  padding: 8px 18px;
+  font-size: 15px;
+}
+
+.site-header nav a.nav-cta {
+  opacity: 1;
+  color: var(--paper-soft);
+}
+
+.site-header nav a.nav-cta::after {
+  content: none;
+}
+
 /* --------------------------------------------------------------------------
    Anchor targets — clear the fixed header when jumping to a section
    -------------------------------------------------------------------------- */
@@ -531,7 +581,6 @@ h3 {
   z-index: 0;
   display: block;
   opacity: 0;
-  filter: drop-shadow(0 26px 38px rgba(22, 58, 47, 0.12));
   -webkit-mask-image:
     linear-gradient(90deg, transparent 0, transparent 28%, #000 54%, #000 100%),
     linear-gradient(180deg, transparent 0, #000 14%, #000 84%, transparent 100%);
@@ -552,9 +601,9 @@ h3 {
 .service-illustration {
   display: block;
   margin: 0 0 18px;
-  max-width: 260px;
+  max-width: 300px;
   pointer-events: none;
-  width: min(100%, 260px);
+  width: min(100%, 300px);
 }
 
 .service-illustration svg {
@@ -566,13 +615,13 @@ h3 {
 
 .si-panel,
 .si-card {
-  fill: color-mix(in srgb, var(--paper-soft) 80%, var(--card) 20%);
+  fill: var(--paper-soft);
   stroke: color-mix(in srgb, var(--ink) 14%, transparent);
   stroke-width: 1.35;
 }
 
 .si-card {
-  fill: color-mix(in srgb, var(--card) 76%, var(--paper-soft) 24%);
+  fill: var(--card);
 }
 
 .si-line,
@@ -586,7 +635,7 @@ h3 {
 
 .si-line.muted,
 .si-path {
-  stroke: color-mix(in srgb, var(--blue) 40%, transparent);
+  stroke: color-mix(in srgb, var(--facet-blue) 48%, transparent);
 }
 
 .si-path {
@@ -595,7 +644,7 @@ h3 {
 
 .si-block,
 .si-plane {
-  stroke: color-mix(in srgb, var(--paper-soft) 88%, transparent);
+  stroke: var(--paper-soft);
   stroke-linejoin: round;
   stroke-width: 1.15;
 }
@@ -603,26 +652,27 @@ h3 {
 .si-block.teal,
 .si-plane.teal,
 .si-node.teal {
-  fill: color-mix(in srgb, var(--sage) 58%, #2f9a9c 42%);
+  fill: var(--facet-teal);
 }
 
 .si-block.blue,
 .si-plane.blue,
 .si-node.blue {
-  fill: color-mix(in srgb, var(--blue) 78%, #8fb8d8 22%);
+  fill: var(--facet-blue);
 }
 
 .si-block.stone,
 .si-plane.stone {
-  fill: color-mix(in srgb, var(--line-2) 70%, var(--ink) 30%);
+  fill: var(--facet-stone);
 }
 
 .si-plane.pale {
-  fill: color-mix(in srgb, var(--paper-soft) 78%, var(--sage) 22%);
+  fill: var(--facet-pale);
 }
 
+.si-coral,
 .si-plane.coral {
-  fill: color-mix(in srgb, var(--accent) 76%, #f3b79d 24%);
+  fill: var(--facet-coral);
 }
 
 .si-node {
@@ -630,17 +680,57 @@ h3 {
   stroke-width: 3;
 }
 
+.si-node.coral {
+  fill: var(--facet-coral);
+}
+
+.si-crystal-facet,
+.si-crystal-tone {
+  stroke: none;
+}
+
+.si-crystal-facet.pale { fill: var(--facet-pale); }
+.si-crystal-tone.pale { fill: var(--facet-pale); }
+.si-crystal-facet.teal,
+.si-crystal-tone.teal { fill: var(--facet-teal); }
+.si-crystal-facet.blue,
+.si-crystal-tone.blue { fill: var(--facet-blue); }
+.si-crystal-facet.stone,
+.si-crystal-tone.stone { fill: var(--facet-stone); }
+
+.si-crystal-seam {
+  fill: none;
+  stroke: var(--paper-soft);
+  stroke-linecap: round;
+  stroke-width: 1;
+}
+
+.si-crystal-outline {
+  fill: none;
+  stroke: color-mix(in srgb, var(--ink) 16%, transparent);
+  stroke-linejoin: round;
+  stroke-width: 1;
+}
+
 /* --------------------------------------------------------------------------
    Offers band — clean cards
    -------------------------------------------------------------------------- */
+
+.offers-section {
+  margin: clamp(20px, 4vw, 44px) auto 0;
+  max-width: var(--max);
+  padding: 0 var(--pad);
+}
+
+.offers-section .section-heading {
+  margin-bottom: clamp(22px, 3vw, 36px);
+  max-width: 760px;
+}
 
 .offers-band {
   display: grid;
   gap: 14px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin: clamp(20px, 4vw, 44px) auto 0;
-  max-width: var(--max);
-  padding: 0 var(--pad);
 }
 
 .offers-band a {
@@ -659,26 +749,10 @@ h3 {
   transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease), border-color 0.28s var(--ease);
 }
 
-.offers-band a::after {
-  content: "→";
-  position: absolute;
-  top: 22px;
-  right: 24px;
-  color: var(--accent);
-  opacity: 0;
-  transform: translateX(-6px);
-  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
-}
-
 .offers-band a:hover {
   transform: translateY(-5px);
   box-shadow: 0 26px 44px -30px rgba(22, 58, 47, 0.45);
   border-color: var(--line-2);
-}
-
-.offers-band a:hover::after {
-  opacity: 1;
-  transform: translateX(0);
 }
 
 .offers-band strong {
@@ -826,31 +900,44 @@ h3 {
   stroke-width: 4;
 }
 
-.loop-hub {
-  filter: drop-shadow(0 26px 34px rgba(22, 58, 47, 0.1));
+.loop-runner-grain {
+  fill: var(--facet-coral);
+  stroke: color-mix(in srgb, var(--ink) 14%, transparent);
+  stroke-linejoin: round;
+  stroke-width: 1;
 }
 
 .hub-plane {
-  stroke: color-mix(in srgb, var(--paper-soft) 85%, transparent);
+  stroke: none;
+}
+
+.hub-plane.pale { fill: var(--facet-pale); }
+.hub-plane.teal { fill: var(--facet-teal); }
+.hub-plane.blue { fill: var(--facet-blue); }
+.hub-plane.stone { fill: var(--facet-stone); }
+
+.hub-seam {
+  fill: none;
+  stroke: var(--paper-soft);
+  stroke-linecap: round;
+  stroke-width: 1.5;
+}
+
+.hub-outline {
+  fill: none;
+  stroke: color-mix(in srgb, var(--ink) 16%, transparent);
   stroke-linejoin: round;
   stroke-width: 1.5;
 }
 
-.hub-plane.pale {
-  fill: color-mix(in srgb, var(--paper-soft) 78%, var(--sage) 22%);
+.loop-hub-node {
+  stroke: var(--paper);
+  stroke-width: 3;
 }
 
-.hub-plane.teal {
-  fill: color-mix(in srgb, var(--sage) 56%, #2f9a9c 44%);
-}
-
-.hub-plane.blue {
-  fill: color-mix(in srgb, var(--blue) 78%, #8fb8d8 22%);
-}
-
-.hub-plane.stone {
-  fill: color-mix(in srgb, var(--line-2) 70%, var(--ink) 30%);
-}
+.loop-hub-node.teal { fill: var(--facet-teal); }
+.loop-hub-node.blue { fill: var(--facet-blue); }
+.loop-hub-node.stone { fill: var(--facet-stone); }
 
 .loop-stage circle {
   fill: var(--ink);
@@ -870,10 +957,6 @@ h3 {
   stroke: color-mix(in srgb, var(--ink) 46%, transparent);
   stroke-linecap: round;
   stroke-width: 1.8;
-}
-
-.loop-connector.accent {
-  stroke: color-mix(in srgb, var(--accent) 74%, transparent);
 }
 
 .case-gap {
@@ -944,6 +1027,21 @@ h3 {
 
 .next-choice[aria-pressed="true"] strong {
   color: var(--accent);
+}
+
+.next-followup {
+  align-items: baseline;
+  display: flex;
+  gap: 10px;
+  margin: 26px 0 0 18px;
+}
+
+.next-followup span {
+  color: var(--muted);
+}
+
+.next-followup .text-link {
+  font-size: 1.08rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -1191,6 +1289,16 @@ textarea {
   max-width: 30em;
 }
 
+.site-footer p a {
+  color: inherit;
+}
+
+.site-footer .footer-fine {
+  grid-column: 1 / -1;
+  font-size: 14px;
+  opacity: 0.75;
+}
+
 /* --------------------------------------------------------------------------
    Motion — scroll reveal + entrance
    -------------------------------------------------------------------------- */
@@ -1265,19 +1373,21 @@ textarea {
 }
 
 @media (max-width: 920px) {
+  /* Extra bottom padding reserves room for the salt pile below the CTAs —
+     the animation baseline is pinned under .hero-actions in site.js. */
   .hero {
     padding-top: clamp(132px, 17vh, 168px);
-    padding-bottom: clamp(72px, 10vh, 116px);
+    padding-bottom: clamp(190px, 26vh, 250px);
   }
 
   .hero-salt-field {
     --hero-animation-opacity: 0.38;
     -webkit-mask-image:
       linear-gradient(90deg, transparent 0, transparent 36%, #000 68%),
-      linear-gradient(180deg, transparent 0, #000 18%, #000 78%, transparent 100%);
+      linear-gradient(180deg, transparent 0, #000 18%, #000 88%, transparent 100%);
     mask-image:
       linear-gradient(90deg, transparent 0, transparent 36%, #000 68%),
-      linear-gradient(180deg, transparent 0, #000 18%, #000 78%, transparent 100%);
+      linear-gradient(180deg, transparent 0, #000 18%, #000 88%, transparent 100%);
   }
 
   .statement-panel {
@@ -1363,18 +1473,23 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  .offers-band a {
+    min-height: 286px;
+    padding: 28px;
+  }
+
   .hero-salt-field {
-    --hero-animation-opacity: 0.2;
+    --hero-animation-opacity: 0.3;
     -webkit-mask-image:
-      linear-gradient(90deg, transparent 0, transparent 48%, #000 82%),
-      linear-gradient(180deg, transparent 0, #000 20%, #000 76%, transparent 100%);
+      linear-gradient(90deg, transparent 0, transparent 42%, #000 78%),
+      linear-gradient(180deg, transparent 0, #000 20%, #000 88%, transparent 100%);
     mask-image:
-      linear-gradient(90deg, transparent 0, transparent 48%, #000 82%),
-      linear-gradient(180deg, transparent 0, #000 20%, #000 76%, transparent 100%);
+      linear-gradient(90deg, transparent 0, transparent 42%, #000 78%),
+      linear-gradient(180deg, transparent 0, #000 20%, #000 88%, transparent 100%);
   }
 
   .service-illustration {
-    max-width: 220px;
+    max-width: 300px;
   }
 
   .next-choice {

@@ -44,29 +44,45 @@ function initHeroSaltField(canvas) {
   const host = canvas.closest("[data-hero-field]") || canvas.parentElement;
   const colors = {
     ink: "22,58,47",
-    sage: "135,149,129",
-    teal: "83,139,132",
-    blue: "79,107,113",
+    pale: "225,226,218",
+    teal: "98,151,140",
+    blue: "93,124,136",
     paper: "250,248,243",
-    line: "187,193,178",
-    coral: "176,84,50",
-    stone: "210,208,198"
+    coral: "192,118,76",
+    stone: "157,165,153"
   };
 
   let w = 0, h = 0, dpr = 1, raf = 0, start = performance.now();
   let cols = 0, colW = 4, base = 0, emitted = 0, maxEmit = 0;
   let pile = new Float32Array(0);
   let particles = [];
+  let dust = [];
   let chips = [];
   let pointerX = 0, pointerY = 0, pointerLive = false;
 
   const rgba = (rgb, alpha) => `rgba(${rgb},${alpha})`;
-  const lerp = (a, b, t) => a + (b - a) * t;
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+  const smoothstep = (edge0, edge1, x) => {
+    const t = clamp((x - edge0) / (edge1 - edge0), 0, 1);
+    return t * t * (3 - 2 * t);
+  };
+  // Gaussian-ish random, cheap: average of three uniforms
+  const gauss = () => (Math.random() + Math.random() + Math.random()) / 3 - 0.5;
+
+  // The mound tapers to nothing at both visible edges so it never presents a
+  // hard cut against the canvas boundary or a flat shelf on the left.
+  const edgeFade = (x) =>
+    smoothstep(w * 0.44, w * 0.56, x) * (1 - smoothstep(w * 0.9, w * 0.985, x));
+
+  const heightAt = (i) => pile[i] * edgeFade(i * colW);
   const surfaceAt = (x) => {
     if (!pile.length) return base;
     const index = clamp(Math.round(x / colW), 0, cols - 1);
-    return base - pile[index];
+    return base - heightAt(index);
+  };
+  const slopeAt = (x) => {
+    const index = clamp(Math.round(x / colW), 1, cols - 2);
+    return (heightAt(index + 1) - heightAt(index - 1)) / (2 * colW);
   };
 
   function setup() {
@@ -76,32 +92,40 @@ function initHeroSaltField(canvas) {
     canvas.width = Math.max(1, Math.round(w * dpr));
     canvas.height = Math.max(1, Math.round(h * dpr));
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // Baseline sits at 82% height, but never above the bottom of the hero
+    // CTAs — the pile's ground line must not run through the buttons.
     base = h * 0.82;
+    const actions = host.querySelector(".hero-actions");
+    if (actions) {
+      const actionsBottom =
+        actions.getBoundingClientRect().bottom - canvas.getBoundingClientRect().top;
+      base = Math.min(h - 24, Math.max(base, actionsBottom + 56));
+    }
     colW = Math.max(3.5, w / 260);
     cols = Math.ceil(w / colW) + 1;
     pile = new Float32Array(cols);
     particles = [];
+    dust = [];
     chips = [];
     emitted = 0;
     maxEmit = Math.round(w * 1.5);
     pointerX = w * 0.72;
     pointerY = h * 0.52;
 
-    const center = w * 0.73;
-    const spread = w * 0.24;
+    const center = w * 0.71;
+    const spread = w * 0.23;
     for (let i = 0; i < cols; i += 1) {
       const x = i * colW;
       const distance = Math.abs(x - center) / spread;
       if (distance < 1) pile[i] = Math.pow(1 - distance, 2.25) * h * 0.16;
     }
 
-    for (let i = 0; i < 12; i += 1) {
-      const pct = 0.54 + i * 0.035 + (i % 3) * 0.012;
+    for (let i = 0; i < 7; i += 1) {
+      const pct = 0.6 + i * 0.04 + (i % 3) * 0.01;
       chips.push({
         x: pct,
-        lift: 6 + (i % 4) * 8,
-        size: 5 + (i % 5),
-        tone: [colors.paper, colors.sage, colors.blue, colors.coral][i % 4],
+        lift: 2 + (i % 4) * 4,
+        size: 4 + (i % 4),
         angle: -0.7 + i * 0.23
       });
     }
@@ -110,17 +134,35 @@ function initHeroSaltField(canvas) {
   function addParticle(force = false) {
     if (!force && emitted > maxEmit && Math.random() > 0.08) return;
     emitted += 1;
-    const originX = w * 0.68 + Math.sin((performance.now() - start) * 0.0014) * w * 0.035;
+    const originX = w * 0.68 + Math.sin((performance.now() - start) * 0.0014) * w * 0.03;
+    // A pour is a tight column with the occasional stray grain, not a cloud.
+    const stray = Math.random() < 0.07;
+    const offset = stray ? (Math.random() - 0.5) * 90 : gauss() * 16;
     particles.push({
-      x: originX + (Math.random() - 0.5) * 46,
-      y: h * 0.08 + Math.random() * 18,
-      vx: (Math.random() - 0.48) * 0.55,
+      x: originX + offset,
+      y: h * 0.08 + Math.random() * 14,
+      vx: stray ? (Math.random() - 0.5) * 0.9 : gauss() * 0.3,
       vy: 0.65 + Math.random() * 0.9,
       size: 1.7 + Math.random() * 2.5,
       spin: Math.random() * Math.PI,
       spinSpeed: (Math.random() - 0.5) * 0.08,
-      tone: Math.random() > 0.88 ? [colors.teal, colors.blue, colors.coral][Math.floor(Math.random() * 3)] : colors.paper
+      bounced: false,
+      tone: Math.random() > 0.86 ? [colors.pale, colors.teal, colors.blue, colors.stone][Math.floor(Math.random() * 4)] : colors.paper
     });
+  }
+
+  function addDust(x, y, energy) {
+    const count = 2 + Math.floor(Math.random() * 2);
+    for (let i = 0; i < count; i += 1) {
+      dust.push({
+        x: x + (Math.random() - 0.5) * 6,
+        y: y - Math.random() * 3,
+        vx: (Math.random() - 0.5) * 0.9 * energy,
+        vy: -(0.2 + Math.random() * 0.5) * energy,
+        size: 0.6 + Math.random() * 0.9,
+        life: 1
+      });
+    }
   }
 
   function settleParticle(p) {
@@ -135,13 +177,13 @@ function initHeroSaltField(canvas) {
       for (let i = 1; i < cols - 1; i += 1) {
         const leftDiff = pile[i] - pile[i - 1];
         const rightDiff = pile[i] - pile[i + 1];
-        if (leftDiff > 4.8) {
-          const move = leftDiff * 0.18;
+        if (leftDiff > 3.6) {
+          const move = leftDiff * 0.2;
           pile[i] -= move;
           pile[i - 1] += move;
         }
-        if (rightDiff > 4.8) {
-          const move = rightDiff * 0.18;
+        if (rightDiff > 3.6) {
+          const move = rightDiff * 0.2;
           pile[i] -= move;
           pile[i + 1] += move;
         }
@@ -174,67 +216,138 @@ function initHeroSaltField(canvas) {
     ctx.restore();
   }
 
+  // The brand crystal: same rhombus, four flat facets (pale/teal/blue/stone)
+  // with paper seams — matches SaltMark.astro and the site icon set.
+  function drawCrystal(cx, cy, size, angle, alpha = 0.55) {
+    const sw = size * 0.72;
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(angle);
+    ctx.globalAlpha = alpha;
+    const facets = [
+      [[0, -size], [-sw, 0], "225,226,218"],
+      [[0, -size], [sw, 0], "98,151,140"],
+      [[0, size], [sw, 0], "93,124,136"],
+      [[0, size], [-sw, 0], "157,165,153"]
+    ];
+    for (const [tip, side, tone] of facets) {
+      ctx.fillStyle = rgba(tone, 1);
+      ctx.beginPath();
+      ctx.moveTo(tip[0], tip[1]);
+      ctx.lineTo(side[0], side[1]);
+      ctx.lineTo(0, 0);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.strokeStyle = rgba(colors.paper, 0.7);
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, -size);
+    ctx.lineTo(0, size);
+    ctx.moveTo(-sw, 0);
+    ctx.lineTo(sw, 0);
+    ctx.stroke();
+    ctx.strokeStyle = rgba(colors.ink, 0.16);
+    ctx.beginPath();
+    ctx.moveTo(0, -size);
+    ctx.lineTo(sw, 0);
+    ctx.lineTo(0, size);
+    ctx.lineTo(-sw, 0);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // Build a lightly smoothed list of visible surface points (skips flat ground).
+  function surfacePoints() {
+    const pts = [];
+    for (let i = 0; i < cols; i += 2) {
+      const prev = heightAt(Math.max(0, i - 2));
+      const next = heightAt(Math.min(cols - 1, i + 2));
+      const height = (prev + heightAt(i) * 2 + next) / 4;
+      pts.push({ x: i * colW, y: base - height, height });
+    }
+    return pts;
+  }
+
+  function tracePath(pts, from, to) {
+    ctx.moveTo(pts[from].x, pts[from].y);
+    for (let i = from + 1; i < to; i += 1) {
+      const midX = (pts[i].x + pts[i + 1].x) / 2;
+      const midY = (pts[i].y + pts[i + 1].y) / 2;
+      ctx.quadraticCurveTo(pts[i].x, pts[i].y, midX, midY);
+    }
+    ctx.lineTo(pts[to].x, pts[to].y);
+  }
+
   function drawMound() {
-    const startIndex = Math.floor(cols * 0.43);
+    const pts = surfacePoints();
+    let first = -1;
+    let last = -1;
+    for (let i = 0; i < pts.length; i += 1) {
+      if (pts[i].height > 0.5) {
+        if (first === -1) first = i;
+        last = i;
+      }
+    }
+    if (first === -1 || last - first < 2) return;
+    first = Math.max(0, first - 1);
+    last = Math.min(pts.length - 1, last + 1);
+
     ctx.save();
     ctx.beginPath();
-    ctx.moveTo(startIndex * colW, base + 28);
-    for (let i = startIndex; i < cols; i += 2) {
-      ctx.lineTo(i * colW, base - pile[i]);
-    }
-    ctx.lineTo(w + 24, base + 34);
+    tracePath(pts, first, last);
+    ctx.lineTo(pts[last].x, base + 4);
+    ctx.lineTo(pts[first].x, base + 4);
     ctx.closePath();
 
-    const gradient = ctx.createLinearGradient(w * 0.54, base - h * 0.2, w, base + h * 0.08);
-    gradient.addColorStop(0, rgba(colors.paper, 0.92));
-    gradient.addColorStop(0.45, rgba(colors.line, 0.4));
-    gradient.addColorStop(1, rgba(colors.sage, 0.23));
-    ctx.fillStyle = gradient;
+    ctx.fillStyle = rgba(colors.pale, 0.58);
     ctx.fill();
 
     ctx.clip();
-    ctx.fillStyle = rgba(colors.sage, 0.11);
+    ctx.fillStyle = rgba(colors.teal, 0.12);
     ctx.beginPath();
-    ctx.moveTo(w * 0.55, base + 40);
+    ctx.moveTo(w * 0.55, base + 4);
     ctx.lineTo(w * 0.74, base - h * 0.16);
-    ctx.lineTo(w * 0.96, base + 40);
+    ctx.lineTo(w * 0.96, base + 4);
     ctx.closePath();
     ctx.fill();
-    ctx.fillStyle = rgba(colors.blue, 0.08);
+    ctx.fillStyle = rgba(colors.blue, 0.1);
     ctx.beginPath();
-    ctx.moveTo(w * 0.68, base + 40);
+    ctx.moveTo(w * 0.68, base + 4);
     ctx.lineTo(w * 0.84, base - h * 0.1);
-    ctx.lineTo(w * 1.02, base + 40);
+    ctx.lineTo(w * 1.02, base + 4);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = rgba(colors.stone, 0.12);
+    ctx.beginPath();
+    ctx.moveTo(w * 0.48, base + 4);
+    ctx.lineTo(w * 0.68, base - h * 0.12);
+    ctx.lineTo(w * 0.78, base + 4);
     ctx.closePath();
     ctx.fill();
     ctx.restore();
 
+    // Crest line — only along the visible mound, softly faded at the ends.
     ctx.save();
-    ctx.strokeStyle = rgba(colors.ink, 0.18);
+    ctx.strokeStyle = rgba(colors.ink, 0.16);
     ctx.lineWidth = 1.3;
     ctx.lineCap = "round";
-    ctx.beginPath();
-    for (let i = startIndex; i < cols; i += 5) {
-      const x = i * colW;
-      const y = base - pile[i];
-      if (i === startIndex) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
+    let strokeFirst = first;
+    let strokeLast = last;
+    while (strokeFirst < last && pts[strokeFirst].height < 3) strokeFirst += 1;
+    while (strokeLast > first && pts[strokeLast].height < 3) strokeLast -= 1;
+    if (strokeLast - strokeFirst > 2) {
+      ctx.beginPath();
+      tracePath(pts, strokeFirst, strokeLast);
+      ctx.stroke();
     }
-    ctx.stroke();
     ctx.restore();
   }
 
   function draw() {
     const t = (performance.now() - start) / 1000;
     ctx.clearRect(0, 0, w, h);
-
-    ctx.save();
-    const glow = ctx.createRadialGradient(w * 0.73, h * 0.56, 20, w * 0.73, h * 0.56, Math.max(280, w * 0.28));
-    glow.addColorStop(0, rgba(colors.sage, 0.14));
-    glow.addColorStop(1, rgba(colors.sage, 0));
-    ctx.fillStyle = glow;
-    ctx.fillRect(w * 0.42, h * 0.08, w * 0.62, h * 0.84);
-    ctx.restore();
 
     if (!reducedMotion) {
       const rate = emitted < maxEmit ? 6 : 2;
@@ -261,9 +374,29 @@ function initHeroSaltField(canvas) {
 
       if (p.x < w * 0.42 || p.x > w + 24 || p.y > h + 30) return false;
       if (p.y + p.size >= surfaceAt(p.x)) {
+        // Larger grains sometimes bounce once and roll downslope before settling.
+        if (!p.bounced && p.size > 2.4 && Math.random() < 0.45 && p.vy > 1.4) {
+          p.bounced = true;
+          p.y = surfaceAt(p.x) - p.size;
+          p.vy = -p.vy * (0.22 + Math.random() * 0.12);
+          p.vx = p.vx * 0.4 + slopeAt(p.x) * -1.4 + (Math.random() - 0.5) * 0.3;
+          p.spinSpeed *= 1.6;
+          if (Math.random() < 0.5) addDust(p.x, p.y + p.size, 0.7);
+          return true;
+        }
         settleParticle(p);
+        if (Math.random() < 0.16) addDust(p.x, surfaceAt(p.x), Math.min(1.2, p.vy * 0.35));
         return false;
       }
+      return true;
+    });
+
+    dust = dust.filter((d) => {
+      d.life -= 0.03;
+      if (d.life <= 0) return false;
+      d.vy += 0.008;
+      d.x += d.vx;
+      d.y += d.vy;
       return true;
     });
 
@@ -271,11 +404,19 @@ function initHeroSaltField(canvas) {
     drawMound();
 
     ctx.save();
+    for (const d of dust) {
+      drawDiamond(d.x, d.y, d.size, 0.78, colors.stone, 0.42 * d.life);
+    }
+    ctx.restore();
+
+    ctx.save();
     ctx.lineWidth = 1;
     for (const chip of chips) {
       const x = chip.x * w;
-      const y = surfaceAt(x) - chip.lift;
-      if (y < base - 3) drawDiamond(x, y, chip.size, chip.angle + Math.sin(t * 0.55 + x) * 0.04, chip.tone, 0.58);
+      const surface = surfaceAt(x);
+      if (base - surface > 8) {
+        drawCrystal(x, surface - chip.lift, chip.size, chip.angle + Math.sin(t * 0.55 + x) * 0.04, 0.55);
+      }
     }
     for (const p of particles) {
       drawDiamond(p.x, p.y, p.size, p.spin, p.tone, p.tone === colors.paper ? 0.82 : 0.7);
@@ -306,6 +447,7 @@ function initHeroSaltField(canvas) {
       particles = particles.filter((p) => p.y + p.size < surfaceAt(p.x));
       relaxPile();
     }
+    dust = [];
   }
   draw();
   host.addEventListener("pointermove", onMove, { passive: true });
@@ -326,17 +468,22 @@ const message = document.querySelector("[data-message]");
 
 if (nextMove && projectType && message) {
   const choices = Array.from(nextMove.querySelectorAll(".next-choice"));
-  const choose = (choice) => {
+  const followup = document.querySelector("[data-next-followup] span");
+  const choose = (choice, announce) => {
     choices.forEach((item) => item.setAttribute("aria-pressed", String(item === choice)));
     projectType.value = choice.dataset.projectType || projectType.value;
     if (!message.value.trim()) {
       message.value = choice.dataset.message || "";
     }
+    if (followup && announce) {
+      const title = choice.querySelector("strong");
+      followup.textContent = `“${title ? title.textContent : ""}” it is.`;
+    }
   };
 
   choices.forEach((choice, index) => {
-    choice.addEventListener("click", () => choose(choice));
-    if (index === 0) choose(choice);
+    choice.addEventListener("click", () => choose(choice, true));
+    if (index === 0) choose(choice, false);
   });
 }
 
