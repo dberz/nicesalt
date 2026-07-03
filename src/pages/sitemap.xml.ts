@@ -1,11 +1,13 @@
-import { caseStudies, SITE } from "../data/site";
+import { caseStudies, notes, SITE } from "../data/site";
 
 export function GET() {
   const paths = [
     "/",
     "/case-studies/",
+    "/notes/",
     "/thanks/",
-    ...caseStudies.map((study) => `/case-studies/${study.slug}/`)
+    ...caseStudies.map((study) => `/case-studies/${study.slug}/`),
+    ...notes.map((note) => `/notes/${note.slug}/`)
   ];
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>

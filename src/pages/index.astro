@@ -175,12 +175,26 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
       <p class="kicker">Contact</p>
       <h2 id="contact-title">Tell us what you're working on.</h2>
       <p>
-        NiceSalt is the consulting practice of
-        <a class="text-link inline" href={SITE.principal.url} rel="me">{SITE.principal.name}</a>.
+        NiceSalt is the consulting practice of <a class="text-link inline" href={SITE.principal.url} rel="me">{SITE.principal.name}</a>.
         You work directly with the person doing the work — no account
         managers, no hand-offs. Most of what we've shipped is in health,
-        science, and media. A short note is enough to start.
+        science, and media.
       </p>
+      <ol class="how-it-starts">
+        <li>
+          <strong>A short note.</strong> A few sentences is plenty. You'll
+          hear back within two business days.
+        </li>
+        <li>
+          <strong>A 30-minute call.</strong> We figure out what's actually
+          broken and whether we're the right fit. No deck, no pitch.
+        </li>
+        <li>
+          <strong>A first project.</strong> Most engagements start as a
+          focused sprint — then grow into a full build or ongoing work if
+          the results earn it.
+        </li>
+      </ol>
     </div>
     <form class="contact-form" action={SITE.formAction} method="POST">
       <input type="hidden" name="_subject" value="NiceSalt project inquiry" />

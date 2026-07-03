@@ -1,5 +1,9 @@
-Place licensed Exposure `.woff2` files here if you want the production site to use Exposure.
+# Self-hosted Satoshi
 
-The CSS already puts `Exposure` first in the display stack and uses self-hosted
-Newsreader as the legal fallback. Do not commit commercial font files unless the
-license allows this project to self-host them.
+Installed and active. The four weights (Regular 400, Medium 500, Bold 700,
+Black 900) are loaded via `src/styles/fonts.css`, imported at the top of
+`src/styles/global.css`. Bold and Black are preloaded in
+`src/layouts/BaseLayout.astro`.
+
+License: ITF Free Font License (free for personal and commercial use);
+source: https://www.fontshare.com/fonts/satoshi

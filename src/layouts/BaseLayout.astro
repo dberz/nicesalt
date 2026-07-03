@@ -35,8 +35,8 @@ const structuredData = [...baseJsonLd(), ...jsonLd];
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={pageUrl} />
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" />
+    <link rel="preload" href="/fonts/Satoshi-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Satoshi-Black.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#f6f0e7" />
     <meta property="og:type" content="website" />
@@ -50,6 +50,17 @@ const structuredData = [...baseJsonLd(), ...jsonLd];
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    {SITE.ga4Id && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.ga4Id}`}></script>
+        <script
+          set:html={`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${SITE.ga4Id}');`}
+        />
+      </>
+    )}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -70,7 +81,7 @@ const structuredData = [...baseJsonLd(), ...jsonLd];
       <nav aria-label="Primary navigation" id="primary-nav" data-nav>
         <a href="/#system">Approach</a>
         <a href="/case-studies/">Work</a>
-        <a href="/#next">Start</a>
+        <a href="/notes/">Notes</a>
         <a class="button primary small nav-cta" href="/#contact">Start a project</a>
       </nav>
     </header>
@@ -81,11 +92,11 @@ const structuredData = [...baseJsonLd(), ...jsonLd];
       <a class="wordmark" href="/"><SaltMark size={18} />NiceSalt</a>
       <p>
         A small digital studio for expert-led brands in health, science, and
-        media. The consulting practice of
-        <a href={SITE.principal.url} rel="me">{SITE.principal.name}</a>.
+        media. The consulting practice of <a href={SITE.principal.url} rel="me">{SITE.principal.name}</a>.
       </p>
       <div>
         <a href="/case-studies/">Work</a>
+        <a href="/notes/">Notes</a>
         <a href="/llms.txt">LLMs.txt</a>
         <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
       </div>

@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { notes } from "../../data/site";
+---
+
+<BaseLayout
+  title="Notes"
+  description="Short, specific notes on positioning, content, conversion, and measurement for expert-led brands."
+  path="/notes/"
+>
+  <section class="page-hero">
+    <p class="kicker">Notes</p>
+    <h1>Working notes.</h1>
+    <p>
+      Short and specific — the same thinking we bring to projects, applied
+      in public. No roundups, no listicles.
+    </p>
+  </section>
+  <section class="notes-index">
+    <div class="notes-list">
+      {notes.map((note) => (
+        <article class="note-row note-row--index">
+          <div>
+            <h3><a href={`/notes/${note.slug}/`}>{note.title}</a></h3>
+            <time datetime={note.date}>{note.dateDisplay}</time>
+          </div>
+          <div>
+            <p>{note.summary}</p>
+            <a class="text-link" href={`/notes/${note.slug}/`}>Read the note</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -3,6 +3,8 @@
    Clean, modern. Satoshi for display, system sans for UI.
    ========================================================================== */
 
+@import "./fonts.css";
+
 :root {
   /* Surfaces */
   --paper: #f4f2ec;
@@ -582,11 +584,9 @@ h3 {
   display: block;
   opacity: 0;
   -webkit-mask-image:
-    linear-gradient(90deg, transparent 0, transparent 28%, #000 54%, #000 100%),
-    linear-gradient(180deg, transparent 0, #000 14%, #000 84%, transparent 100%);
+    linear-gradient(180deg, transparent 0, #000 14%, #000 86%, transparent 100%);
   mask-image:
-    linear-gradient(90deg, transparent 0, transparent 28%, #000 54%, #000 100%),
-    linear-gradient(180deg, transparent 0, #000 14%, #000 84%, transparent 100%);
+    linear-gradient(180deg, transparent 0, #000 14%, #000 86%, transparent 100%);
   animation: fadeInHero 1s var(--ease) 0.15s forwards;
 }
 
@@ -1152,6 +1152,39 @@ h3 {
   align-items: start;
 }
 
+.how-it-starts {
+  counter-reset: step;
+  list-style: none;
+  margin: 36px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 22px;
+}
+
+.how-it-starts li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 52px;
+  color: var(--muted);
+  max-width: 34em;
+}
+
+.how-it-starts li::before {
+  content: "0" counter(step);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.how-it-starts strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
 .contact-form {
   display: grid;
   gap: 18px;
@@ -1270,6 +1303,96 @@ textarea {
 }
 
 /* --------------------------------------------------------------------------
+   Notes — index + articles
+   -------------------------------------------------------------------------- */
+
+.notes-index {
+  margin: 0 auto;
+  max-width: var(--max);
+  padding: 0 var(--pad) clamp(90px, 12vw, 140px);
+}
+
+.note-row--index time {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.note-row--index h3 a {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.25s var(--ease);
+}
+
+.note-row--index h3 a:hover {
+  color: var(--blue);
+}
+
+.note-row--index .text-link {
+  display: inline-block;
+  margin-top: 12px;
+}
+
+.article-body {
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 0 var(--pad) clamp(72px, 9vw, 110px);
+}
+
+.article-body p {
+  color: var(--body);
+  font-size: 1.12rem;
+  line-height: 1.7;
+  max-width: 62ch;
+  margin-bottom: 22px;
+}
+
+.article-body h2 {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  margin: 44px 0 14px;
+}
+
+.article-body .article-cta {
+  border-top: 1px solid var(--line);
+  margin-top: 40px;
+  padding-top: 28px;
+  color: var(--muted);
+}
+
+.case-next {
+  margin: 0 auto;
+  max-width: var(--max);
+  padding: 0 var(--pad) clamp(90px, 12vw, 140px);
+  display: grid;
+  gap: clamp(24px, 4vw, 64px);
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding-top: clamp(44px, 6vw, 72px);
+}
+
+.case-next h2 {
+  margin-bottom: 8px;
+}
+
+.case-next p:last-child {
+  color: var(--muted);
+  margin: 0;
+  max-width: 34em;
+}
+
+.case-next-actions {
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+}
+
+@media (max-width: 920px) {
+  .case-next {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
    Footer
    -------------------------------------------------------------------------- */
 
@@ -1381,12 +1504,10 @@ textarea {
   }
 
   .hero-salt-field {
-    --hero-animation-opacity: 0.38;
+    --hero-animation-opacity: 0.6;
     -webkit-mask-image:
-      linear-gradient(90deg, transparent 0, transparent 36%, #000 68%),
       linear-gradient(180deg, transparent 0, #000 18%, #000 88%, transparent 100%);
     mask-image:
-      linear-gradient(90deg, transparent 0, transparent 36%, #000 68%),
       linear-gradient(180deg, transparent 0, #000 18%, #000 88%, transparent 100%);
   }
 
@@ -1479,13 +1600,7 @@ textarea {
   }
 
   .hero-salt-field {
-    --hero-animation-opacity: 0.3;
-    -webkit-mask-image:
-      linear-gradient(90deg, transparent 0, transparent 42%, #000 78%),
-      linear-gradient(180deg, transparent 0, #000 20%, #000 88%, transparent 100%);
-    mask-image:
-      linear-gradient(90deg, transparent 0, transparent 42%, #000 78%),
-      linear-gradient(180deg, transparent 0, #000 20%, #000 88%, transparent 100%);
+    --hero-animation-opacity: 0.55;
   }
 
   .service-illustration {

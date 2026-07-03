@@ -5,6 +5,7 @@ export const SITE = {
   description:
     "NiceSalt is a digital studio for expert-led teams. We connect positioning, content, UX, conversion, and measurement into one growth system.",
   formAction: "https://formsubmit.co/hello@nicesalt.com",
+  ga4Id: "G-B3RLW3R3SR",
   principal: {
     name: "David Berzin",
     url: "https://davidberzin.com"
@@ -100,6 +101,17 @@ export const caseStudies = [
     ],
     outcome:
       "A working v1 that makes a complex, sensitive idea feel approachable — something real to test and react to."
+  }
+];
+
+export const notes = [
+  {
+    slug: "why-expert-sites-undersell-the-expert",
+    title: "Why expert sites undersell the expert",
+    summary:
+      "The person is impressive. The site isn't. Three structural reasons expert websites read weaker than the people behind them — and what fixes each one.",
+    date: "2026-07-02",
+    dateDisplay: "July 2026"
   }
 ];
 

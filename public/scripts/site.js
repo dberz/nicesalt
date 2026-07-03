@@ -69,10 +69,10 @@ function initHeroSaltField(canvas) {
   // Gaussian-ish random, cheap: average of three uniforms
   const gauss = () => (Math.random() + Math.random() + Math.random()) / 3 - 0.5;
 
-  // The mound tapers to nothing at both visible edges so it never presents a
-  // hard cut against the canvas boundary or a flat shelf on the left.
+  // The dune field spans the whole hero; fade only the last few percent so
+  // nothing presents a hard cut against the canvas boundary.
   const edgeFade = (x) =>
-    smoothstep(w * 0.44, w * 0.56, x) * (1 - smoothstep(w * 0.9, w * 0.985, x));
+    smoothstep(0, w * 0.04, x) * (1 - smoothstep(w * 0.96, w, x));
 
   const heightAt = (i) => pile[i] * edgeFade(i * colW);
   const surfaceAt = (x) => {
@@ -112,18 +112,28 @@ function initHeroSaltField(canvas) {
     pointerX = w * 0.72;
     pointerY = h * 0.52;
 
-    const center = w * 0.71;
-    const spread = w * 0.23;
+    // Rolling dunes across the full hero width — the pour keeps the main
+    // dune alive; the others read as settled ground.
+    const dunes = [
+      { c: 0.7, s: 0.22, k: 0.17, e: 2.4 }, // the pour peak
+      { c: 0.4, s: 0.26, k: 0.05, e: 2 },
+      { c: 0.14, s: 0.2, k: 0.035, e: 2 },
+      { c: 0.96, s: 0.18, k: 0.05, e: 2 }
+    ];
     for (let i = 0; i < cols; i += 1) {
       const x = i * colW;
-      const distance = Math.abs(x - center) / spread;
-      if (distance < 1) pile[i] = Math.pow(1 - distance, 2.25) * h * 0.16;
+      let height = 0;
+      for (const dune of dunes) {
+        const distance = Math.abs(x - w * dune.c) / (w * dune.s);
+        if (distance < 1) height += Math.pow(1 - distance, dune.e) * h * dune.k;
+      }
+      pile[i] = height;
     }
 
-    for (let i = 0; i < 7; i += 1) {
-      const pct = 0.6 + i * 0.04 + (i % 3) * 0.01;
+    const chipSpots = [0.14, 0.3, 0.44, 0.58, 0.68, 0.78, 0.88];
+    for (let i = 0; i < chipSpots.length; i += 1) {
       chips.push({
-        x: pct,
+        x: chipSpots[i],
         lift: 2 + (i % 4) * 4,
         size: 4 + (i % 4),
         angle: -0.7 + i * 0.23
@@ -134,7 +144,13 @@ function initHeroSaltField(canvas) {
   function addParticle(force = false) {
     if (!force && emitted > maxEmit && Math.random() > 0.08) return;
     emitted += 1;
-    const originX = w * 0.68 + Math.sin((performance.now() - start) * 0.0014) * w * 0.03;
+    // The pour stays concentrated around one spot (small slow drift plus a
+    // faster sway) so a peak builds where the salt lands, while overflow
+    // rolls out into the wider field.
+    const elapsed = performance.now() - start;
+    const originX =
+      w * (0.7 + Math.sin(elapsed * 0.00016) * 0.05) +
+      Math.sin(elapsed * 0.0014) * w * 0.02;
     // A pour is a tight column with the occasional stray grain, not a cloud.
     const stray = Math.random() < 0.07;
     const offset = stray ? (Math.random() - 0.5) * 90 : gauss() * 16;
@@ -166,29 +182,41 @@ function initHeroSaltField(canvas) {
   }
 
   function settleParticle(p) {
-    const index = clamp(Math.round(p.x / colW), 2, cols - 3);
+    // Grains landing on a full column roll downhill until they find room —
+    // the dune field has a height ceiling, so it can never pyramid.
+    const capH = h * 0.3;
+    let index = clamp(Math.round(p.x / colW), 2, cols - 3);
+    let guard = 0;
+    while (pile[index] > capH && guard < 30) {
+      index = clamp(index + (pile[index - 1] <= pile[index + 1] ? -1 : 1), 2, cols - 3);
+      guard += 1;
+    }
     pile[index] += p.size * (0.92 + Math.random() * 0.34);
     if (Math.random() > 0.35) pile[index - 1] += p.size * 0.28;
     if (Math.random() > 0.35) pile[index + 1] += p.size * 0.28;
   }
 
   function relaxPile() {
-    for (let pass = 0; pass < 2; pass += 1) {
+    // Gentler angle of repose: dunes spread wide instead of spiking.
+    for (let pass = 0; pass < 3; pass += 1) {
       for (let i = 1; i < cols - 1; i += 1) {
         const leftDiff = pile[i] - pile[i - 1];
         const rightDiff = pile[i] - pile[i + 1];
-        if (leftDiff > 3.6) {
+        if (leftDiff > 3.3) {
           const move = leftDiff * 0.2;
           pile[i] -= move;
           pile[i - 1] += move;
         }
-        if (rightDiff > 3.6) {
+        if (rightDiff > 3.3) {
           const move = rightDiff * 0.2;
           pile[i] -= move;
           pile[i + 1] += move;
         }
       }
     }
+    // Slow compaction: continuous pour reaches equilibrium instead of
+    // growing forever.
+    for (let i = 0; i < cols; i += 1) pile[i] *= 0.99985;
   }
 
   function drawDiamond(cx, cy, size, angle, rgb, alpha = 0.82) {
@@ -326,6 +354,20 @@ function initHeroSaltField(canvas) {
     ctx.lineTo(w * 0.78, base + 4);
     ctx.closePath();
     ctx.fill();
+    ctx.fillStyle = rgba(colors.stone, 0.1);
+    ctx.beginPath();
+    ctx.moveTo(w * 0.02, base + 4);
+    ctx.lineTo(w * 0.16, base - h * 0.05);
+    ctx.lineTo(w * 0.34, base + 4);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = rgba(colors.teal, 0.07);
+    ctx.beginPath();
+    ctx.moveTo(w * 0.28, base + 4);
+    ctx.lineTo(w * 0.42, base - h * 0.06);
+    ctx.lineTo(w * 0.56, base + 4);
+    ctx.closePath();
+    ctx.fill();
     ctx.restore();
 
     // Crest line — only along the visible mound, softly faded at the ends.
@@ -372,7 +414,7 @@ function initHeroSaltField(canvas) {
       p.y += p.vy;
       p.spin += p.spinSpeed;
 
-      if (p.x < w * 0.42 || p.x > w + 24 || p.y > h + 30) return false;
+      if (p.x < -24 || p.x > w + 24 || p.y > h + 30) return false;
       if (p.y + p.size >= surfaceAt(p.x)) {
         // Larger grains sometimes bounce once and roll downslope before settling.
         if (!p.bounced && p.size > 2.4 && Math.random() < 0.45 && p.vy > 1.4) {

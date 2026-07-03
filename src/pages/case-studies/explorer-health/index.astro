@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import CaseNext from "../../../components/CaseNext.astro";
 import { caseStudies } from "../../../data/site";
 import { caseStudyJsonLd } from "../../../utils/seo";
 
@@ -36,4 +37,5 @@ const study = caseStudies.find((item) => item.slug === "explorer-health")!;
       </ul>
     </div>
   </section>
+  <CaseNext currentSlug={study.slug} />
 </BaseLayout>

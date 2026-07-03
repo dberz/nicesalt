@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { SITE, notes } from "../../../data/site";
+
+const note = notes.find((item) => item.slug === "why-expert-sites-undersell-the-expert")!;
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: note.title,
+    description: note.summary,
+    datePublished: note.date,
+    author: {
+      "@type": "Person",
+      name: SITE.principal.name,
+      url: SITE.principal.url
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE.name,
+      url: SITE.url
+    }
+  }
+];
+---
+
+<BaseLayout
+  title={note.title}
+  description={note.summary}
+  path={`/notes/${note.slug}/`}
+  jsonLd={jsonLd}
+>
+  <section class="page-hero">
+    <p class="kicker">Notes · <time datetime={note.date}>{note.dateDisplay}</time></p>
+    <h1>{note.title}</h1>
+    <p>{note.summary}</p>
+  </section>
+
+  <article class="article-body">
+    <p>
+      There's a pattern we see constantly: someone with a genuinely
+      impressive body of work — a physician with a bestselling book, a
+      researcher whose papers move their field, a founder who built
+      something real — and a website that reads like a polite brochure.
+      Meet them in person and you'd remember the conversation for a week.
+      Visit the site and you've forgotten it by lunch.
+    </p>
+    <p>
+      This isn't usually a design problem, and it's almost never an effort
+      problem. It's structural. Three structures, specifically.
+    </p>
+
+    <h2>1. The positioning states credentials instead of stakes</h2>
+    <p>
+      Expert sites tend to open with the résumé: board-certified, published
+      in, featured on, founder of. Credentials answer "is this person
+      qualified?" — a question the visitor wasn't asking yet. The question
+      they arrived with is "does this person understand my problem?"
+    </p>
+    <p>
+      The fix is to lead with the stake, not the certificate. Name the
+      problem the visitor has, in language sharper than they'd use
+      themselves, and let the credentials play defense underneath. An
+      expert who articulates your problem better than you can is presumed
+      competent — that's what expertise sounds like from the outside.
+      Credentials confirm the presumption; they can't create it.
+    </p>
+
+    <h2>2. The content is organized by format, not by question</h2>
+    <p>
+      Most expert sites file work the way it was produced: a blog tab, a
+      podcast tab, a press tab, a books tab. That's an archive, and archives
+      put the labor on the visitor — they have to already know what they're
+      looking for and be willing to dig.
+    </p>
+    <p>
+      But readers arrive with questions, not format preferences. Nobody
+      wants "the podcast"; they want the answer about sleep, or fundraising,
+      or protocol design — in whatever format it happens to exist. When
+      content is reorganized around the questions people actually bring,
+      three things happen at once: visitors find things, search engines
+      finally understand what the site is about, and every new piece
+      published makes the older pieces easier to find instead of burying
+      them. That's the difference between content that accumulates and
+      content that compounds.
+    </p>
+
+    <h2>3. The conversion path assumes intent that was never built</h2>
+    <p>
+      The typical expert site has exactly two exits: a newsletter box in the
+      footer and a contact page behind a nav link. Both assume a visitor who
+      has already decided to act — and then quietly lose everyone else,
+      which is nearly everyone.
+    </p>
+    <p>
+      A path that works meets people at their actual temperature. A reader
+      who just finished an article about a problem they have is warm — the
+      next step should be right there, and it should be small: a related
+      piece, a specific newsletter, a short assessment. Each small yes earns
+      the right to ask for a bigger one. By the time "work with me" appears,
+      it should feel like the obvious next step in a sequence, not a cold
+      pitch bolted to the end of a bio.
+    </p>
+
+    <h2>The common thread</h2>
+    <p>
+      All three failures come from the same source: the site was built as a
+      collection of parts — a bio here, a blog there, a form somewhere — by
+      different people at different times, with nobody responsible for the
+      whole. The expert's actual work has a through-line. The site that
+      presents it usually doesn't.
+    </p>
+    <p>
+      That's why we treat positioning, content, experience, conversion, and
+      measurement as <a class="text-link inline" href="/#system">one loop</a>
+      rather than five projects. Fixing any single part in isolation tends
+      to move nothing, which is exactly why so many experts have already
+      paid for a redesign that didn't change their pipeline.
+    </p>
+    <p class="article-cta">
+      If this describes your site, <a class="text-link" href="/#contact">tell
+      us what you're working on</a> — a short note is enough.
+    </p>
+  </article>
+</BaseLayout>
