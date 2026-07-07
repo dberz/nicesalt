@@ -78,17 +78,28 @@ gtag('config', '${SITE.ga4Id}');`}
         <span></span>
         <span></span>
       </button>
-      <nav aria-label="Primary navigation" id="primary-nav" data-nav>
+      <nav
+        aria-label="Primary navigation"
+        id="primary-nav"
+        data-nav
+        data-analytics-component="header_nav"
+        data-analytics-event="navigation"
+      >
         <a href="/#system">Approach</a>
         <a href="/case-studies/">Work</a>
         <a href="/notes/">Notes</a>
-        <a class="button primary small nav-cta" href="/#contact">Start a project</a>
+        <a
+          class="button primary small nav-cta"
+          href="/#contact"
+          data-analytics-component="header_nav_cta"
+          data-analytics-event="cta"
+        >Start a project</a>
       </nav>
     </header>
     <main id="main">
       <slot />
     </main>
-    <footer class="site-footer">
+    <footer class="site-footer" data-analytics-component="footer" data-analytics-event="navigation">
       <a class="wordmark" href="/"><SaltMark size={18} />NiceSalt</a>
       <p>
         A small digital studio for expert-led brands in health, science, and
@@ -103,5 +114,6 @@ gtag('config', '${SITE.ga4Id}');`}
       <p class="footer-fine">&copy; {new Date().getFullYear()} NiceSalt</p>
     </footer>
     <script src="/scripts/site.js" is:inline></script>
+    <script src="/scripts/analytics.js" is:inline></script>
   </body>
 </html>

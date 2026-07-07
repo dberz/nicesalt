@@ -1,0 +1,92 @@
+---
+/**
+ * Editorial illustrations for notes. Same grammar as ServiceIllustration:
+ * one focal crystal or grain group, one support shape, one connector,
+ * one coral accent. Geometry and palette per docs/illustration-style.md.
+ *
+ * Subtle looping motion (dash march on flows, gentle grain float) is
+ * defined in global.css under "Note illustrations" and disabled for
+ * prefers-reduced-motion.
+ */
+type Kind = "gap" | "small-yes" | "same-surface" | "next-bet";
+
+interface Props {
+  kind: Kind;
+}
+
+const { kind } = Astro.props;
+---
+
+<figure class:list={["note-illustration", `note-illustration--${kind}`]} aria-hidden="true">
+  {kind === "gap" && (
+    <!-- The person is the crystal; the site is a thin brochure. -->
+    <svg viewBox="0 0 260 150" fill="none">
+      <g class="ni-float">
+        <path class="si-crystal-facet pale" d="M78 40 L50.6 78 L78 78 Z" />
+        <path class="si-crystal-facet teal" d="M78 40 L105.4 78 L78 78 Z" />
+        <path class="si-crystal-facet blue" d="M78 116 L105.4 78 L78 78 Z" />
+        <path class="si-crystal-facet stone" d="M78 116 L50.6 78 L78 78 Z" />
+        <path class="si-crystal-seam" d="M78 40V116M50.6 78H105.4" />
+        <path class="si-crystal-outline" d="M78 40 L105.4 78 L78 116 L50.6 78 Z" />
+        <path class="si-plane coral" d="M83 34l15-5v10z" />
+      </g>
+      <path class="si-path ni-march" d="M114 84c14 4 26 5 36 5" />
+      <rect class="si-panel" x="158" y="60" width="72" height="50" rx="9" />
+      <path class="si-block stone" d="M170 72h26v9h-26z" />
+      <path class="si-line muted" d="M170 94h42" />
+    </svg>
+  )}
+
+  {kind === "small-yes" && (
+    <!-- Each small yes earns a bigger one. -->
+    <svg viewBox="0 0 260 150" fill="none">
+      <path class="si-path ni-march" d="M36 120C90 114 148 94 212 46" />
+      <g class="ni-float">
+        <path class="si-crystal-tone teal" d="M70 95 L77.9 106 L70 117 L62.1 106 Z" />
+        <path class="si-crystal-seam" d="M70 95V117M62.1 106H77.9" />
+      </g>
+      <g class="ni-float ni-delay-1">
+        <path class="si-crystal-tone blue" d="M128 73 L138.8 88 L128 103 L117.2 88 Z" />
+        <path class="si-crystal-seam" d="M128 73V103M117.2 88H138.8" />
+      </g>
+      <g class="ni-float ni-delay-2">
+        <path class="si-crystal-tone stone" d="M182 43 L195.7 62 L182 81 L168.3 62 Z" />
+        <path class="si-crystal-seam" d="M182 43V81M168.3 62H195.7" />
+      </g>
+      <path class="si-plane coral" d="M231 31L223 44L217 35Z" />
+    </svg>
+  )}
+
+  {kind === "same-surface" && (
+    <!-- Two sites look the same; judgment sits underneath one. -->
+    <svg viewBox="0 0 260 150" fill="none">
+      <rect class="si-panel" x="28" y="24" width="84" height="56" rx="9" />
+      <path class="si-block teal" d="M42 36h30v11H42z" />
+      <path class="si-line muted" d="M42 62h52" />
+      <rect class="si-panel" x="148" y="24" width="84" height="56" rx="9" />
+      <path class="si-block teal" d="M162 36h30v11H162z" />
+      <path class="si-line muted" d="M162 62h52" />
+      <path class="si-path ni-march-down" d="M190 84v24" />
+      <path class="si-plane coral" d="M184 96h12l-6 9z" />
+      <g class="ni-float">
+        <path class="si-crystal-tone teal" d="M190 112 L199.4 125 L190 138 L180.6 125 Z" />
+        <path class="si-crystal-seam" d="M190 112V138M180.6 125H199.4" />
+      </g>
+    </svg>
+  )}
+
+  {kind === "next-bet" && (
+    <!-- Small bets, each one bigger because the last one earned it. -->
+    <svg viewBox="0 0 260 150" fill="none">
+      <rect class="si-panel" x="32" y="100" width="44" height="30" rx="7" />
+      <rect class="si-panel" x="100" y="84" width="54" height="38" rx="8" />
+      <rect class="si-panel" x="170" y="62" width="64" height="46" rx="9" />
+      <path class="si-path ni-march" d="M54 94C104 86 152 72 208 42" />
+      <g class="ni-float">
+        <path class="si-crystal-tone teal" d="M216 25 L223.9 36 L216 47 L208.1 36 Z" />
+        <path class="si-crystal-seam" d="M216 25V47M208.1 36H223.9" />
+      </g>
+      <path class="si-plane coral" d="M242 21L234 34L228 25Z" />
+    </svg>
+  )}
+</figure>

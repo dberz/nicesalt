@@ -1,7 +1,7 @@
 # NiceSalt
 
 NiceSalt is a small digital studio for expert-led brands in health, science,
-and media — the consulting practice of David Berzin (https://davidberzin.com).
+and media, the consulting practice of David Berzin (https://davidberzin.com).
 We connect positioning, content, UX, conversion, and measurement into one
 growth system, rather than treating them as separate projects.
 
@@ -14,11 +14,12 @@ growth system, rather than treating them as separate projects.
 
 ## Selected work
 
-- RobinBerzinMD.com (https://nicesalt.com/case-studies/robinberzinmd/): publishing platform for a physician's articles, newsletter, courses, and book — with a clear path from reader to lead.
-- ExplorerHealth.co (https://nicesalt.com/case-studies/explorer-health/): AI-assisted harm-reduction prototype — interactive assessment, evidence content, privacy-first positioning.
+- RobinBerzinMD.com (https://nicesalt.com/case-studies/robinberzinmd/): publishing platform for a physician's articles, newsletter, courses, and book, with a clear path from reader to lead.
+- ExplorerHealth.co (https://nicesalt.com/case-studies/explorer-health/): AI-assisted harm-reduction prototype: interactive assessment, evidence content, privacy-first positioning.
 
 ## Notes
 
+- Production got cheap. Judgment didn't. (https://nicesalt.com/notes/production-got-cheap-judgment-didnt/): anyone can ship a decent-looking site now; the scarce skill was never production, it's judgment.
 - Why expert sites undersell the expert (https://nicesalt.com/notes/why-expert-sites-undersell-the-expert/): three structural reasons expert websites read weaker than the people behind them.
 
 ## Contact

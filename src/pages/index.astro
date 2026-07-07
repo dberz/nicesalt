@@ -12,11 +12,11 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
       <p class="kicker">For expert-led brands</p>
       <h1>A small digital studio with great taste.</h1>
       <p class="lede">
-        Most sites built for experts undersell them — thin positioning,
+        Most sites built for experts undersell them: thin positioning,
         content that doesn't compound, a path to contact that quietly leaks.
         We fix the whole chain, not just the page.
       </p>
-      <div class="hero-actions">
+      <div class="hero-actions" data-analytics-component="home_hero" data-analytics-event="cta">
         <a class="button primary" href="#next">Find the next move</a>
         <a class="button ghost" href="/case-studies/">See selected work</a>
       </div>
@@ -29,7 +29,7 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
       <p class="kicker">What we do</p>
       <h2 id="offers-title">Four disciplines. One system.</h2>
     </div>
-    <div class="offers-band" aria-label="What we work across">
+    <div class="offers-band" aria-label="What we work across" data-analytics-component="home_offers" data-analytics-event="cta">
       {offers.map((offer, index) => (
         <a href="#contact" data-reveal>
           <ServiceIllustration kind={offerGlyphs[index]} />
@@ -45,7 +45,7 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
       <p class="kicker">The approach</p>
       <h2 id="system-title">We run the whole loop.</h2>
       <p>
-        Most teams run content, UX, and analytics as separate projects — a
+        Most teams run content, UX, and analytics as separate projects: a
         blog contractor here, a design freelancer there, an analytics
         dashboard nobody opens. We treat it as one loop: each stage feeds the
         next, and nothing ships in isolation.
@@ -108,11 +108,11 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
       <p class="kicker">Start here</p>
       <h2 id="next-title">Where are you stuck?</h2>
       <p>
-        Most projects start as one of these four problems. Pick the closest —
-        it gives your first note a useful starting point.
+        Most projects start as one of these four problems. Pick the closest.
+        It gives your first note a useful starting point.
       </p>
     </div>
-    <div class="next-grid" data-next-move>
+    <div class="next-grid" data-next-move data-analytics-component="home_next_move" data-analytics-event="cta">
       {nextMoves.map((item, index) => (
         <button
           class="next-choice"
@@ -138,7 +138,7 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
     <div class="section-heading compact">
       <h2>Selected work</h2>
     </div>
-    <div class="work-list">
+    <div class="work-list" data-analytics-component="home_selected_work" data-analytics-event="recirculation">
       {caseStudies.map((study) => (
         <article class="work-row" data-reveal>
           <a class="work-image" href={`/case-studies/${study.slug}/`}>
@@ -176,7 +176,7 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
       <h2 id="contact-title">Tell us what you're working on.</h2>
       <p>
         NiceSalt is the consulting practice of <a class="text-link inline" href={SITE.principal.url} rel="me">{SITE.principal.name}</a>.
-        You work directly with the person doing the work — no account
+        You work directly with the person doing the work. No account
         managers, no hand-offs. Most of what we've shipped is in health,
         science, and media.
       </p>
@@ -191,12 +191,12 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
         </li>
         <li>
           <strong>A first project.</strong> Most engagements start as a
-          focused sprint — then grow into a full build or ongoing work if
+          focused sprint, then grow into a full build or ongoing work if
           the results earn it.
         </li>
       </ol>
     </div>
-    <form class="contact-form" action={SITE.formAction} method="POST">
+    <form class="contact-form" action={SITE.formAction} method="POST" data-inquiry-form data-form-name="contact">
       <input type="hidden" name="_subject" value="NiceSalt project inquiry" />
       <input type="hidden" name="_template" value="table" />
       <input type="hidden" name="_captcha" value="false" />

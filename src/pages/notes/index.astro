@@ -12,12 +12,12 @@ import { notes } from "../../data/site";
     <p class="kicker">Notes</p>
     <h1>Working notes.</h1>
     <p>
-      Short and specific — the same thinking we bring to projects, applied
+      Short and specific: the same thinking we bring to projects, applied
       in public. No roundups, no listicles.
     </p>
   </section>
   <section class="notes-index">
-    <div class="notes-list">
+    <div class="notes-list" data-analytics-component="notes_index" data-analytics-event="recirculation">
       {notes.map((note) => (
         <article class="note-row note-row--index">
           <div>

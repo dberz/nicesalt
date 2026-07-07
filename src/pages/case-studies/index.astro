@@ -17,7 +17,7 @@ import { caseStudies } from "../../data/site";
     </p>
   </section>
   <section class="work-section solo">
-    <div class="work-list">
+    <div class="work-list" data-analytics-component="work_index" data-analytics-event="recirculation">
       {caseStudies.map((study) => (
         <article class="work-row" data-reveal>
           <a class="work-image" href={`/case-studies/${study.slug}/`}>

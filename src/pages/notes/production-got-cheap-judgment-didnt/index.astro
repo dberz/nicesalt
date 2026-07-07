@@ -1,0 +1,130 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import NoteIllustration from "../../../components/NoteIllustration.astro";
+import { SITE, notes } from "../../../data/site";
+
+const note = notes.find((item) => item.slug === "production-got-cheap-judgment-didnt")!;
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: note.title,
+    description: note.summary,
+    datePublished: note.date,
+    author: {
+      "@type": "Person",
+      name: SITE.principal.name,
+      url: SITE.principal.url
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE.name,
+      url: SITE.url
+    }
+  }
+];
+---
+
+<BaseLayout
+  title={note.title}
+  description={note.summary}
+  path={`/notes/${note.slug}/`}
+  jsonLd={jsonLd}
+>
+  <section class="page-hero">
+    <p class="kicker">Notes · <time datetime={note.date}>{note.dateDisplay}</time></p>
+    <h1>{note.title}</h1>
+    <p>{note.summary}</p>
+  </section>
+
+  <article class="article-body" data-analytics-component="article_body">
+    <p>
+      A decade ago, a professional-looking website was proof of investment.
+      It meant someone had hired designers, written copy, paid for
+      development. Looking good was a signal because looking good was
+      expensive.
+    </p>
+    <p>
+      That signal is gone. A Squarespace template or an afternoon of
+      AI-assisted building will get you a site that looks perfectly fine.
+      Which raises the question worth taking seriously: if production is
+      nearly free, why do most of these sites still produce nothing? No
+      inquiries, no pipeline, no compounding audience.
+    </p>
+    <p>
+      The honest answer is that production was never the scarce skill.
+      Judgment was. And judgment shows up in three questions the tools
+      never ask you.
+    </p>
+
+    <NoteIllustration kind="same-surface" />
+
+    <h2>1. What is this site being hired to do?</h2>
+    <p>
+      A template asks which layout you like. A prompt asks what vibe you
+      want. Neither asks who actually arrives at your site, what they're
+      trying to get done, what alternatives they're comparing you against,
+      or which single action matters most when they're ready to act.
+    </p>
+    <p>
+      Those are strategy questions, and they get answered before a pixel
+      exists. Get them right and a modest site works hard. Get them wrong
+      and no amount of polish saves you: you've built a beautiful answer
+      to a question nobody asked.
+    </p>
+
+    <h2>2. Where do people get stuck?</h2>
+    <p>
+      Almost every DIY site ships blind. A pageview counter isn't
+      measurement. Real instrumentation tells you where visitors enter,
+      what they read, where the path from interest to inquiry leaks, and
+      which of your assumptions the traffic just disproved.
+    </p>
+    <p>
+      Without that, every improvement is a guess. This is why so many
+      redesigns change nothing: the owner fixed what looked wrong instead
+      of what was measurably broken, because nothing was measured.
+    </p>
+
+    <h2>3. What should be built next?</h2>
+    <p>
+      DIY sites launch and freeze. There's no roadmap because there's no
+      evidence to build one from. A site that grows works differently: a
+      sequence of small, de-risked bets, each one shaped by what the last
+      one taught you. Ship the piece most likely to move inquiries, measure
+      it, then decide what earns the next investment. Over a year, the gap
+      between that and a frozen site is not cosmetic. It's the pipeline.
+    </p>
+
+    <NoteIllustration kind="next-bet" />
+
+    <h2>To be clear: we use the same tools</h2>
+    <p>
+      This isn't an argument against AI or templates. We use AI constantly,
+      for illustration, motion, content production, and the build itself.
+      It's why a two-person studio can ship what used to take an agency
+      team. The difference isn't the tools. It's who's directing them, and
+      against what strategy.
+    </p>
+    <p>
+      There's one more difference worth naming: ownership. What we build is
+      fast, search-ready code you own outright. Not a rental with a monthly
+      fee and a template ceiling.
+    </p>
+
+    <h2>The takeaway</h2>
+    <p>
+      If your site looks fine but does nothing, you don't have a production
+      problem, and another redesign won't fix it. You have a judgment gap:
+      positioning, measurement, and roadmap were never done. That's the
+      work we treat as <a class="text-link inline" href="/#system">one
+      connected loop</a>, because fixing any single piece in isolation
+      rarely moves anything.
+    </p>
+    <p class="article-cta" data-analytics-component="article_cta" data-analytics-event="cta">
+      If this sounds familiar, <a class="text-link" href="/#contact">tell
+      us what you're working on</a>. A short note is enough.
+    </p>
+  </article>
+</BaseLayout>

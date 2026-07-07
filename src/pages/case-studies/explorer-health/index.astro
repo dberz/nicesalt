@@ -14,7 +14,7 @@ const study = caseStudies.find((item) => item.slug === "explorer-health")!;
   image={study.image}
   jsonLd={caseStudyJsonLd(study.slug)}
 >
-  <section class="case-hero">
+  <section class="case-hero" data-analytics-component="case_study">
     <p class="kicker">{study.label}</p>
     <h1>{study.name}</h1>
     <p>{study.summary}</p>

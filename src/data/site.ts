@@ -12,7 +12,7 @@ export const SITE = {
   }
 };
 
-// The connected disciplines we work across — the growth loop, not isolated builds.
+// The connected disciplines we work across: the growth loop, not isolated builds.
 export const offers = [
   {
     title: "Positioning & UX",
@@ -69,9 +69,9 @@ export const caseStudies = [
     image: "/images/case-studies/robinberzinmd.webp",
     alt: "RobinBerzinMD.com homepage screenshot.",
     summary:
-      "A respected physician's ideas were scattered across formats. We built a publishing platform that gives her work one home — and a clear path from reader to lead.",
+      "A respected physician's ideas were scattered across formats. We built a publishing platform that gives her work one home, with a clear path from reader to lead.",
     problem:
-      "A respected expert with deep, wide-ranging work and no single home for it — and no clear route from a casual reader to a real lead.",
+      "A respected expert with deep, wide-ranging work and no single home for it, and no clear route from a casual reader to a real lead.",
     work: [
       "Editorial information architecture",
       "Fast, SEO-ready Astro build",
@@ -90,7 +90,7 @@ export const caseStudies = [
     image: "/images/case-studies/explorer-health.webp",
     alt: "ExplorerHealth.co homepage screenshot.",
     summary:
-      "A sensitive, complex harm-reduction idea, made testable: an interactive assessment, evidence content, and AI-assisted guidance — privacy first.",
+      "A sensitive, complex harm-reduction idea, made testable: an interactive assessment, evidence content, and AI-assisted guidance, privacy first.",
     problem:
       "A nuanced harm-reduction concept that had to feel clear, credible, and safe before anyone would trust it.",
     work: [
@@ -100,16 +100,24 @@ export const caseStudies = [
       "Evidence-led, privacy-first language"
     ],
     outcome:
-      "A working v1 that makes a complex, sensitive idea feel approachable — something real to test and react to."
+      "A working v1 that makes a complex, sensitive idea feel approachable: something real to test and react to."
   }
 ];
 
 export const notes = [
   {
+    slug: "production-got-cheap-judgment-didnt",
+    title: "Production got cheap. Judgment didn't.",
+    summary:
+      "Anyone can ship a decent-looking site in a weekend now, template or AI, take your pick. So why do most of them still do nothing? Because the scarce skill was never production.",
+    date: "2026-07-03",
+    dateDisplay: "July 2026"
+  },
+  {
     slug: "why-expert-sites-undersell-the-expert",
     title: "Why expert sites undersell the expert",
     summary:
-      "The person is impressive. The site isn't. Three structural reasons expert websites read weaker than the people behind them — and what fixes each one.",
+      "The person is impressive. The site isn't. Three structural reasons expert websites read weaker than the people behind them, and what fixes each one.",
     date: "2026-07-02",
     dateDisplay: "July 2026"
   }
@@ -124,7 +132,7 @@ export const faqs = [
   {
     question: "Who do you work best with?",
     answer:
-      "Founders, operators, and experts who want senior judgment and hands-on building without a large agency — especially in health, science, and media, where credibility is the product."
+      "Founders, operators, and experts who want senior judgment and hands-on building without a large agency, especially in health, science, and media, where credibility is the product."
   },
   {
     question: "How is this different from an agency?",
