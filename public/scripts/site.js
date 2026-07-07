@@ -1,5 +1,17 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const reducedData = window.matchMedia("(prefers-reduced-data: reduce)").matches;
 const finePointer = window.matchMedia("(pointer: fine)").matches;
+const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+const saveData = Boolean(connection && connection.saveData);
+const lowCoreDevice =
+  typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4;
+const lowMemoryDevice =
+  typeof navigator.deviceMemory === "number" && navigator.deviceMemory <= 4;
+const liteHero = reducedMotion || reducedData || saveData || lowCoreDevice || lowMemoryDevice;
+
+if (liteHero) {
+  document.documentElement.classList.add("is-lite-hero");
+}
 
 const header = document.querySelector("[data-header]");
 if (header) {
@@ -42,6 +54,7 @@ if (contactForm) {
 function initHeroSaltField(canvas) {
   const ctx = canvas.getContext("2d");
   const host = canvas.closest("[data-hero-field]") || canvas.parentElement;
+  const animateHero = !liteHero;
   const colors = {
     ink: "22,58,47",
     pale: "225,226,218",
@@ -391,7 +404,7 @@ function initHeroSaltField(canvas) {
     const t = (performance.now() - start) / 1000;
     ctx.clearRect(0, 0, w, h);
 
-    if (!reducedMotion) {
+    if (animateHero) {
       const rate = emitted < maxEmit ? 6 : 2;
       for (let i = 0; i < rate; i += 1) addParticle();
     }
@@ -465,7 +478,7 @@ function initHeroSaltField(canvas) {
     }
     ctx.restore();
 
-    if (!reducedMotion) raf = requestAnimationFrame(draw);
+    if (animateHero) raf = requestAnimationFrame(draw);
   }
 
   const onMove = (event) => {
@@ -476,10 +489,11 @@ function initHeroSaltField(canvas) {
     pointerLive = true;
   };
 
-  setup();
-  if (reducedMotion) {
-    for (let i = 0; i < 160; i += 1) addParticle(true);
-    for (let i = 0; i < 120; i += 1) {
+  function settleStaticField() {
+    const grains = reducedMotion ? 160 : 90;
+    const frames = reducedMotion ? 120 : 72;
+    for (let i = 0; i < grains; i += 1) addParticle(true);
+    for (let i = 0; i < frames; i += 1) {
       particles.forEach((p) => {
         p.vy += 0.05;
         p.x += p.vx;
@@ -491,12 +505,18 @@ function initHeroSaltField(canvas) {
     }
     dust = [];
   }
+
+  setup();
+  if (liteHero) settleStaticField();
   draw();
-  host.addEventListener("pointermove", onMove, { passive: true });
-  host.addEventListener("pointerleave", () => { pointerLive = false; });
+  if (animateHero) {
+    host.addEventListener("pointermove", onMove, { passive: true });
+    host.addEventListener("pointerleave", () => { pointerLive = false; });
+  }
   window.addEventListener("resize", () => {
     cancelAnimationFrame(raf);
     setup();
+    if (liteHero) settleStaticField();
     draw();
   }, { passive: true });
 }

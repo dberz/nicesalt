@@ -590,6 +590,10 @@ h3 {
   animation: fadeInHero 1s var(--ease) 0.15s forwards;
 }
 
+.is-lite-hero .hero-salt-field {
+  --hero-animation-opacity: 0.5;
+}
+
 .hero-copy {
   max-width: 720px;
 }
