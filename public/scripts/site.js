@@ -521,10 +521,13 @@ function initHeroSaltField(canvas) {
   }, { passive: true });
 }
 
+const heroSaltCanvas = document.querySelector("[data-hero-salt]");
+if (heroSaltCanvas) initHeroSaltField(heroSaltCanvas);
+
 const nextMove = document.querySelector("[data-next-move]");
 const inquiryForm = document.querySelector("[data-inquiry-form]");
-const projectType = inquiryForm ? inquiryForm.querySelector("[data-project-type]") : null;
-const message = inquiryForm ? inquiryForm.querySelector("[data-message]") : null;
+const projectType = inquiryForm ? inquiryForm.querySelector("select[name='project_type']") : null;
+const message = inquiryForm ? inquiryForm.querySelector("textarea[name='message']") : null;
 
 if (nextMove && projectType && message) {
   const choices = Array.from(nextMove.querySelectorAll(".next-choice"));
@@ -533,12 +536,15 @@ if (nextMove && projectType && message) {
   const choose = (choice, announce) => {
     choices.forEach((item) => item.setAttribute("aria-pressed", String(item === choice)));
 
+    const suggestedProjectType = choice.dataset.projectType || "";
     const suggestedMessage = choice.dataset.message || "";
     const previousSuggestedMessage = message.dataset.suggestedMessage || "";
     const messageWasUntouched =
       !message.value.trim() || message.value === previousSuggestedMessage;
 
-    projectType.value = choice.dataset.projectType || projectType.value;
+    if (suggestedProjectType) {
+      projectType.value = suggestedProjectType;
+    }
 
     if (messageWasUntouched && suggestedMessage) {
       message.value = suggestedMessage;
