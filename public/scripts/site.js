@@ -37,13 +37,43 @@ if (navToggle && primaryNav) {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeNav(); });
 }
 
-// Contact form: use native POST so FormSubmit can run its verification flow.
+// Contact form: use native POST so Web3Forms can handle delivery directly.
 const contactForm = document.querySelector(".contact-form");
 if (contactForm) {
   const status = contactForm.querySelector("[data-form-status]");
+  const configured = contactForm.dataset.formConfigured === "true";
 
-  contactForm.addEventListener("submit", () => {
+  const fallbackMailto = () => {
+    const formData = new FormData(contactForm);
+    const subject = encodeURIComponent("NiceSalt project inquiry");
+    const body = encodeURIComponent(
+      [
+        `Name: ${formData.get("name") || ""}`,
+        `Email: ${formData.get("email") || ""}`,
+        `Company/project: ${formData.get("company") || ""}`,
+        `Project type: ${formData.get("project_type") || ""}`,
+        `Budget/timeline: ${formData.get("budget_timeline") || ""}`,
+        "",
+        formData.get("message") || ""
+      ].join("\n")
+    );
+    return `mailto:hello@nicesalt.com?subject=${subject}&body=${body}`;
+  };
+
+  contactForm.addEventListener("submit", (event) => {
     const submitBtn = contactForm.querySelector("button[type='submit']");
+
+    if (!configured) {
+      event.preventDefault();
+      if (status) {
+        status.classList.remove("is-success");
+        status.classList.add("is-error");
+        status.textContent = "Email delivery is being configured. Opening an email draft instead.";
+      }
+      window.location.href = fallbackMailto();
+      return;
+    }
+
     if (submitBtn) {
       if (submitBtn.disabled) return;
       submitBtn.disabled = true;

@@ -4,7 +4,8 @@ export const SITE = {
   email: "hello@nicesalt.com",
   description:
     "NiceSalt is a digital studio for expert-led teams. We connect positioning, content, UX, conversion, and measurement into one growth system.",
-  formAction: "https://formsubmit.co/hello@nicesalt.com",
+  formAction: "https://api.web3forms.com/submit",
+  formAccessKey: import.meta.env.WEB3FORMS_ACCESS_KEY ?? "",
   ga4Id: "G-B3RLW3R3SR",
   principal: {
     name: "David Berzin",

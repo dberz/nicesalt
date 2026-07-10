@@ -4,6 +4,9 @@ import ServiceIllustration from "../components/ServiceIllustration.astro";
 import { SITE, caseStudies, faqs, nextMoves, offers } from "../data/site";
 
 const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
+const formConfigured = Boolean(SITE.formAccessKey);
+const formAction = formConfigured ? SITE.formAction : `mailto:${SITE.email}`;
+const formMethod = formConfigured ? "POST" : "GET";
 ---
 
 <BaseLayout>
@@ -196,11 +199,12 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
         </li>
       </ol>
     </div>
-    <form class="contact-form" action={SITE.formAction} method="POST" data-inquiry-form data-form-name="contact">
-      <input type="hidden" name="_subject" value="NiceSalt project inquiry" />
-      <input type="hidden" name="_template" value="table" />
-      <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
-      <input type="hidden" name="_next" value={`${SITE.url}/thanks/`} />
+    <form class="contact-form" action={formAction} method={formMethod} data-inquiry-form data-form-name="contact" data-form-configured={formConfigured ? "true" : "false"}>
+      <input type="hidden" name="access_key" value={SITE.formAccessKey} />
+      <input type="hidden" name="subject" value="NiceSalt project inquiry" />
+      <input type="hidden" name="from_name" value="NiceSalt.com" />
+      <input type="hidden" name="redirect" value={`${SITE.url}/thanks/`} />
+      <input class="form-honey" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <label>
         <span>Name</span>
         <input name="name" autocomplete="name" required />
