@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectMedia from "../components/ProjectMedia.astro";
 import ServiceIllustration from "../components/ServiceIllustration.astro";
 import { SITE, caseStudies, faqs, nextMoves, offers } from "../data/site";
 
@@ -144,9 +145,7 @@ const formMethod = formConfigured ? "POST" : "GET";
     <div class="work-list" data-analytics-component="home_selected_work" data-analytics-event="recirculation">
       {caseStudies.map((study) => (
         <article class="work-row" data-reveal>
-          <a class="work-image" href={`/case-studies/${study.slug}/`}>
-            <img src={study.image} alt={study.alt} loading="lazy" decoding="async" />
-          </a>
+          <ProjectMedia study={study} href={`/case-studies/${study.slug}/`} class="work-image" />
           <div>
             <p class="kicker">{study.label}</p>
             <h3><a href={`/case-studies/${study.slug}/`}>{study.name}</a></h3>

@@ -1,0 +1,27 @@
+---
+type GalleryItem = {
+  src: string;
+  alt: string;
+  caption: string;
+  shape?: "wide" | "portrait" | "square" | "natural";
+  fit?: "cover" | "contain";
+};
+
+interface Props {
+  title: string;
+  items?: GalleryItem[];
+}
+
+const { title, items = [] } = Astro.props;
+---
+
+{items.length > 0 && (
+  <section class="case-gallery" aria-label={`${title} supporting visuals`}>
+    {items.map((item) => (
+      <figure class:list={["case-gallery-item", item.shape ?? "wide", item.fit === "contain" && "contain"]}>
+        <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
+        <figcaption>{item.caption}</figcaption>
+      </figure>
+    ))}
+  </section>
+)}

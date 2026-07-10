@@ -365,6 +365,7 @@ h3 {
 .page-hero,
 .case-hero,
 .case-image,
+.case-gallery,
 .case-body {
   margin: 0 auto;
   max-width: var(--max);
@@ -838,8 +839,16 @@ h3 {
 .notes-section,
 .contact-section,
 .system-section {
-  padding-top: clamp(80px, 11vw, 140px);
-  padding-bottom: clamp(80px, 11vw, 140px);
+  padding-top: clamp(72px, 9vw, 116px);
+  padding-bottom: clamp(72px, 9vw, 116px);
+}
+
+.system-section {
+  padding-bottom: clamp(36px, 5vw, 68px);
+}
+
+.next-section {
+  padding-top: clamp(52px, 6vw, 84px);
 }
 
 /* --------------------------------------------------------------------------
@@ -1079,8 +1088,37 @@ h3 {
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 
-.work-image img {
+.project-media-frame {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-media-video,
+.project-media-image,
+.project-media-poster {
+  display: block;
+  width: 100%;
+}
+
+.project-media-video {
+  background: transparent;
+}
+
+.project-media-device {
+  display: contents;
+}
+
+.project-media.has-video .project-media-poster {
+  display: none;
+}
+
+.work-image .project-media-frame,
+.work-image :is(img, video) {
   aspect-ratio: 16 / 10;
+}
+
+.work-image :is(img, video) {
+  height: 100%;
   object-fit: cover;
   object-position: top center;
   width: 100%;
@@ -1092,8 +1130,162 @@ h3 {
   box-shadow: 0 36px 60px -36px rgba(22, 58, 47, 0.5);
 }
 
-.work-image:hover img {
+.work-image:hover :is(img, video) {
   transform: scale(1.03);
+}
+
+.work-image.media-iphone:hover :is(img, video) {
+  transform: none;
+}
+
+.work-image.has-video :is(img, video) {
+  background: transparent;
+  object-fit: contain;
+  object-position: center;
+}
+
+.media-iphone {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.media-iphone:hover {
+  box-shadow: none;
+}
+
+.media-iphone .project-media-frame {
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  display: grid;
+  overflow: visible;
+  padding: 0;
+  place-items: center;
+}
+
+.iphone-shell {
+  aspect-ratio: 704 / 1320;
+  background: #07111f;
+  border: 7px solid #07111f;
+  border-radius: 42px;
+  box-shadow:
+    0 26px 48px -34px rgba(22, 58, 47, 0.62),
+    0 0 0 1px rgba(255, 255, 255, 0.34),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  display: block;
+  height: min(100%, 360px);
+  max-height: calc(100% - 8px);
+  overflow: hidden;
+  position: relative;
+  width: auto;
+  z-index: 1;
+}
+
+.iphone-shell::before {
+  background: #050b14;
+  border-radius: 999px;
+  content: "";
+  height: 18px;
+  left: 50%;
+  position: absolute;
+  top: 10px;
+  transform: translateX(-50%);
+  width: 78px;
+  z-index: 2;
+}
+
+.iphone-shell :is(.project-media-video, .project-media-poster) {
+  aspect-ratio: auto;
+  border-radius: 34px;
+  box-shadow: none;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.work-image.media-iphone .project-media-frame {
+  padding: 0;
+}
+
+.work-image.media-iphone .iphone-shell {
+  height: min(100%, 328px);
+  max-height: 100%;
+}
+
+.media-explorer-motion .project-media-frame::before {
+  animation: explorerPulse 7s ease-in-out infinite alternate;
+  background:
+    radial-gradient(circle at 76% 18%, rgba(246, 242, 222, 0.9) 0 2px, transparent 3px),
+    radial-gradient(circle at 88% 33%, rgba(165, 195, 184, 0.78) 0 2px, transparent 3px),
+    radial-gradient(circle at 68% 52%, rgba(246, 242, 222, 0.72) 0 2px, transparent 3px),
+    radial-gradient(circle at 82% 68%, rgba(147, 184, 177, 0.7) 0 2px, transparent 3px),
+    radial-gradient(circle at 92% 84%, rgba(246, 242, 222, 0.75) 0 2px, transparent 3px),
+    linear-gradient(112deg, transparent 58%, rgba(246, 242, 222, 0.18) 58.2%, transparent 58.6%),
+    linear-gradient(28deg, transparent 64%, rgba(147, 184, 177, 0.18) 64.2%, transparent 64.7%),
+    linear-gradient(152deg, transparent 70%, rgba(246, 242, 222, 0.12) 70.2%, transparent 70.7%);
+  content: "";
+  inset: 0;
+  mix-blend-mode: screen;
+  opacity: 0.56;
+  pointer-events: none;
+  position: absolute;
+  transform: translate3d(0, 0, 0) scale(1);
+  z-index: 1;
+}
+
+.media-explorer-motion .project-media-frame::after {
+  animation: explorerDrift 12s linear infinite;
+  background:
+    radial-gradient(circle at 20% 34%, transparent 0 38%, rgba(247, 239, 205, 0.16) 38.2%, transparent 39%),
+    radial-gradient(circle at 70% 44%, transparent 0 24%, rgba(151, 185, 178, 0.14) 24.2%, transparent 25%),
+    radial-gradient(circle at 84% 18%, rgba(246, 242, 222, 0.35), transparent 9%);
+  content: "";
+  inset: -18%;
+  opacity: 0.48;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.project-media-effect {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.project-media-effect span {
+  animation: explorerNode 5.6s ease-in-out infinite alternate;
+  background: rgba(246, 242, 222, 0.84);
+  border-radius: 999px;
+  box-shadow:
+    0 0 12px rgba(246, 242, 222, 0.58),
+    0 0 28px rgba(135, 149, 129, 0.34);
+  height: 5px;
+  position: absolute;
+  width: 5px;
+}
+
+.project-media-effect span:nth-child(1) {
+  right: 30%;
+  top: 24%;
+}
+
+.project-media-effect span:nth-child(2) {
+  animation-delay: 0.8s;
+  right: 14%;
+  top: 46%;
+}
+
+.project-media-effect span:nth-child(3) {
+  animation-delay: 1.6s;
+  right: 26%;
+  top: 72%;
 }
 
 .work-row h2 a,
@@ -1292,11 +1484,33 @@ textarea {
   padding-bottom: clamp(48px, 6vw, 80px);
 }
 
-.case-image img {
+.case-image .project-media-frame {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: 0 34px 60px -40px rgba(22, 58, 47, 0.45);
+  background: var(--card);
+}
+
+.case-image.media-portrait .project-media-frame {
+  max-width: min(100%, 460px);
+  margin: 0 auto;
+}
+
+.case-image.media-iphone .project-media-frame {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.case-image :is(img, video) {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top center;
   width: 100%;
+}
+
+.case-image.media-portrait :is(img, video) {
+  aspect-ratio: auto;
 }
 
 .case-body {
@@ -1319,6 +1533,56 @@ textarea {
 
 .case-body li {
   margin-bottom: 8px;
+}
+
+.case-gallery {
+  align-items: start;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding-bottom: clamp(90px, 12vw, 140px);
+}
+
+.case-gallery-item {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 50px -40px rgba(22, 58, 47, 0.42);
+  margin: 0;
+  overflow: hidden;
+}
+
+.case-gallery-item img {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+  width: 100%;
+}
+
+.case-gallery-item.portrait img {
+  aspect-ratio: 4 / 5;
+}
+
+.case-gallery-item.square img {
+  aspect-ratio: 1;
+}
+
+.case-gallery-item.natural img {
+  aspect-ratio: auto;
+  height: auto;
+}
+
+.case-gallery-item.contain img {
+  background: var(--paper-soft);
+  object-fit: contain;
+}
+
+.case-gallery-item figcaption {
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.45;
+  margin: 0;
+  padding: 18px 20px 20px;
 }
 
 .thanks {
@@ -1531,6 +1795,33 @@ textarea {
   to { stroke-dashoffset: -186; }
 }
 
+@keyframes explorerPulse {
+  from {
+    opacity: 0.34;
+    transform: translate3d(-1.5%, 1%, 0) scale(1);
+  }
+  to {
+    opacity: 0.72;
+    transform: translate3d(1.5%, -1%, 0) scale(1.025);
+  }
+}
+
+@keyframes explorerDrift {
+  from { transform: translate3d(-2%, 1%, 0) rotate(0deg); }
+  to { transform: translate3d(2%, -1%, 0) rotate(360deg); }
+}
+
+@keyframes explorerNode {
+  from {
+    opacity: 0.35;
+    transform: translate3d(0, 0, 0) scale(0.82);
+  }
+  to {
+    opacity: 0.9;
+    transform: translate3d(8px, -7px, 0) scale(1.15);
+  }
+}
+
 [data-reveal] {
   opacity: 0;
   transform: translateY(28px);
@@ -1571,8 +1862,8 @@ textarea {
   /* Extra bottom padding reserves room for the salt pile below the CTAs —
      the animation baseline is pinned under .hero-actions in site.js. */
   .hero {
-    padding-top: clamp(132px, 17vh, 168px);
-    padding-bottom: clamp(190px, 26vh, 250px);
+    padding-top: clamp(116px, 14vh, 148px);
+    padding-bottom: clamp(150px, 20vh, 200px);
   }
 
   .hero-salt-field {
@@ -1594,6 +1885,7 @@ textarea {
   .contact-section,
   .system-section,
   .case-body,
+  .case-gallery,
   .site-footer {
     grid-template-columns: 1fr;
   }
@@ -1625,8 +1917,74 @@ textarea {
 }
 
 @media (max-width: 620px) {
+  :root {
+    --pad: clamp(16px, 5vw, 20px);
+  }
+
   body {
     font-size: 16px;
+  }
+
+  h1 {
+    font-size: clamp(2.35rem, 11vw, 2.75rem);
+    max-width: 11ch;
+  }
+
+  h2 {
+    font-size: clamp(1.9rem, 9vw, 2.25rem);
+    max-width: 11ch;
+  }
+
+  .hero-copy,
+  .section-heading,
+  .system-copy {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .next-section,
+  .work-section,
+  .notes-section,
+  .contact-section,
+  .system-section,
+  .page-hero,
+  .case-hero,
+  .case-image,
+  .case-gallery,
+  .case-body,
+  .project-media,
+  .project-media-frame,
+  .work-image,
+  .case-gallery-item {
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .lede,
+  .section-heading p,
+  .page-hero p,
+  .case-hero p,
+  .case-body p,
+  .case-body li,
+  .work-row p,
+  .case-gallery-item figcaption {
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: min(100%, 280px);
+  }
+
+  .hero-actions .button {
+    width: 100%;
+  }
+
+  .hero {
+    padding-bottom: clamp(112px, 15vh, 148px);
   }
 
   .nav-toggle {
@@ -1663,12 +2021,24 @@ textarea {
   }
 
   .offers-band {
-    grid-template-columns: 1fr;
+    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .offers-band a {
-    min-height: 286px;
-    padding: 28px;
+    gap: 12px;
+    min-height: 216px;
+    padding: 18px;
+  }
+
+  .offers-band strong {
+    font-size: clamp(1.05rem, 4.8vw, 1.25rem);
+    line-height: 1.08;
+  }
+
+  .offers-band span {
+    font-size: 0.9rem;
+    line-height: 1.35;
   }
 
   .hero-salt-field {
@@ -1676,7 +2046,7 @@ textarea {
   }
 
   .service-illustration {
-    max-width: 300px;
+    max-width: 150px;
   }
 
   .next-choice {
@@ -1710,6 +2080,20 @@ textarea {
 
   .loop-flow,
   .loop-runner {
+    animation: none;
+  }
+
+  .project-media.has-video .project-media-video {
+    display: none;
+  }
+
+  .project-media.has-video .project-media-poster {
+    display: block;
+  }
+
+  .media-explorer-motion .project-media-frame::before,
+  .media-explorer-motion .project-media-frame::after,
+  .project-media-effect span {
     animation: none;
   }
 }

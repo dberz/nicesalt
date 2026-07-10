@@ -62,6 +62,48 @@ export const nextMoves = [
 
 export const caseStudies = [
   {
+    slug: "bibo",
+    name: "Bibo",
+    shortName: "Bibo",
+    url: "https://biboai.vercel.app/",
+    label: "AI-native audiobook concept",
+    image: "/images/case-studies/bibo.webp",
+    alt: "Bibo AI audiobook app screens.",
+    preview: {
+      video: "/videos/case-studies/bibo-moby-dick.mp4",
+      poster: "/images/case-studies/bibo-moby-dick-poster.webp",
+      alt: "Bibo Moby Dick AI audiobook video preview.",
+      shape: "portrait",
+      frame: "iphone"
+    },
+    gallery: [
+      {
+        src: "/images/case-studies/bibo.webp",
+        alt: "Bibo mobile feed showing the Moby Dick AI transformation prompt.",
+        caption: "The mobile experience makes the core thesis visible immediately: one book can become many products.",
+        shape: "portrait"
+      },
+      {
+        src: "/images/case-studies/bibo-moby-dick-poster.webp",
+        alt: "Bibo Moby Dick AI audiobook player preview.",
+        caption: "The AI-generated trailer and player give the demo the feel of a real media product, not a pitch deck.",
+        shape: "portrait"
+      }
+    ],
+    summary:
+      "What happens to audiobooks when the story itself is malleable? A working concept where one classic becomes five listenable versions: shortened, genre-shifted, translated, re-narrated. Wrapped in social-first discovery.",
+    problem:
+      "Audiobook apps treat AI as a feature: a synthetic voice here, a recommendation there. The thesis worth testing: if AI is native to the product, every book becomes a starting point, and discovery, the player, and the ad model all change with it.",
+    work: [
+      "Product thesis and category strategy",
+      "Generative story transformation: five versions of one classic",
+      "AI narration, translation, and cover-art pipeline",
+      "Social-first discovery, achievements, and audio-ad concepts"
+    ],
+    outcome:
+      "A self-contained working demo at production polish, built in weeks with AI-assisted development. It makes the argument no deck could: one asset became five products."
+  },
+  {
     slug: "robinberzinmd",
     name: "RobinBerzinMD.com",
     shortName: "RobinBerzinMD",
@@ -69,6 +111,21 @@ export const caseStudies = [
     label: "Health publishing & lead gen",
     image: "/images/case-studies/robinberzinmd.webp",
     alt: "RobinBerzinMD.com homepage screenshot.",
+    gallery: [
+      {
+        src: "/images/case-studies/robin-supplement-stack.webp",
+        alt: "Robin Berzin MD supplement stack lead magnet cover.",
+        caption: "Lead magnets and article visuals gave the publishing system a recognizable editorial world.",
+        shape: "square",
+        fit: "contain"
+      },
+      {
+        src: "/images/case-studies/robin-post-illustration.webp",
+        alt: "Robin Berzin MD article illustration for a nutrition and mood post.",
+        caption: "Post-level imagery carried the same warm, clinical, human tone as the site.",
+        shape: "wide"
+      }
+    ],
     summary:
       "A respected physician's ideas were scattered across formats. We built a publishing platform that gives her work one home, with a clear path from reader to lead.",
     problem:
@@ -90,39 +147,37 @@ export const caseStudies = [
     label: "AI-assisted health prototype",
     image: "/images/case-studies/explorer-health.webp",
     alt: "ExplorerHealth.co homepage screenshot.",
+    preview: {
+      video: "/videos/case-studies/explorer-health-hero.mp4",
+      poster: "/images/case-studies/explorer-health-hero-poster.webp",
+      alt: "ExplorerHealth.co animated homepage hero preview."
+    },
+    gallery: [
+      {
+        src: "/images/case-studies/explorer-how-it-works.webp",
+        alt: "Explorer Health How it works section showing assessment, recovery profile, protocols, testing, and care.",
+        caption: "The product story moved past a landing page: assessment, recovery profile, protocols, testing, and care are framed as one private path.",
+        shape: "natural"
+      },
+      {
+        src: "/images/case-studies/explorer-recovery-read.webp",
+        alt: "Explorer Health Recovery Read result card showing risk score, watch areas, suggested labs, and next step.",
+        caption: "The intake resolves into a plain-language Recovery Read: risk drivers, lab asks, protective factors, and a specific next step.",
+        shape: "natural"
+      }
+    ],
     summary:
       "A sensitive, complex harm-reduction idea, made testable: an interactive assessment, evidence content, and AI-assisted guidance, privacy first.",
     problem:
       "A nuanced harm-reduction concept that had to feel clear, credible, and safe before anyone would trust it.",
     work: [
       "Product narrative and positioning",
-      "Interactive assessment flow",
-      "AI-assisted guidance concepts",
+      "Interactive intake and recovery-read flow",
+      "AI-assisted guidance and next-step concepts",
       "Evidence-led, privacy-first language"
     ],
     outcome:
       "A working v1 that makes a complex, sensitive idea feel approachable: something real to test and react to."
-  },
-  {
-    slug: "bibo",
-    name: "Bibo",
-    shortName: "Bibo",
-    url: "https://biboai.vercel.app/",
-    label: "AI-native audiobook concept",
-    image: "/images/case-studies/bibo.webp",
-    alt: "Bibo AI audiobook app screens.",
-    summary:
-      "What happens to audiobooks when the story itself is malleable? A working concept where one classic becomes five listenable versions: shortened, genre-shifted, translated, re-narrated. Wrapped in social-first discovery.",
-    problem:
-      "Audiobook apps treat AI as a feature: a synthetic voice here, a recommendation there. The thesis worth testing: if AI is native to the product, every book becomes a starting point, and discovery, the player, and the ad model all change with it.",
-    work: [
-      "Product thesis and category strategy",
-      "Generative story transformation: five versions of one classic",
-      "AI narration, translation, and cover-art pipeline",
-      "Social-first discovery, achievements, and audio-ad concepts"
-    ],
-    outcome:
-      "A self-contained working demo at production polish, built in weeks with AI-assisted development. It makes the argument no deck could: one asset became five products."
   }
 ];
 

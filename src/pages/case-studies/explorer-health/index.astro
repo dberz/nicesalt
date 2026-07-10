@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import CaseGallery from "../../../components/CaseGallery.astro";
 import CaseNext from "../../../components/CaseNext.astro";
+import ProjectMedia from "../../../components/ProjectMedia.astro";
 import { caseStudies } from "../../../data/site";
 import { caseStudyJsonLd } from "../../../utils/seo";
 
@@ -20,9 +22,7 @@ const study = caseStudies.find((item) => item.slug === "explorer-health")!;
     <p>{study.summary}</p>
     <a class="text-link" href={study.url} target="_blank" rel="noopener noreferrer">Visit live site</a>
   </section>
-  <section class="case-image">
-    <img src={study.image} alt={study.alt} loading="eager" decoding="async" />
-  </section>
+  <ProjectMedia study={study} class="case-image" eager />
   <section class="case-body">
     <div>
       <h2>The problem</h2>
@@ -37,5 +37,6 @@ const study = caseStudies.find((item) => item.slug === "explorer-health")!;
       </ul>
     </div>
   </section>
+  <CaseGallery title={study.shortName} items={study.gallery} />
   <CaseNext currentSlug={study.slug} />
 </BaseLayout>

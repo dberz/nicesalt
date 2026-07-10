@@ -1,0 +1,129 @@
+---
+type PreviewMedia = {
+  video?: string;
+  poster?: string;
+  image?: string;
+  alt?: string;
+  shape?: "wide" | "portrait";
+  frame?: "iphone";
+  motion?: "explorer";
+};
+
+interface Props {
+  study: {
+    image: string;
+    alt: string;
+    preview?: PreviewMedia;
+  };
+  href?: string;
+  class?: string;
+  eager?: boolean;
+}
+
+const {
+  study,
+  href,
+  class: className = "project-media",
+  eager = false
+} = Astro.props;
+
+const preview = study.preview ?? {};
+const hasVideo = Boolean(preview.video);
+const image = preview.image ?? study.image;
+const poster = preview.poster ?? image;
+const alt = preview.alt ?? study.alt;
+const loading = eager ? "eager" : "lazy";
+const preload = eager ? "auto" : "metadata";
+const shapeClass = preview.shape === "portrait" ? "media-portrait" : "media-wide";
+const frameClass = preview.frame === "iphone" ? "media-iphone" : "";
+const motionClass = preview.motion === "explorer" ? "media-explorer-motion" : "";
+const deviceClass = preview.frame === "iphone" ? "iphone-shell" : "";
+---
+
+{href ? (
+  <a class:list={[className, "project-media", shapeClass, frameClass, motionClass, { "has-video": hasVideo }]} href={href}>
+    <div class="project-media-frame">
+      {hasVideo ? (
+        <span class:list={["project-media-device", deviceClass]}>
+          <video
+            class="project-media-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload={preload}
+            poster={poster}
+            aria-label={alt}
+          >
+            <source src={preview.video} type="video/mp4" />
+          </video>
+          <img
+            class="project-media-poster"
+            src={poster}
+            alt={alt}
+            loading={loading}
+            decoding="async"
+          />
+        </span>
+      ) : (
+        <img
+          class="project-media-image"
+          src={image}
+          alt={alt}
+          loading={loading}
+          decoding="async"
+        />
+      )}
+      {preview.motion === "explorer" && (
+        <span class="project-media-effect" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      )}
+    </div>
+  </a>
+) : (
+  <div class:list={[className, "project-media", shapeClass, frameClass, motionClass, { "has-video": hasVideo }]}>
+    <div class="project-media-frame">
+      {hasVideo ? (
+        <span class:list={["project-media-device", deviceClass]}>
+          <video
+            class="project-media-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload={preload}
+            poster={poster}
+            aria-label={alt}
+          >
+            <source src={preview.video} type="video/mp4" />
+          </video>
+          <img
+            class="project-media-poster"
+            src={poster}
+            alt={alt}
+            loading={loading}
+            decoding="async"
+          />
+        </span>
+      ) : (
+        <img
+          class="project-media-image"
+          src={image}
+          alt={alt}
+          loading={loading}
+          decoding="async"
+        />
+      )}
+      {preview.motion === "explorer" && (
+        <span class="project-media-effect" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      )}
+    </div>
+  </div>
+)}

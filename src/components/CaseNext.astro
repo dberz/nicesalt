@@ -6,7 +6,8 @@ interface Props {
 }
 
 const { currentSlug } = Astro.props;
-const other = caseStudies.find((study) => study.slug !== currentSlug);
+const currentIndex = caseStudies.findIndex((study) => study.slug === currentSlug);
+const other = currentIndex >= 0 ? caseStudies[(currentIndex + 1) % caseStudies.length] : caseStudies[0];
 ---
 
 <section class="case-next">
