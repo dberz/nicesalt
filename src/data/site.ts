@@ -5,7 +5,6 @@ export const SITE = {
   description:
     "NiceSalt is a digital studio for expert-led teams. We connect positioning, content, UX, conversion, and measurement into one growth system.",
   formAction: "https://formsubmit.co/hello@nicesalt.com",
-  formAjaxAction: "https://formsubmit.co/ajax/hello@nicesalt.com",
   ga4Id: "G-B3RLW3R3SR",
   principal: {
     name: "David Berzin",

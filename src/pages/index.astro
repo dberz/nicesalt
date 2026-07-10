@@ -196,10 +196,9 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
         </li>
       </ol>
     </div>
-    <form class="contact-form" action={SITE.formAction} method="POST" data-inquiry-form data-form-name="contact" data-form-endpoint={SITE.formAjaxAction} data-success-path="/thanks/">
+    <form class="contact-form" action={SITE.formAction} method="POST" data-inquiry-form data-form-name="contact">
       <input type="hidden" name="_subject" value="NiceSalt project inquiry" />
       <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_captcha" value="false" />
       <input class="form-honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <input type="hidden" name="_next" value={`${SITE.url}/thanks/`} />
       <label>
@@ -231,7 +230,9 @@ const offerGlyphs = ["strategy", "content", "conversion", "analytics"] as const;
         <span>What is going on?</span>
         <textarea name="message" rows="6" data-message required></textarea>
       </label>
-      <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+      <p class="form-status" data-form-status role="status" aria-live="polite">
+        If the form gives you trouble, email <a class="text-link inline" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
       <button class="button primary" type="submit">Send inquiry</button>
     </form>
   </section>
