@@ -37,16 +37,81 @@ if (navToggle && primaryNav) {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeNav(); });
 }
 
-// Contact form: give clicking "Send inquiry" a visible loading state instead
-// of appearing to do nothing during the round trip to formsubmit.co
+// Contact form: FormSubmit's normal redirect can fail opaquely, so submit
+// through their JSON endpoint and show a useful fallback if delivery fails.
 const contactForm = document.querySelector(".contact-form");
 if (contactForm) {
-  contactForm.addEventListener("submit", () => {
+  const status = contactForm.querySelector("[data-form-status]");
+  const endpoint =
+    contactForm.dataset.formEndpoint ||
+    contactForm.action.replace("https://formsubmit.co/", "https://formsubmit.co/ajax/");
+  const successPath = contactForm.dataset.successPath || "/thanks/";
+
+  const setStatus = (text, state) => {
+    if (!status) return;
+    status.textContent = text;
+    status.classList.toggle("is-error", state === "error");
+    status.classList.toggle("is-success", state === "success");
+  };
+
+  const fallbackMailto = () => {
+    const formData = new FormData(contactForm);
+    const subject = encodeURIComponent("NiceSalt project inquiry");
+    const body = encodeURIComponent(
+      [
+        `Name: ${formData.get("name") || ""}`,
+        `Email: ${formData.get("email") || ""}`,
+        `Company/project: ${formData.get("company") || ""}`,
+        `Project type: ${formData.get("project_type") || ""}`,
+        `Budget/timeline: ${formData.get("budget_timeline") || ""}`,
+        "",
+        formData.get("message") || ""
+      ].join("\n")
+    );
+    return `mailto:hello@nicesalt.com?subject=${subject}&body=${body}`;
+  };
+
+  contactForm.addEventListener("submit", async (event) => {
+    if (!window.fetch || !window.FormData) return;
+    event.preventDefault();
+
     const submitBtn = contactForm.querySelector("button[type='submit']");
-    if (submitBtn && !submitBtn.disabled) {
+    if (submitBtn) {
+      if (submitBtn.disabled) return;
       submitBtn.disabled = true;
       submitBtn.dataset.label = submitBtn.textContent;
       submitBtn.textContent = "Sending…";
+    }
+
+    setStatus("", "");
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(contactForm)
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || result.success === false) {
+        throw new Error(result.message || "Form submission failed");
+      }
+
+      setStatus("Sent. Taking you to the confirmation page…", "success");
+      window.location.assign(successPath);
+    } catch (error) {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = submitBtn.dataset.label || "Send inquiry";
+      }
+      setStatus("Something blocked the form. Email hello@nicesalt.com directly, or open a pre-filled email.", "error");
+      if (status && !status.querySelector("a")) {
+        const fallback = document.createElement("a");
+        fallback.className = "text-link inline";
+        fallback.href = fallbackMailto();
+        fallback.textContent = " Open email draft";
+        status.appendChild(fallback);
+      }
     }
   });
 }

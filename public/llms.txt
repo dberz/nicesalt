@@ -16,9 +16,11 @@ growth system, rather than treating them as separate projects.
 
 - RobinBerzinMD.com (https://nicesalt.com/case-studies/robinberzinmd/): publishing platform for a physician's articles, newsletter, courses, and book, with a clear path from reader to lead.
 - ExplorerHealth.co (https://nicesalt.com/case-studies/explorer-health/): AI-assisted harm-reduction prototype: interactive assessment, evidence content, privacy-first positioning.
+- Bibo (https://nicesalt.com/case-studies/bibo/): AI-native audiobook concept demo. One classic becomes five versions (shortened, genre-shifted, translated, re-narrated), with AI cover art, social-first discovery, and an audio-ad concept. Live at https://biboai.vercel.app/
 
 ## Notes
 
+- A working demo beats a deck (https://nicesalt.com/notes/a-working-demo-beats-a-deck/): why we built an AI-native audiobook concept instead of writing the strategy document.
 - Production got cheap. Judgment didn't. (https://nicesalt.com/notes/production-got-cheap-judgment-didnt/): anyone can ship a decent-looking site now; the scarce skill was never production, it's judgment.
 - Why expert sites undersell the expert (https://nicesalt.com/notes/why-expert-sites-undersell-the-expert/): three structural reasons expert websites read weaker than the people behind them.
 
