@@ -1,9 +1,10 @@
 # NiceSalt
 
-NiceSalt is a small digital studio for expert-led brands in health, science,
-and media, the consulting practice of David Berzin (https://davidberzin.com).
-We connect positioning, content, UX, conversion, and measurement into one
-growth system, rather than treating them as separate projects.
+NiceSalt is a small digital studio for founders, experts, and ambitious
+teams, the consulting practice of David Berzin (https://davidberzin.com).
+Much of our work is in health, science, and media. We connect positioning,
+content, UX, conversion, and measurement into one system, rather than
+treating them as separate projects.
 
 ## Services
 
@@ -14,8 +15,8 @@ growth system, rather than treating them as separate projects.
 
 ## Selected work
 
-- RobinBerzinMD.com (https://nicesalt.com/case-studies/robinberzinmd/): publishing platform for a physician's articles, newsletter, courses, and book, with a clear path from reader to lead.
 - ExplorerHealth.co (https://nicesalt.com/case-studies/explorer-health/): AI-assisted harm-reduction prototype: interactive assessment, evidence content, privacy-first positioning.
+- RobinBerzinMD.com (https://nicesalt.com/case-studies/robinberzinmd/): publishing platform for a physician's articles, newsletter, courses, and book, with a clear path from reader to lead.
 - Bibo (https://nicesalt.com/case-studies/bibo/): AI-native audiobook concept demo. One classic becomes five versions (shortened, genre-shifted, translated, re-narrated), with AI cover art, social-first discovery, and an audio-ad concept. Live at https://biboai.vercel.app/
 
 ## Notes
