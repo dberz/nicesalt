@@ -88,6 +88,37 @@ if (contactForm) {
   });
 }
 
+// Project previews load and play only near the viewport. Keep static posters
+// for visitors who prefer reduced motion or have data-saving enabled.
+const projectVideos = Array.from(document.querySelectorAll("[data-project-video]"));
+const allowProjectMotion = !reducedMotion && !reducedData && !saveData;
+
+if (projectVideos.length && allowProjectMotion) {
+  const playVideo = (video) => {
+    const playPromise = video.play();
+    if (playPromise) playPromise.catch(() => {});
+  };
+
+  if ("IntersectionObserver" in window) {
+    const videoObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            playVideo(entry.target);
+          } else {
+            entry.target.pause();
+          }
+        });
+      },
+      { rootMargin: "200px 0px", threshold: 0.05 }
+    );
+
+    projectVideos.forEach((video) => videoObserver.observe(video));
+  } else {
+    projectVideos.forEach(playVideo);
+  }
+}
+
 function initHeroSaltField(canvas) {
   const ctx = canvas.getContext("2d");
   const host = canvas.closest("[data-hero-field]") || canvas.parentElement;

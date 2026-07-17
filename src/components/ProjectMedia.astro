@@ -33,7 +33,6 @@ const image = preview.image ?? study.image;
 const poster = preview.poster ?? image;
 const alt = preview.alt ?? study.alt;
 const loading = eager ? "eager" : "lazy";
-const preload = eager ? "auto" : "metadata";
 const shapeClass = preview.shape === "portrait" ? "media-portrait" : "media-wide";
 const frameClass = preview.frame === "iphone" ? "media-iphone" : "";
 const motionClass = preview.motion === "explorer" ? "media-explorer-motion" : "";
@@ -51,9 +50,10 @@ const deviceClass = preview.frame === "iphone" ? "iphone-shell" : "";
             muted
             loop
             playsinline
-            preload={preload}
+            preload="none"
             poster={poster}
             aria-label={alt}
+            data-project-video
           >
             <source src={preview.video} type="video/mp4" />
           </video>
@@ -94,9 +94,10 @@ const deviceClass = preview.frame === "iphone" ? "iphone-shell" : "";
             muted
             loop
             playsinline
-            preload={preload}
+            preload="none"
             poster={poster}
             aria-label={alt}
+            data-project-video
           >
             <source src={preview.video} type="video/mp4" />
           </video>
