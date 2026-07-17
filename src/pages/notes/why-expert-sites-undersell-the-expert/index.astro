@@ -30,6 +30,7 @@ const jsonLd = [
   title={note.title}
   description={note.summary}
   path={`/notes/${note.slug}/`}
+  image={`/images/og/notes/${note.slug}.png`}
   jsonLd={jsonLd}
 >
   <section class="page-hero">
@@ -118,13 +119,13 @@ const jsonLd = [
     </p>
     <p>
       That's why we treat positioning, content, experience, conversion, and
-      measurement as <a class="text-link inline" href="/#system">one loop</a>
+      measurement as <a class="text-link inline" href="/#system" data-analytics-event="recirculation">one loop</a>
       rather than five projects. Fixing any single part in isolation tends
       to move nothing, which is exactly why so many experts have already
       paid for a redesign that didn't change their pipeline.
     </p>
     <p class="article-cta" data-analytics-component="article_cta" data-analytics-event="cta">
-      If this describes your site, <a class="text-link" href="/#contact">tell
+      If this describes your site, <a class="text-link" href="/#contact" data-analytics-event="cta">tell
       us what you're working on</a>. A short note is enough.
     </p>
   </article>

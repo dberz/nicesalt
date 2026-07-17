@@ -8,7 +8,7 @@
  * defined in global.css under "Note illustrations" and disabled for
  * prefers-reduced-motion.
  */
-type Kind = "gap" | "small-yes" | "same-surface" | "next-bet";
+type Kind = "gap" | "small-yes" | "same-surface" | "next-bet" | "multiplier";
 
 interface Props {
   kind: Kind;
@@ -87,6 +87,36 @@ const { kind } = Astro.props;
         <path class="si-crystal-seam" d="M216 25V47M208.1 36H223.9" />
       </g>
       <path class="si-plane coral" d="M242 21L234 34L228 25Z" />
+    </svg>
+  )}
+
+  {kind === "multiplier" && (
+    <!-- One asset becomes many products. -->
+    <svg viewBox="0 0 260 150" fill="none">
+      <g class="ni-float">
+        <path class="si-crystal-facet pale" d="M62 43 L39 75 L62 75 Z" />
+        <path class="si-crystal-facet teal" d="M62 43 L85 75 L62 75 Z" />
+        <path class="si-crystal-facet blue" d="M62 107 L85 75 L62 75 Z" />
+        <path class="si-crystal-facet stone" d="M62 107 L39 75 L62 75 Z" />
+        <path class="si-crystal-seam" d="M62 43V107M39 75H85" />
+        <path class="si-crystal-outline" d="M62 43 L85 75 L62 107 L39 75 Z" />
+      </g>
+      <path class="si-path ni-march" d="M92 66C130 52 158 44 184 40" />
+      <path class="si-path ni-march" d="M94 76h56" />
+      <path class="si-path ni-march" d="M92 86c38 14 66 22 92 26" />
+      <path class="si-plane coral" d="M168 76L155 70L155 82Z" />
+      <g class="ni-float">
+        <path class="si-crystal-tone teal" d="M196 26 L204.6 38 L196 50 L187.4 38 Z" />
+        <path class="si-crystal-seam" d="M196 26V50M187.4 38H204.6" />
+      </g>
+      <g class="ni-float ni-delay-1">
+        <path class="si-crystal-tone blue" d="M202 61 L212.8 76 L202 91 L191.2 76 Z" />
+        <path class="si-crystal-seam" d="M202 61V91M191.2 76H212.8" />
+      </g>
+      <g class="ni-float ni-delay-2">
+        <path class="si-crystal-tone stone" d="M196 100 L204.6 112 L196 124 L187.4 112 Z" />
+        <path class="si-crystal-seam" d="M196 100V124M187.4 112H204.6" />
+      </g>
     </svg>
   )}
 </figure>

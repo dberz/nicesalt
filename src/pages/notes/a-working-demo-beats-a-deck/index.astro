@@ -30,6 +30,7 @@ const jsonLd = [
   title={note.title}
   description={note.summary}
   path={`/notes/${note.slug}/`}
+  image={`/images/og/notes/${note.slug}.png`}
   jsonLd={jsonLd}
 >
   <section class="page-hero">
@@ -38,7 +39,7 @@ const jsonLd = [
     <p>{note.summary}</p>
   </section>
 
-  <article class="article-body">
+  <article class="article-body" data-analytics-component="article_body">
     <p>
       We had a thesis about audiobooks: every app on the market treats AI
       as a feature. A synthetic voice here, a recommendation engine there,
@@ -48,7 +49,7 @@ const jsonLd = [
     </p>
     <p>
       We could have written that up as a strategy document. Instead we
-      built <a class="text-link inline" href="/case-studies/bibo/">Bibo</a>,
+      built <a class="text-link inline" href="/case-studies/bibo/" data-analytics-event="recirculation">Bibo</a>,
       a working demo you can open on your phone right now. That choice is
       the point of this note.
     </p>
@@ -101,12 +102,12 @@ const jsonLd = [
       all fifty covers under human art direction. The cost of making an
       idea concrete has collapsed, which means the excuse for arguing
       about abstractions is gone. We wrote about that shift in
-      <a class="text-link inline" href="/notes/production-got-cheap-judgment-didnt/">Production
+      <a class="text-link inline" href="/notes/production-got-cheap-judgment-didnt/" data-analytics-event="recirculation">Production
       got cheap. Judgment didn't.</a> This is what it looks like applied.
     </p>
     <p class="article-cta">
       Have a thesis that keeps stalling in meetings?
-      <a class="text-link" href="/#contact">Tell us what you're working
+      <a class="text-link" href="/#contact" data-analytics-event="cta">Tell us what you're working
       on</a>. A short note is enough.
     </p>
   </article>

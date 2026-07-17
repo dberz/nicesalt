@@ -3,7 +3,7 @@ export const SITE = {
   url: "https://nicesalt.com",
   email: "hello@nicesalt.com",
   description:
-    "NiceSalt is a digital studio for expert-led teams. We connect positioning, content, UX, conversion, and measurement into one growth system.",
+    "NiceSalt is a small digital studio for founders, experts, and ambitious teams. We connect positioning, content, UX, conversion, and measurement into one system.",
   formAction: "https://api.web3forms.com/submit",
   formAccessKey: import.meta.env.WEB3FORMS_ACCESS_KEY ?? "",
   ga4Id: "G-B3RLW3R3SR",
@@ -62,6 +62,82 @@ export const nextMoves = [
 
 export const caseStudies = [
   {
+    slug: "explorer-health",
+    name: "ExplorerHealth.co",
+    shortName: "Explorer Health",
+    url: "https://explorerhealth.co/",
+    label: "AI-assisted health prototype",
+    image: "/images/case-studies/explorer-health.webp",
+    alt: "ExplorerHealth.co homepage screenshot.",
+    preview: {
+      video: "/videos/case-studies/explorer-health-hero.mp4",
+      poster: "/images/case-studies/explorer-health-hero-poster.webp",
+      alt: "ExplorerHealth.co animated homepage hero preview."
+    },
+    gallery: [
+      {
+        src: "/images/case-studies/explorer-how-it-works.webp",
+        alt: "Explorer Health How it works section showing assessment, recovery profile, protocols, testing, and care.",
+        caption: "The product story moved past a landing page: assessment, recovery profile, protocols, testing, and care are framed as one private path.",
+        shape: "natural"
+      },
+      {
+        src: "/images/case-studies/explorer-recovery-read.webp",
+        alt: "Explorer Health Recovery Read result card showing risk score, watch areas, suggested labs, and next step.",
+        caption: "The intake resolves into a plain-language Recovery Read: risk drivers, lab asks, protective factors, and a specific next step.",
+        shape: "natural"
+      }
+    ],
+    summary:
+      "A sensitive, complex harm-reduction idea, made testable: an interactive assessment, evidence content, and AI-assisted guidance, privacy first.",
+    problem:
+      "A nuanced harm-reduction concept that had to feel clear, credible, and safe before anyone would trust it.",
+    work: [
+      "Product narrative and positioning",
+      "Interactive intake and recovery-read flow",
+      "AI-assisted guidance and next-step concepts",
+      "Evidence-led, privacy-first language"
+    ],
+    outcome:
+      "A working v1 that makes a complex, sensitive idea feel approachable: something real to test and react to."
+  },
+  {
+    slug: "robinberzinmd",
+    name: "RobinBerzinMD.com",
+    shortName: "RobinBerzinMD",
+    url: "https://robinberzinmd.com/",
+    label: "Health publishing & lead gen",
+    image: "/images/case-studies/robinberzinmd.webp",
+    alt: "RobinBerzinMD.com homepage screenshot.",
+    gallery: [
+      {
+        src: "/images/case-studies/robin-supplement-stack.webp",
+        alt: "Robin Berzin MD supplement stack lead magnet cover.",
+        caption: "Lead magnets and article visuals gave the publishing system a recognizable editorial world.",
+        shape: "square",
+        fit: "contain"
+      },
+      {
+        src: "/images/case-studies/robin-post-illustration.webp",
+        alt: "Robin Berzin MD article illustration for a nutrition and mood post.",
+        caption: "Post-level imagery carried the same warm, clinical, human tone as the site.",
+        shape: "wide"
+      }
+    ],
+    summary:
+      "A respected physician's ideas were scattered across formats. We built a publishing platform that gives her work one home, with a clear path from reader to lead.",
+    problem:
+      "A respected expert with deep, wide-ranging work and no single home for it, and no clear route from a casual reader to a real lead.",
+    work: [
+      "Editorial information architecture",
+      "Fast, SEO-ready Astro build",
+      "Article and newsletter conversion paths",
+      "Journeys into courses, book, and practice"
+    ],
+    outcome:
+      "A publishing system that compounds: every piece reinforces authority and feeds a clear path from reader to subscriber to lead."
+  },
+  {
     slug: "bibo",
     name: "Bibo",
     shortName: "Bibo",
@@ -102,82 +178,6 @@ export const caseStudies = [
     ],
     outcome:
       "A self-contained working demo at production polish, built in weeks with AI-assisted development. It makes the argument no deck could: one asset became five products."
-  },
-  {
-    slug: "robinberzinmd",
-    name: "RobinBerzinMD.com",
-    shortName: "RobinBerzinMD",
-    url: "https://robinberzinmd.com/",
-    label: "Health publishing & lead gen",
-    image: "/images/case-studies/robinberzinmd.webp",
-    alt: "RobinBerzinMD.com homepage screenshot.",
-    gallery: [
-      {
-        src: "/images/case-studies/robin-supplement-stack.webp",
-        alt: "Robin Berzin MD supplement stack lead magnet cover.",
-        caption: "Lead magnets and article visuals gave the publishing system a recognizable editorial world.",
-        shape: "square",
-        fit: "contain"
-      },
-      {
-        src: "/images/case-studies/robin-post-illustration.webp",
-        alt: "Robin Berzin MD article illustration for a nutrition and mood post.",
-        caption: "Post-level imagery carried the same warm, clinical, human tone as the site.",
-        shape: "wide"
-      }
-    ],
-    summary:
-      "A respected physician's ideas were scattered across formats. We built a publishing platform that gives her work one home, with a clear path from reader to lead.",
-    problem:
-      "A respected expert with deep, wide-ranging work and no single home for it, and no clear route from a casual reader to a real lead.",
-    work: [
-      "Editorial information architecture",
-      "Fast, SEO-ready Astro build",
-      "Article and newsletter conversion paths",
-      "Journeys into courses, book, and practice"
-    ],
-    outcome:
-      "A publishing system that compounds: every piece reinforces authority and feeds a clear path from reader to subscriber to lead."
-  },
-  {
-    slug: "explorer-health",
-    name: "ExplorerHealth.co",
-    shortName: "Explorer Health",
-    url: "https://explorerhealth.co/",
-    label: "AI-assisted health prototype",
-    image: "/images/case-studies/explorer-health.webp",
-    alt: "ExplorerHealth.co homepage screenshot.",
-    preview: {
-      video: "/videos/case-studies/explorer-health-hero.mp4",
-      poster: "/images/case-studies/explorer-health-hero-poster.webp",
-      alt: "ExplorerHealth.co animated homepage hero preview."
-    },
-    gallery: [
-      {
-        src: "/images/case-studies/explorer-how-it-works.webp",
-        alt: "Explorer Health How it works section showing assessment, recovery profile, protocols, testing, and care.",
-        caption: "The product story moved past a landing page: assessment, recovery profile, protocols, testing, and care are framed as one private path.",
-        shape: "natural"
-      },
-      {
-        src: "/images/case-studies/explorer-recovery-read.webp",
-        alt: "Explorer Health Recovery Read result card showing risk score, watch areas, suggested labs, and next step.",
-        caption: "The intake resolves into a plain-language Recovery Read: risk drivers, lab asks, protective factors, and a specific next step.",
-        shape: "natural"
-      }
-    ],
-    summary:
-      "A sensitive, complex harm-reduction idea, made testable: an interactive assessment, evidence content, and AI-assisted guidance, privacy first.",
-    problem:
-      "A nuanced harm-reduction concept that had to feel clear, credible, and safe before anyone would trust it.",
-    work: [
-      "Product narrative and positioning",
-      "Interactive intake and recovery-read flow",
-      "AI-assisted guidance and next-step concepts",
-      "Evidence-led, privacy-first language"
-    ],
-    outcome:
-      "A working v1 that makes a complex, sensitive idea feel approachable: something real to test and react to."
   }
 ];
 
