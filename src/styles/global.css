@@ -1502,6 +1502,11 @@ textarea {
   box-shadow: none;
 }
 
+.case-image.media-iphone .iphone-shell {
+  height: clamp(520px, 68vw, 760px);
+  max-height: none;
+}
+
 .case-image :is(img, video) {
   aspect-ratio: 16 / 9;
   object-fit: cover;
