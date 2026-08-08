@@ -65,6 +65,18 @@ if [ -z "$TOKEN" ] && [ -f .deploy-token ]; then
   TOKEN="$(tr -d '[:space:]' < .deploy-token)"
 fi
 
+# Sanity-check the token before using it. The common failure is running
+# `pbpaste > .deploy-token` while the clipboard still holds the setup
+# instructions, which writes shell text into the file instead of a token.
+if [ -n "$TOKEN" ] && ! printf '%s' "$TOKEN" | grep -qE '^(github_pat_|ghp_|gho_|ghu_|ghs_|ghr_)'; then
+  echo "!! .deploy-token does not look like a GitHub token." >&2
+  echo "   Expected it to start with github_pat_ or ghp_." >&2
+  echo "   Fix: copy the token itself, then run" >&2
+  echo "     pbpaste > .deploy-token && chmod 600 .deploy-token" >&2
+  echo "   Falling back to your normal git credentials." >&2
+  TOKEN=""
+fi
+
 echo "==> Pushing to $BRANCH"
 
 if [ -n "$TOKEN" ]; then
