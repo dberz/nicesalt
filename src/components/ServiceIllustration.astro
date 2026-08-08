@@ -4,7 +4,7 @@
  * one focal crystal, one support shape, one connector, one coral accent.
  * Geometry and palette per docs/illustration-style.md.
  */
-type Kind = "strategy" | "content" | "conversion" | "analytics";
+type Kind = "strategy" | "product" | "content" | "conversion" | "analytics";
 
 interface Props {
   kind: Kind;
@@ -15,21 +15,40 @@ const { kind } = Astro.props;
 
 <figure class:list={["service-illustration", `service-illustration--${kind}`]} aria-hidden="true">
   {kind === "strategy" && (
-    <!-- A page with structure; the crystal is what it earns. -->
+    <!-- Saying one thing, to one audience, on purpose: a shot at the centre. -->
     <svg viewBox="0 0 260 150" fill="none">
-      <rect class="si-panel" x="24" y="30" width="120" height="84" rx="10" />
-      <path class="si-block teal" d="M42 48h48v16H42z" />
-      <path class="si-line" d="M42 80h72M42 94h50" />
-      <path class="si-path" d="M144 74c16 2 26 8 32 14" />
+      <circle class="si-line muted" cx="168" cy="75" r="47" />
+      <circle class="si-line muted" cx="168" cy="75" r="29" />
+      <path class="si-path" d="M26 130c34-8 62-21 86-36" />
+      <path class="si-plane coral" d="M114 93l18-9-3 14z" />
       <g class="si-crystal si-crystal--full">
-        <path class="si-crystal-facet pale" d="M198 62 L176.4 92 L198 92 Z" />
-        <path class="si-crystal-facet teal" d="M198 62 L219.6 92 L198 92 Z" />
-        <path class="si-crystal-facet blue" d="M198 122 L219.6 92 L198 92 Z" />
-        <path class="si-crystal-facet stone" d="M198 122 L176.4 92 L198 92 Z" />
-        <path class="si-crystal-seam" d="M198 62V122M176.4 92H219.6" />
-        <path class="si-crystal-outline" d="M198 62 L219.6 92 L198 122 L176.4 92 Z" />
+        <path class="si-crystal-facet pale" d="M168 49 L149.3 75 L168 75 Z" />
+        <path class="si-crystal-facet teal" d="M168 49 L186.7 75 L168 75 Z" />
+        <path class="si-crystal-facet blue" d="M168 101 L186.7 75 L168 75 Z" />
+        <path class="si-crystal-facet stone" d="M168 101 L149.3 75 L168 75 Z" />
+        <path class="si-crystal-seam" d="M168 49V101M149.3 75H186.7" />
+        <path class="si-crystal-outline" d="M168 49 L186.7 75 L168 101 L149.3 75 Z" />
       </g>
-      <path class="si-plane coral" d="M203 54l16-6v11z" />
+    </svg>
+  )}
+
+  {kind === "product" && (
+    <!-- Not a page: a working thing with a play button in it. -->
+    <svg viewBox="0 0 260 150" fill="none">
+      <rect class="si-card" x="50" y="18" width="78" height="114" rx="14" />
+      <path class="si-block teal" d="M66 38h36v11H66z" />
+      <path class="si-line" d="M66 62h46" />
+      <rect class="si-panel" x="66" y="78" width="46" height="32" rx="7" />
+      <path class="si-plane coral" d="M84 87l15 7-15 7z" />
+      <path class="si-path" d="M128 75h38" />
+      <g class="si-crystal si-crystal--full">
+        <path class="si-crystal-facet pale" d="M192 49 L173.3 75 L192 75 Z" />
+        <path class="si-crystal-facet teal" d="M192 49 L210.7 75 L192 75 Z" />
+        <path class="si-crystal-facet blue" d="M192 101 L210.7 75 L192 75 Z" />
+        <path class="si-crystal-facet stone" d="M192 101 L173.3 75 L192 75 Z" />
+        <path class="si-crystal-seam" d="M192 49V101M173.3 75H210.7" />
+        <path class="si-crystal-outline" d="M192 49 L210.7 75 L192 101 L173.3 75 Z" />
+      </g>
     </svg>
   )}
 

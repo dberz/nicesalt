@@ -3,11 +3,21 @@ const reducedData = window.matchMedia("(prefers-reduced-data: reduce)").matches;
 const finePointer = window.matchMedia("(pointer: fine)").matches;
 const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 const saveData = Boolean(connection && connection.saveData);
-const lowCoreDevice =
-  typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4;
+
+// Phones and tablets run the animation, just cheaper. See the mobileTier
+// budget in initHeroSaltField.
+const mobileTier =
+  window.matchMedia("(pointer: coarse)").matches ||
+  window.matchMedia("(max-width: 820px)").matches;
+
+// hardwareConcurrency is a bad capability proxy: Safari pins it at 4 on every
+// iPhone, which used to switch the hero off for all iOS traffic. deviceMemory
+// is Chrome-only, so only treat genuinely tiny values as a reason to bail.
 const lowMemoryDevice =
-  typeof navigator.deviceMemory === "number" && navigator.deviceMemory <= 4;
-const liteHero = reducedMotion || reducedData || saveData || lowCoreDevice || lowMemoryDevice;
+  typeof navigator.deviceMemory === "number" && navigator.deviceMemory <= 2;
+
+// Only explicit user or network signals disable motion outright.
+const liteHero = reducedMotion || reducedData || saveData || lowMemoryDevice;
 
 if (liteHero) {
   document.documentElement.classList.add("is-lite-hero");
@@ -167,7 +177,10 @@ function initHeroSaltField(canvas) {
   };
 
   function setup() {
-    dpr = Math.min(2, window.devicePixelRatio || 1);
+    // Phones are fill-rate bound, not logic bound. Capping DPR at 1.5 cuts
+    // the pixels pushed per frame by roughly 45% on a 3x screen, and the
+    // grains are small enough that the difference isn't visible.
+    dpr = Math.min(mobileTier ? 1.5 : 2, window.devicePixelRatio || 1);
     w = canvas.clientWidth;
     h = canvas.clientHeight;
     canvas.width = Math.max(1, Math.round(w * dpr));
@@ -182,14 +195,14 @@ function initHeroSaltField(canvas) {
         actions.getBoundingClientRect().bottom - canvas.getBoundingClientRect().top;
       base = Math.min(h - 24, Math.max(base, actionsBottom + 56));
     }
-    colW = Math.max(3.5, w / 260);
+    colW = Math.max(mobileTier ? 5 : 3.5, w / (mobileTier ? 170 : 260));
     cols = Math.ceil(w / colW) + 1;
     pile = new Float32Array(cols);
     particles = [];
     dust = [];
     chips = [];
     emitted = 0;
-    maxEmit = Math.round(w * 1.5);
+    maxEmit = Math.round(w * (mobileTier ? 0.9 : 1.5));
     pointerX = w * 0.72;
     pointerY = h * 0.52;
 
@@ -546,7 +559,44 @@ function initHeroSaltField(canvas) {
     }
     ctx.restore();
 
-    if (animateHero) raf = requestAnimationFrame(draw);
+  }
+
+  // Phones get ~30fps. Halving the frame count is the single biggest battery
+  // saving available here, and a settling salt pour reads fine at 30.
+  const frameBudget = mobileTier ? 1000 / 30 : 0;
+  let running = false;
+  let lastFrame = 0;
+  let pausedAt = 0;
+
+  function tick(now) {
+    if (!running) return;
+    if (frameBudget && now - lastFrame < frameBudget) {
+      raf = requestAnimationFrame(tick);
+      return;
+    }
+    lastFrame = now;
+    draw();
+    if (running) raf = requestAnimationFrame(tick);
+  }
+
+  function startLoop() {
+    if (!animateHero || running) return;
+    // Roll the clock forward past the paused stretch so the pour resumes
+    // where it stopped instead of jump-cutting.
+    if (pausedAt) {
+      start += performance.now() - pausedAt;
+      pausedAt = 0;
+    }
+    running = true;
+    lastFrame = performance.now() - frameBudget;
+    raf = requestAnimationFrame(tick);
+  }
+
+  function stopLoop() {
+    if (!running) return;
+    running = false;
+    cancelAnimationFrame(raf);
+    pausedAt = performance.now();
   }
 
   const onMove = (event) => {
@@ -577,15 +627,49 @@ function initHeroSaltField(canvas) {
   setup();
   if (liteHero) settleStaticField();
   draw();
+
   if (animateHero) {
     host.addEventListener("pointermove", onMove, { passive: true });
     host.addEventListener("pointerleave", () => { pointerLive = false; });
+
+    startLoop();
+
+    // Never burn frames on a hero nobody is looking at. This matters most on
+    // phones, where the hero scrolls out of view within one swipe. The
+    // observer fires immediately on observe, so a page loaded already
+    // scrolled past the hero stops the loop right back down.
+    let inView = true;
+    if ("IntersectionObserver" in window) {
+      const heroObserver = new IntersectionObserver(
+        (entries) => {
+          inView = entries[0].isIntersecting;
+          if (inView && !document.hidden) startLoop();
+          else stopLoop();
+        },
+        { threshold: 0 }
+      );
+      heroObserver.observe(host);
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stopLoop();
+      else if (inView) startLoop();
+    });
   }
+
+  let resizeTimer = 0;
   window.addEventListener("resize", () => {
-    cancelAnimationFrame(raf);
-    setup();
-    if (liteHero) settleStaticField();
-    draw();
+    // iOS fires resize on every URL-bar collapse. Debounce so a scroll does
+    // not trigger a chain of full field rebuilds.
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      const wasRunning = running;
+      stopLoop();
+      setup();
+      if (liteHero) settleStaticField();
+      draw();
+      if (wasRunning) startLoop();
+    }, 150);
   }, { passive: true });
 }
 
@@ -630,6 +714,31 @@ if (nextMove && projectType && message) {
     if (index === 0) choose(choice, false);
   });
 }
+
+// Engagement CTAs carry their context into the inquiry form, so the note
+// arrives already saying which shape of work the person had in mind.
+const engagementField = inquiryForm
+  ? inquiryForm.querySelector("input[name='engagement']")
+  : null;
+
+document.querySelectorAll("[data-engagement]").forEach((link) => {
+  link.addEventListener("click", () => {
+    if (engagementField) {
+      engagementField.value = link.dataset.engagement || "";
+    }
+
+    if (!message) return;
+
+    const suggested = link.dataset.message || "";
+    const previous = message.dataset.suggestedMessage || "";
+    const untouched = !message.value.trim() || message.value === previous;
+
+    if (untouched && suggested) {
+      message.value = suggested;
+      message.dataset.suggestedMessage = suggested;
+    }
+  });
+});
 
 if (!reducedMotion && "IntersectionObserver" in window) {
   const observer = new IntersectionObserver(

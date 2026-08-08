@@ -3,60 +3,108 @@ export const SITE = {
   url: "https://nicesalt.com",
   email: "hello@nicesalt.com",
   description:
-    "NiceSalt is a small digital studio for founders, experts, and ambitious teams. We connect positioning, content, UX, conversion, and measurement into one system.",
+    "The studio of David Berzin: 15 years leading product and data at Hearst, Viacom, and venture-backed health startups. Sites, products, and the measurement behind them.",
   formAction: "https://api.web3forms.com/submit",
   formAccessKey: import.meta.env.WEB3FORMS_ACCESS_KEY ?? "",
   ga4Id: "G-B3RLW3R3SR",
+  // Set this to a Cal.com or Calendly URL to turn on the direct-booking path.
+  // Leave empty and every booking CTA falls back to the contact form.
+  bookingUrl: "",
   principal: {
     name: "David Berzin",
-    url: "https://davidberzin.com"
+    url: "https://davidberzin.com",
+    linkedin: "https://www.linkedin.com/in/davidberzin",
+    role: "Product and data executive, New York City",
+    bio: "NiceSalt is David Berzin. Fifteen years leading product and data teams at Hearst, Viacom, and four venture-backed health startups, including as Chief Product Officer, across global magazine brands, patented ML platforms, and consumer health products.",
+    bioSecond:
+      "That background is the point. The person deciding what your site or product should be stays in the work, and brings in trusted design, engineering, and editorial specialists when the scope calls for it. Nobody hands you to a junior team once the contract is signed."
   }
 };
+
+// Credentials, stated as outcomes. Sourced from davidberzin.com.
+export const credentials = [
+  { stat: "15+", label: "years leading product and data teams" },
+  { stat: "$50M+", label: "new revenue from data products at Viacom" },
+  { stat: "7×", label: "first-visit conversion lift at Vori Health" },
+  { stat: "6 weeks", label: "zero to launched e-commerce platform at Proper" }
+];
+
+// How engagements actually start. Priced so people can self-qualify before they write.
+export const engagements = [
+  {
+    id: "teardown",
+    title: "Teardown",
+    price: "Free",
+    meta: "Back within 48 hours",
+    text: "Send a URL. You get a short, specific read on what's costing you inquiries and what we'd fix first. No call, nothing owed. The fastest way to judge whether the thinking is any good.",
+    cta: "Send a URL",
+    projectType: "Teardown"
+  },
+  {
+    id: "sprint",
+    title: "Project sprint",
+    price: "From $25,000",
+    meta: "4 to 6 weeks, fixed scope",
+    text: "Positioning and messaging, the site or product itself, and the measurement that tells you whether it worked. Senior hands on it start to finish, with specialists added when the scope earns them.",
+    cta: "Start a sprint",
+    projectType: "Project sprint",
+    featured: true
+  },
+  {
+    id: "advisory",
+    title: "Advisory",
+    price: "From $6,000/mo",
+    meta: "Ongoing, month to month",
+    text: "Standing time for teams making real product, data, and AI decisions. Fewer decks, more decisions. Best when there's a hard, specific problem already on the table.",
+    cta: "Talk about advisory",
+    projectType: "Advisory"
+  }
+];
 
 // The connected disciplines we work across: the growth loop, not isolated builds.
 export const offers = [
   {
-    title: "Positioning & UX",
-    text: "The structure, story, and experience that earn attention and trust."
+    title: "Positioning & narrative",
+    text: "What you're saying, who it's for, and why it lands."
   },
   {
-    title: "Content & distribution",
-    text: "Editorial systems and discovery that compound over time."
+    title: "Product & prototypes",
+    text: "Working software and demos, AI-native where it earns it."
   },
   {
-    title: "Conversion",
-    text: "The path from attention to inquiry, tuned page by page."
+    title: "Sites & content systems",
+    text: "The build, plus the editorial engine behind it."
   },
   {
-    title: "Analytics & growth",
-    text: "Measurement you can trust, and the experiments that follow."
+    title: "Measurement & growth",
+    text: "Data you can trust, and the experiments that follow."
   }
 ];
 
 export const nextMoves = [
   {
     id: "positioning",
-    title: "The site undersells the work",
-    text: "Your positioning, structure, or UX doesn't reflect the depth of the work.",
-    projectType: "Positioning & UX"
+    title: "The work is stronger than the story",
+    text: "Your positioning, structure, or UX doesn't reflect the depth of what you do.",
+    projectType: "Positioning & narrative"
   },
   {
-    id: "content",
-    title: "Content isn't compounding",
-    text: "You publish, but it doesn't build authority, traffic, or pipeline.",
-    projectType: "Content & distribution"
+    id: "product",
+    title: "There's nothing to react to",
+    text: "You're pitching an idea from a deck. People need something they can click.",
+    projectType: "Product & prototypes"
   },
   {
     id: "conversion",
     title: "Attention isn't converting",
     text: "People show up and leave. The path from interest to inquiry leaks.",
-    projectType: "Conversion"
+    projectType: "Sites & content systems"
   },
   {
     id: "growth",
     title: "You can't see what's working",
     text: "Without clean measurement, growth decisions come down to guesswork.",
-    projectType: "Analytics & growth"
+    projectType: "Measurement & growth"
   }
 ];
 
@@ -66,7 +114,7 @@ export const caseStudies = [
     name: "ExplorerHealth.co",
     shortName: "Explorer Health",
     url: "https://explorerhealth.co/",
-    label: "AI-assisted health prototype",
+    label: "AI Assisted Health",
     image: "/images/case-studies/explorer-health.webp",
     alt: "ExplorerHealth.co homepage screenshot.",
     preview: {
@@ -212,7 +260,7 @@ export const faqs = [
   {
     question: "What does NiceSalt do?",
     answer:
-      "We handle the thinking and the building: positioning and messaging, the site or product itself, the content that supports it, and the measurement that tells you whether any of it actually worked."
+      "The thinking and the building. Positioning and messaging, the site or product itself, the content around it, and the measurement that tells you whether any of it worked."
   },
   {
     question: "Who do you work best with?",
@@ -223,5 +271,20 @@ export const faqs = [
     question: "How is this different from an agency?",
     answer:
       "You work directly with the person doing the work. Fewer hand-offs, faster proof, and decisions made by someone who has shipped this before."
+  },
+  {
+    question: "What does it cost?",
+    answer:
+      "Project sprints start at $25,000 for four to six weeks, fixed scope and fixed price. Advisory runs from $6,000 a month. A teardown of your current site is free. If your budget is well under that, say so and we'll tell you straight whether there's a version worth doing."
+  },
+  {
+    question: "How fast can you start?",
+    answer:
+      "Usually within two weeks. Teardowns come back inside 48 hours, so that's the quickest way to see how the thinking lands before anyone commits to a date."
+  },
+  {
+    question: "Someone referred me. What's the fastest path?",
+    answer:
+      "Send the URL and one line about what's bothering you. You'll get a real read back the same day, not a discovery questionnaire."
   }
 ];

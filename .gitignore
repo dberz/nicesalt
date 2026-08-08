@@ -4,3 +4,10 @@ dist/
 .vercel/
 .DS_Store
 npm-debug.log*
+
+# Deploy credential. Never commit this.
+.deploy-token
+
+# Private strategy notes. This repo is public — these stay local.
+docs/lead-gen-strategy.md
+docs/brothers-nyc-playbook.md

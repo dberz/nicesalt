@@ -16,7 +16,9 @@ const {
   title,
   description = SITE.description,
   path = "/",
-  image = "/images/og/nicesalt-og.png",
+  // New filename on purpose: social platforms cache OG images by URL, so a
+  // fresh path is the only reliable way to get updated link previews.
+  image = "/images/og/nicesalt-og-2026.png",
   jsonLd = []
 } = Astro.props;
 
@@ -85,8 +87,9 @@ gtag('config', '${SITE.ga4Id}');`}
         data-analytics-component="header_nav"
         data-analytics-event="navigation"
       >
-        <a href="/#system">Approach</a>
+        <a href="/#who">Who</a>
         <a href="/case-studies/">Work</a>
+        <a href="/#engagements">Pricing</a>
         <a href="/notes/">Notes</a>
         <a
           class="button primary small nav-cta"
@@ -103,8 +106,8 @@ gtag('config', '${SITE.ga4Id}');`}
       <a class="wordmark" href="/"><SaltMark size={18} />NiceSalt</a>
       <p>
         A small digital studio for founders, experts, and ambitious teams,
-        with deep roots in health, science, and media. The consulting
-        practice of <a href={SITE.principal.url} rel="me">{SITE.principal.name}</a>.
+        with deep roots in health, science, and media. Independent project
+        work by <a href={SITE.principal.url} rel="me">{SITE.principal.name}</a>.
       </p>
       <div>
         <a href="/case-studies/">Work</a>

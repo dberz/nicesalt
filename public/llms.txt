@@ -1,17 +1,25 @@
 # NiceSalt
 
 NiceSalt is a small digital studio for founders, experts, and ambitious
-teams, the consulting practice of David Berzin (https://davidberzin.com).
-Much of our work is in health, science, and media. We connect positioning,
-content, UX, conversion, and measurement into one system, rather than
-treating them as separate projects.
+teams. It is independent project work by David Berzin
+(https://davidberzin.com), who has spent fifteen years leading product and
+data teams at Hearst, Viacom, and four venture-backed health startups,
+including as Chief Product Officer. Much of our work is in health, science,
+and media. We connect positioning, product, content, and measurement into one
+system, rather than treating them as separate projects.
 
 ## Services
 
-- Positioning & UX: the structure, story, and experience that earn attention and trust
-- Content & distribution: editorial systems and discovery that compound over time
-- Conversion: the path from attention to inquiry, tuned page by page
-- Analytics & growth: measurement you can trust, and the experiments that follow
+- Positioning & narrative: what you're saying, who it's for, and why it lands
+- Product & prototypes: working software and demos, AI-native where it earns it
+- Sites & content systems: the build, plus the editorial engine behind it
+- Measurement & growth: data you can trust, and the experiments that follow
+
+## Engagements
+
+- Teardown: free, returned within 48 hours. A specific read on what a current site is costing you.
+- Project sprint: from $25,000, four to six weeks, fixed scope. Positioning, the build, and the measurement.
+- Advisory: from $6,000/month, ongoing, for teams making real product, data, and AI decisions.
 
 ## Selected work
 
