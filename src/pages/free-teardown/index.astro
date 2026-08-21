@@ -10,9 +10,9 @@ const teardownJsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Free website teardown",
+    name: "Free teardown",
     description:
-      "A focused, evidence-backed website and conversion teardown personally reviewed by NiceSalt principal David Berzin.",
+      "A focused, evidence-backed teardown of a website, product, or conversion path, personally reviewed by NiceSalt principal David Berzin.",
     provider: {
       "@type": "ProfessionalService",
       name: SITE.name,
@@ -30,26 +30,26 @@ const teardownJsonLd = [
 ---
 
 <BaseLayout
-  title="Free website teardown"
-  description="Request a free, human-reviewed website teardown from NiceSalt: a focused verdict, ranked conversion findings, evidence, and concrete fixes."
+  title="Free teardown"
+  description="Request a free, human-reviewed teardown of your website, product, or conversion path from NiceSalt: a focused verdict, ranked findings, evidence, and concrete fixes."
   path="/free-teardown/"
   jsonLd={teardownJsonLd}
 >
   <section class="teardown-hero" aria-labelledby="teardown-title">
     <div class="teardown-hero-copy">
-      <p class="kicker">Free website teardown</p>
-      <h1 id="teardown-title">Find what your site is costing you.</h1>
+      <p class="kicker">Free teardown</p>
+      <h1 id="teardown-title">Send a link. Get a real read back.</h1>
       <p class="lede">
-        I’ll review the site on desktop and mobile, follow a real conversion
-        path, and send back a focused action brief: what matters, why it
-        matters, and what to fix first.
+        A site, a product, a prototype, a deck. We go through it the way a
+        real user would, on desktop and mobile, and send back a focused
+        brief: what matters, why it matters, and what to fix first.
       </p>
       <div class="hero-actions" data-analytics-component="free_teardown_page" data-analytics-event="cta">
         <a class="button primary" href="#request">Request a free teardown</a>
         <a class="button ghost" href="/#contact">Already have a project?</a>
       </div>
       <p class="availability-note">
-        I take on a few free teardowns each month. Requests are subject to availability.
+        We take on a few free teardowns each month. Requests are subject to availability.
       </p>
     </div>
   </section>
@@ -59,10 +59,9 @@ const teardownJsonLd = [
       <p class="kicker">What comes back</p>
       <h2 id="deliverable-title">A useful brief, not an automated scorecard.</h2>
       <p>
-        Every teardown is personally reviewed and shaped by
-        <a class="text-link inline" href={SITE.principal.url} rel="me">{SITE.principal.name}</a>.
-        The goal is a short, opinionated read you can act on—not a long list of
-        generic best practices.
+        Every teardown is personally reviewed and shaped by <a class="text-link inline" href={SITE.principal.url} rel="me">{SITE.principal.name}</a>.
+        The goal is a short, opinionated read you can act on, not a long list
+        of generic best practices.
       </p>
     </div>
     <ol class="teardown-output" aria-label="What the teardown includes">
@@ -70,7 +69,7 @@ const teardownJsonLd = [
         <span>01</span>
         <div>
           <h3>A one-line verdict</h3>
-          <p>The underlying conversion problem, stated plainly before the details.</p>
+          <p>The underlying problem, stated plainly before the details.</p>
         </div>
       </li>
       <li data-reveal>
@@ -84,7 +83,7 @@ const teardownJsonLd = [
         <span>03</span>
         <div>
           <h3>What is already working</h3>
-          <p>The strengths worth protecting, so the answer is not “redesign everything.”</p>
+          <p>The strengths worth protecting, so the answer is never “rebuild everything.”</p>
         </div>
       </li>
       <li data-reveal>
@@ -100,10 +99,11 @@ const teardownJsonLd = [
   <section class="teardown-request" id="request" aria-labelledby="request-title">
     <div class="section-heading">
       <p class="kicker">Request yours</p>
-      <h2 id="request-title">Start with the URL.</h2>
+      <h2 id="request-title">Start with a link.</h2>
       <p>
-        The brief is useful on its own. If it reveals a larger positioning,
-        UX, content, or conversion project, NiceSalt can help with that too.
+        The brief is useful on its own. If it points at a bigger positioning,
+        product, content, or measurement project, NiceSalt can help with that
+        too.
       </p>
     </div>
     <form
@@ -125,8 +125,8 @@ const teardownJsonLd = [
       <input type="hidden" name="project_type" value="Free teardown" />
       <input class="form-honey" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <label class="wide">
-        <span>Website URL</span>
-        <input type="url" name="website" inputmode="url" autocomplete="url" placeholder="https://example.com" required />
+        <span>Link to what you want read</span>
+        <input type="url" name="website" inputmode="url" autocomplete="url" placeholder="A site, product, prototype, or deck" required />
       </label>
       <label>
         <span>Name</span>
@@ -141,12 +141,13 @@ const teardownJsonLd = [
         <input name="company" autocomplete="organization" required />
       </label>
       <label class="wide">
-        <span>What do you want the site to do better? <em>Optional</em></span>
+        <span>What do you want it to do better? <em>Optional</em></span>
         <textarea name="message" rows="5"></textarea>
       </label>
       <p class="form-disclaimer">
-        I take on a few free teardowns each month. Requests are subject to availability.
-        Submitting a site does not guarantee a teardown; I’ll confirm timing if I can take it on.
+        We take on a few free teardowns each month, so requests are subject to
+        availability. Sending one does not guarantee a teardown. We'll confirm
+        timing either way.
       </p>
       <p class="form-status" data-form-status role="status" aria-live="polite">
         If the form gives you trouble, email <a class="text-link inline" href={`mailto:${SITE.email}`}>{SITE.email}</a>.

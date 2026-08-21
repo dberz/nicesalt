@@ -3,7 +3,7 @@ export const SITE = {
   url: "https://nicesalt.com",
   email: "hello@nicesalt.com",
   description:
-    "The studio of David Berzin: 15 years leading product and data at Hearst, Viacom, and venture-backed health startups. Sites, products, and the measurement behind them.",
+    "A small studio with great taste. Positioning, product and platforms, content, and measurement, run as one system. Independent project work by David Berzin.",
   formAction: "https://api.web3forms.com/submit",
   formAccessKey: import.meta.env.WEB3FORMS_ACCESS_KEY ?? "",
   ga4Id: "G-B3RLW3R3SR",
@@ -15,7 +15,7 @@ export const SITE = {
     url: "https://davidberzin.com",
     linkedin: "https://www.linkedin.com/in/davidberzin",
     role: "Product and data executive, New York City",
-    bio: "NiceSalt is David Berzin. Fifteen years leading product and data teams at Hearst, Viacom, and four venture-backed health startups, including as Chief Product Officer, across global magazine brands, patented ML platforms, and consumer health products.",
+    bio: "NiceSalt is David Berzin. Fifteen years leading product and data teams at Hearst, Viacom, and four venture-backed health startups, including as Chief Product Officer. Global scopes, multi-tenant platforms, patented ML, and data products that carried real revenue, alongside the smaller, sharper work on this page.",
     bioSecond:
       "That background is the point. The person deciding what your site or product should be stays in the work, and brings in trusted design, engineering, and editorial specialists when the scope calls for it. Nobody hands you to a junior team once the contract is signed."
   }
@@ -23,7 +23,7 @@ export const SITE = {
 
 // Credentials, stated as outcomes. Sourced from davidberzin.com.
 export const credentials = [
-  { stat: "15+", label: "years leading product and data teams" },
+  { stat: "15+", label: "years leading product and data teams, startup to enterprise" },
   { stat: "$50M+", label: "new revenue from data products at Viacom" },
   { stat: "7×", label: "first-visit conversion lift at Vori Health" },
   { stat: "6 weeks", label: "zero to launched e-commerce platform at Proper" }
@@ -36,8 +36,9 @@ export const engagements = [
     title: "Teardown",
     price: "Free",
     meta: "Back within 48 hours",
-    text: "Send a URL. You get a short, specific read on what's costing you inquiries and what we'd fix first. No call, nothing owed. The fastest way to judge whether the thinking is any good.",
-    cta: "Send a URL",
+    text: "Send whatever exists: a site, a product, a prototype, a deck. You get a short, specific read on what's costing you and what we'd fix first. No call, nothing owed. The fastest way to judge whether the thinking is any good.",
+    cta: "Send a link",
+    href: "/free-teardown/",
     projectType: "Teardown"
   },
   {
@@ -47,6 +48,7 @@ export const engagements = [
     meta: "4 to 6 weeks, fixed scope",
     text: "Positioning and messaging, the site or product itself, and the measurement that tells you whether it worked. Senior hands on it start to finish, with specialists added when the scope earns them.",
     cta: "Start a sprint",
+    href: "#contact",
     projectType: "Project sprint",
     featured: true
   },
@@ -57,6 +59,7 @@ export const engagements = [
     meta: "Ongoing, month to month",
     text: "Standing time for teams making real product, data, and AI decisions. Fewer decks, more decisions. Best when there's a hard, specific problem already on the table.",
     cta: "Talk about advisory",
+    href: "#contact",
     projectType: "Advisory"
   }
 ];
@@ -68,12 +71,12 @@ export const offers = [
     text: "What you're saying, who it's for, and why it lands."
   },
   {
-    title: "Product & prototypes",
-    text: "Working software and demos, AI-native where it earns it."
+    title: "Product & platforms",
+    text: "Working software, from a demo you can click to a platform that carries load."
   },
   {
-    title: "Sites & content systems",
-    text: "The build, plus the editorial engine behind it."
+    title: "Content & publishing systems",
+    text: "The site or app, plus the editorial engine behind it."
   },
   {
     title: "Measurement & growth",
@@ -92,13 +95,13 @@ export const nextMoves = [
     id: "product",
     title: "There's nothing to react to",
     text: "You're pitching an idea from a deck. People need something they can click.",
-    projectType: "Product & prototypes"
+    projectType: "Product & platforms"
   },
   {
     id: "conversion",
     title: "Attention isn't converting",
-    text: "People show up and leave. The path from interest to inquiry leaks.",
-    projectType: "Sites & content systems"
+    text: "People show up and leave. The path from interest to inquiry, signup, or first use leaks.",
+    projectType: "Content & publishing systems"
   },
   {
     id: "growth",
@@ -114,7 +117,7 @@ export const caseStudies = [
     name: "ExplorerHealth.co",
     shortName: "Explorer Health",
     url: "https://explorerhealth.co/",
-    label: "AI Assisted Health",
+    label: "AI-assisted health product",
     image: "/images/case-studies/explorer-health.webp",
     alt: "ExplorerHealth.co homepage screenshot.",
     preview: {
@@ -137,7 +140,7 @@ export const caseStudies = [
       }
     ],
     summary:
-      "A sensitive, complex harm-reduction idea, made testable: an interactive assessment, evidence content, and AI-assisted guidance, privacy first.",
+      "A sensitive, complex harm-reduction idea, made usable: an interactive assessment, evidence content, and AI-assisted guidance, privacy first.",
     problem:
       "A nuanced harm-reduction concept that had to feel clear, credible, and safe before anyone would trust it.",
     work: [
@@ -147,7 +150,7 @@ export const caseStudies = [
       "Evidence-led, privacy-first language"
     ],
     outcome:
-      "A working v1 that makes a complex, sensitive idea feel approachable: something real to test and react to."
+      "A live product that makes a complex, sensitive idea feel clear, credible, and safe enough to trust."
   },
   {
     slug: "robinberzinmd",
@@ -260,31 +263,21 @@ export const faqs = [
   {
     question: "What does NiceSalt do?",
     answer:
-      "The thinking and the building. Positioning and messaging, the site or product itself, the content around it, and the measurement that tells you whether any of it worked."
+      "The thinking and the building. Positioning and messaging, the product, platform, or site itself, the content around it, and the measurement that tells you whether any of it worked."
   },
   {
     question: "Who do you work best with?",
     answer:
-      "Founders, operators, and experts who want senior judgment and hands-on building without a large agency, especially in health, science, and media, where credibility is the product."
+      "Founders, operators, and teams building something complicated, where credibility is part of the product. That has meant a physician's publishing platform, a harm-reduction health product, an AI media concept, and multi-tenant platforms inside much larger companies. Health, science, and consumer products are where most of the recent work sits."
   },
   {
     question: "How is this different from an agency?",
     answer:
-      "You work directly with the person doing the work. Fewer hand-offs, faster proof, and decisions made by someone who has shipped this before."
-  },
-  {
-    question: "What does it cost?",
-    answer:
-      "Project sprints start at $25,000 for four to six weeks, fixed scope and fixed price. Advisory runs from $6,000 a month. A teardown of your current site is free. If your budget is well under that, say so and we'll tell you straight whether there's a version worth doing."
-  },
-  {
-    question: "How fast can you start?",
-    answer:
-      "Usually within two weeks. Teardowns come back inside 48 hours, so that's the quickest way to see how the thinking lands before anyone commits to a date."
+      "You work directly with the person making the decisions. Fewer hand-offs, faster proof, and specialists brought in when the scope earns them rather than staffed onto it by default. Most projects can start within two weeks."
   },
   {
     question: "Someone referred me. What's the fastest path?",
     answer:
-      "Send the URL and one line about what's bothering you. You'll get a real read back the same day, not a discovery questionnaire."
+      "Send a link and one line about what's bothering you. You'll get a real read back inside 48 hours, not a discovery questionnaire."
   }
 ];

@@ -15,14 +15,14 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
   <section class="hero" data-hero-field>
     <div class="hero-copy">
       <p class="kicker">For founders, experts, and ambitious teams</p>
-      <h1>A small digital studio with great taste.</h1>
+      <h1>A small studio with great taste.</h1>
       <p class="lede">
-        Anyone can ship a good-looking site in a weekend now with AI. The
-        reason most of them do nothing is strategy, positioning, and judgment,
-        not production. That's where we come in.
+        Production got cheap. Judgment didn't. Anyone can ship a decent site
+        or a passable prototype in a weekend. Knowing what to build, what to
+        say, and what to measure is the part that's still hard.
       </p>
       <div class="hero-actions" data-analytics-component="home_hero" data-analytics-event="cta">
-        <a class="button primary" href="#next">Make the next move</a>
+        <a class="button primary" href="/free-teardown/">Get a free teardown</a>
         <a class="button ghost" href="/case-studies/">See selected work</a>
       </div>
     </div>
@@ -36,7 +36,7 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
     </div>
     <div class="offers-band" aria-label="What we work across" data-analytics-component="home_offers" data-analytics-event="cta">
       {offers.map((offer, index) => (
-        <a href="#contact" data-reveal>
+        <a href="#next" data-reveal>
           <ServiceIllustration kind={offerGlyphs[index]} />
           <strong>{offer.title}</strong>
           <span>{offer.text}</span>
@@ -78,11 +78,12 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
         Most teams buy positioning, product, content, and measurement as
         separate projects: a blog contractor here, a design freelancer there,
         an analytics dashboard nobody opens. We treat it as one loop. Each
-        stage feeds the next, and nothing ships in isolation.
+        stage feeds the next, and nothing ships in isolation. It is the same
+        loop whether the thing at the centre is a landing page or a platform.
       </p>
     </div>
     <figure class="loop-figure">
-      <svg class="loop-diagram" viewBox="0 0 660 480" role="img" aria-label="A connected growth loop: positioning feeds content, content feeds product, product feeds conversion, conversion feeds measurement, and measurement informs positioning.">
+      <svg class="loop-diagram" viewBox="0 0 660 480" role="img" aria-label="A connected loop of four disciplines: positioning feeds product, product feeds content, content feeds measurement, and measurement informs positioning.">
         <defs>
           <marker id="loop-arrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto">
             <path d="M2 2 L10 6 L2 10 Z" />
@@ -101,34 +102,29 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
           <path class="hub-seam" d="M330 184V292M291 238H369" />
           <path class="hub-outline" d="M330 184 L369 238 L330 292 L291 238 Z" />
         </g>
-        <circle class="loop-hub-node teal" cx="438" cy="238" r="5" />
-        <circle class="loop-hub-node blue" cx="276" cy="348" r="5" />
-        <circle class="loop-hub-node stone" cx="226" cy="220" r="5" />
+        <circle class="loop-hub-node teal" cx="356" cy="141" r="5" />
+        <circle class="loop-hub-node blue" cx="401" cy="309" r="5" />
+        <circle class="loop-hub-node stone" cx="233" cy="264" r="5" />
         <g class="loop-stage stage-positioning">
-          <circle cx="330" cy="80" r="7" />
-          <text x="330" y="42" text-anchor="middle">Positioning</text>
+          <circle cx="330" cy="78" r="7" />
+          <text x="330" y="44" text-anchor="middle">Positioning</text>
+        </g>
+        <g class="loop-stage stage-product">
+          <circle cx="490" cy="238" r="7" />
+          <text x="508" y="244">Product</text>
         </g>
         <g class="loop-stage stage-content">
-          <circle cx="482" cy="190" r="7" />
-          <text x="512" y="196">Content</text>
-        </g>
-        <g class="loop-stage stage-experience">
-          <circle cx="424" cy="368" r="7" />
-          <text x="436" y="416">Product</text>
-        </g>
-        <g class="loop-stage stage-conversion">
-          <circle cx="236" cy="368" r="7" />
-          <text x="226" y="416" text-anchor="end">Conversion</text>
+          <circle cx="330" cy="398" r="7" />
+          <text x="330" y="432" text-anchor="middle">Content</text>
         </g>
         <g class="loop-stage stage-measurement">
-          <circle cx="178" cy="190" r="7" />
-          <text x="148" y="196" text-anchor="end">Measurement</text>
+          <circle cx="170" cy="238" r="7" />
+          <text x="152" y="244" text-anchor="end">Measurement</text>
         </g>
-        <path class="loop-connector" d="M330 112 C380 118 448 142 482 190" marker-end="url(#loop-arrow)" />
-        <path class="loop-connector" d="M482 190 C486 250 466 326 424 368" marker-end="url(#loop-arrow)" />
-        <path class="loop-connector" d="M424 368 C372 398 284 398 236 368" marker-end="url(#loop-arrow)" />
-        <path class="loop-connector" d="M236 368 C194 326 174 250 178 190" marker-end="url(#loop-arrow)" />
-        <path class="loop-connector" d="M178 190 C212 142 280 118 330 112" marker-end="url(#loop-arrow)" />
+        <path class="loop-connector" d="M363.3 81.5 A160 160 0 0 1 486.5 204.7" marker-end="url(#loop-arrow)" />
+        <path class="loop-connector" d="M486.5 271.3 A160 160 0 0 1 363.3 394.5" marker-end="url(#loop-arrow)" />
+        <path class="loop-connector" d="M296.7 394.5 A160 160 0 0 1 173.5 271.3" marker-end="url(#loop-arrow)" />
+        <path class="loop-connector" d="M173.5 204.7 A160 160 0 0 1 296.7 81.5" marker-end="url(#loop-arrow)" />
       </svg>
     </figure>
   </section>
@@ -203,7 +199,7 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
           <p class="engage-text">{item.text}</p>
           <a
             class={item.featured ? "button primary small" : "button ghost small"}
-            href="#contact"
+            href={item.href}
             data-engagement={item.projectType}
             data-message={`I'm interested in: ${item.title}.`}
           >{item.cta}</a>
@@ -233,13 +229,14 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
       <h2 id="contact-title">Tell us what you're working on.</h2>
       <p>
         NiceSalt is independent project work by <a class="text-link inline" href={SITE.principal.url} rel="me">{SITE.principal.name}</a>.
-        No account managers, no hand-offs. Most of what we've shipped is in
-        health, science, and media.
+        You work directly with the person making the decisions, and with
+        specialists brought in when the scope earns them.
       </p>
       <ol class="how-it-starts">
         <li>
-          <strong>A short note.</strong> A few sentences is plenty. You'll
-          hear back the same day, or the next business day at the latest.
+          <strong>A short note.</strong> A few sentences is plenty. Tell us
+          what's bothering you and you'll hear back the same day, usually
+          with something useful already in it.
         </li>
         <li>
           <strong>A 30-minute call.</strong> We figure out what's actually

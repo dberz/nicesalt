@@ -1,29 +1,31 @@
 # NiceSalt
 
-NiceSalt is a small digital studio for founders, experts, and ambitious
-teams. It is independent project work by David Berzin
+NiceSalt is a small studio for founders, experts, and teams building
+something complicated. It is independent project work by David Berzin
 (https://davidberzin.com), who has spent fifteen years leading product and
 data teams at Hearst, Viacom, and four venture-backed health startups,
-including as Chief Product Officer. Much of our work is in health, science,
-and media. We connect positioning, product, content, and measurement into one
-system, rather than treating them as separate projects.
+including as Chief Product Officer, across global scopes, multi-tenant
+platforms, patented ML, and data products. Health, science, and consumer
+products are where most of the recent work sits. We connect positioning, product,
+content, and measurement into one system, rather than treating them as
+separate projects.
 
 ## Services
 
 - Positioning & narrative: what you're saying, who it's for, and why it lands
-- Product & prototypes: working software and demos, AI-native where it earns it
-- Sites & content systems: the build, plus the editorial engine behind it
+- Product & platforms: working software, from a demo you can click to a platform that carries load
+- Content & publishing systems: the site or app, plus the editorial engine behind it
 - Measurement & growth: data you can trust, and the experiments that follow
 
 ## Engagements
 
-- Teardown: free, returned within 48 hours. A specific read on what a current site is costing you.
+- Teardown: free, returned within 48 hours. Send a site, product, prototype, or deck and get a specific read on what it's costing you and what to fix first. Request at https://nicesalt.com/free-teardown/
 - Project sprint: from $25,000, four to six weeks, fixed scope. Positioning, the build, and the measurement.
 - Advisory: from $6,000/month, ongoing, for teams making real product, data, and AI decisions.
 
 ## Selected work
 
-- ExplorerHealth.co (https://nicesalt.com/case-studies/explorer-health/): AI-assisted harm-reduction prototype: interactive assessment, evidence content, privacy-first positioning.
+- ExplorerHealth.co (https://nicesalt.com/case-studies/explorer-health/): AI-assisted harm-reduction health product: interactive assessment, evidence content, privacy-first positioning.
 - RobinBerzinMD.com (https://nicesalt.com/case-studies/robinberzinmd/): publishing platform for a physician's articles, newsletter, courses, and book, with a clear path from reader to lead.
 - Bibo (https://nicesalt.com/case-studies/bibo/): AI-native audiobook concept demo. One classic becomes five versions (shortened, genre-shifted, translated, re-narrated), with AI cover art, social-first discovery, and an audio-ad concept. Live at https://biboai.vercel.app/
 
@@ -35,5 +37,6 @@ system, rather than treating them as separate projects.
 
 ## Contact
 
+Free teardown requests: https://nicesalt.com/free-teardown/
 Project inquiries: hello@nicesalt.com
 Most engagements start as a focused sprint, then grow into a full build or ongoing work.
