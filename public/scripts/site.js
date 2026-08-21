@@ -47,25 +47,31 @@ if (navToggle && primaryNav) {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeNav(); });
 }
 
-// Contact form: use native POST so Web3Forms can handle delivery directly.
-const contactForm = document.querySelector(".contact-form");
-if (contactForm) {
+// Inquiry forms: use native POST so Web3Forms can handle delivery directly.
+document.querySelectorAll("[data-inquiry-form]").forEach((contactForm) => {
   const status = contactForm.querySelector("[data-form-status]");
   const configured = contactForm.dataset.formConfigured === "true";
 
   const fallbackMailto = () => {
     const formData = new FormData(contactForm);
-    const subject = encodeURIComponent("NiceSalt project inquiry");
+    const subject = encodeURIComponent(
+      contactForm.dataset.formSubject || "NiceSalt project inquiry"
+    );
+    const lines = [
+      `Name: ${formData.get("name") || ""}`,
+      `Email: ${formData.get("email") || ""}`,
+      `Company/project: ${formData.get("company") || ""}`
+    ];
+
+    if (formData.get("website")) lines.push(`Website: ${formData.get("website")}`);
+    if (formData.get("project_type")) lines.push(`Project type: ${formData.get("project_type")}`);
+    if (formData.get("budget_timeline")) {
+      lines.push(`Budget/timeline: ${formData.get("budget_timeline")}`);
+    }
+    if (formData.get("message")) lines.push("", String(formData.get("message")));
+
     const body = encodeURIComponent(
-      [
-        `Name: ${formData.get("name") || ""}`,
-        `Email: ${formData.get("email") || ""}`,
-        `Company/project: ${formData.get("company") || ""}`,
-        `Project type: ${formData.get("project_type") || ""}`,
-        `Budget/timeline: ${formData.get("budget_timeline") || ""}`,
-        "",
-        formData.get("message") || ""
-      ].join("\n")
+      lines.join("\n")
     );
     return `mailto:hello@nicesalt.com?subject=${subject}&body=${body}`;
   };
@@ -96,7 +102,7 @@ if (contactForm) {
       status.textContent = "Opening secure submission…";
     }
   });
-}
+});
 
 // Project previews load and play only near the viewport. Keep static posters
 // for visitors who prefer reduced motion or have data-saving enabled.

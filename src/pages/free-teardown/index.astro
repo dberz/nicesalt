@@ -1,0 +1,157 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE } from "../../data/site";
+
+const formConfigured = Boolean(SITE.formAccessKey);
+const formAction = formConfigured ? SITE.formAction : `mailto:${SITE.email}`;
+const formMethod = formConfigured ? "POST" : "GET";
+const pageUrl = `${SITE.url}/free-teardown/`;
+const teardownJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Free website teardown",
+    description:
+      "A focused, evidence-backed website and conversion teardown personally reviewed by NiceSalt principal David Berzin.",
+    provider: {
+      "@type": "ProfessionalService",
+      name: SITE.name,
+      url: SITE.url
+    },
+    url: pageUrl,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/LimitedAvailability"
+    }
+  }
+];
+---
+
+<BaseLayout
+  title="Free website teardown"
+  description="Request a free, human-reviewed website teardown from NiceSalt: a focused verdict, ranked conversion findings, evidence, and concrete fixes."
+  path="/free-teardown/"
+  jsonLd={teardownJsonLd}
+>
+  <section class="teardown-hero" aria-labelledby="teardown-title">
+    <div class="teardown-hero-copy">
+      <p class="kicker">Free website teardown</p>
+      <h1 id="teardown-title">Find what your site is costing you.</h1>
+      <p class="lede">
+        I’ll review the site on desktop and mobile, follow a real conversion
+        path, and send back a focused action brief: what matters, why it
+        matters, and what to fix first.
+      </p>
+      <div class="hero-actions" data-analytics-component="free_teardown_page" data-analytics-event="cta">
+        <a class="button primary" href="#request">Request a free teardown</a>
+        <a class="button ghost" href="/#contact">Already have a project?</a>
+      </div>
+      <p class="availability-note">
+        I take on a few free teardowns each month. Requests are subject to availability.
+      </p>
+    </div>
+  </section>
+
+  <section class="teardown-details" aria-labelledby="deliverable-title">
+    <div class="teardown-intro" data-reveal>
+      <p class="kicker">What comes back</p>
+      <h2 id="deliverable-title">A useful brief, not an automated scorecard.</h2>
+      <p>
+        Every teardown is personally reviewed and shaped by
+        <a class="text-link inline" href={SITE.principal.url} rel="me">{SITE.principal.name}</a>.
+        The goal is a short, opinionated read you can act on—not a long list of
+        generic best practices.
+      </p>
+    </div>
+    <ol class="teardown-output" aria-label="What the teardown includes">
+      <li data-reveal>
+        <span>01</span>
+        <div>
+          <h3>A one-line verdict</h3>
+          <p>The underlying conversion problem, stated plainly before the details.</p>
+        </div>
+      </li>
+      <li data-reveal>
+        <span>02</span>
+        <div>
+          <h3>Three to five ranked findings</h3>
+          <p>Evidence from the live experience, why it costs you, and one concrete fix for each.</p>
+        </div>
+      </li>
+      <li data-reveal>
+        <span>03</span>
+        <div>
+          <h3>What is already working</h3>
+          <p>The strengths worth protecting, so the answer is not “redesign everything.”</p>
+        </div>
+      </li>
+      <li data-reveal>
+        <span>04</span>
+        <div>
+          <h3>The first move</h3>
+          <p>The highest-leverage change to make before the rest of the list.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="teardown-request" id="request" aria-labelledby="request-title">
+    <div class="section-heading">
+      <p class="kicker">Request yours</p>
+      <h2 id="request-title">Start with the URL.</h2>
+      <p>
+        The brief is useful on its own. If it reveals a larger positioning,
+        UX, content, or conversion project, NiceSalt can help with that too.
+      </p>
+    </div>
+    <form
+      class="contact-form teardown-form"
+      action={formAction}
+      method={formMethod}
+      data-inquiry-form
+      data-form-name="free_teardown"
+      data-form-subject="NiceSalt free teardown request"
+      data-form-configured={formConfigured ? "true" : "false"}
+      data-analytics-component="free_teardown_form"
+      data-analytics-event="cta"
+    >
+      <input type="hidden" name="access_key" value={SITE.formAccessKey} />
+      <input type="hidden" name="subject" value="NiceSalt free teardown request" />
+      <input type="hidden" name="from_name" value="NiceSalt.com" />
+      <input type="hidden" name="redirect" value={`${SITE.url}/thanks/teardown/`} />
+      <input type="hidden" name="form_name" value="free_teardown" />
+      <input type="hidden" name="project_type" value="Free teardown" />
+      <input class="form-honey" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <label class="wide">
+        <span>Website URL</span>
+        <input type="url" name="website" inputmode="url" autocomplete="url" placeholder="https://example.com" required />
+      </label>
+      <label>
+        <span>Name</span>
+        <input name="name" autocomplete="name" required />
+      </label>
+      <label>
+        <span>Work email</span>
+        <input type="email" name="email" autocomplete="email" required />
+      </label>
+      <label class="wide">
+        <span>Company or project</span>
+        <input name="company" autocomplete="organization" required />
+      </label>
+      <label class="wide">
+        <span>What do you want the site to do better? <em>Optional</em></span>
+        <textarea name="message" rows="5"></textarea>
+      </label>
+      <p class="form-disclaimer">
+        I take on a few free teardowns each month. Requests are subject to availability.
+        Submitting a site does not guarantee a teardown; I’ll confirm timing if I can take it on.
+      </p>
+      <p class="form-status" data-form-status role="status" aria-live="polite">
+        If the form gives you trouble, email <a class="text-link inline" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
+      <button class="button primary" type="submit">Request a free teardown</button>
+    </form>
+  </section>
+</BaseLayout>
