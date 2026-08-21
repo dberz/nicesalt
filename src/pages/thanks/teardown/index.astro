@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Teardown request received"
+  description="Your NiceSalt teardown request has been received."
+  path="/thanks/teardown/"
+>
+  <section class="page-hero thanks">
+    <p class="kicker">Request received</p>
+    <h1>Thanks. David will review it.</h1>
+    <p>
+      A request does not automatically guarantee a teardown. If there is
+      availability and the site is a good fit, you’ll hear back with timing.
+    </p>
+    <div class="hero-actions" data-analytics-component="free_teardown_page" data-analytics-event="cta">
+      <a class="button primary" href="/">Back to NiceSalt</a>
+      <a class="button ghost" href="/case-studies/">See selected work</a>
+    </div>
+  </section>
+</BaseLayout>

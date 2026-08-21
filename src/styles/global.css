@@ -451,7 +451,8 @@ h3 {
 
 #system,
 #next,
-#contact {
+#contact,
+#request {
   scroll-margin-top: 100px;
 }
 
@@ -1469,6 +1470,130 @@ textarea {
   color: var(--ink);
 }
 
+.form-disclaimer {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 54em;
+}
+
+.contact-form label em {
+  color: var(--muted);
+  font-size: 0.9em;
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* --------------------------------------------------------------------------
+   Free teardown
+   -------------------------------------------------------------------------- */
+
+.teardown-hero,
+.teardown-details,
+.teardown-request {
+  margin: 0 auto;
+  max-width: var(--max);
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+
+.teardown-hero {
+  padding-top: clamp(150px, 18vh, 220px);
+  padding-bottom: clamp(72px, 9vw, 116px);
+}
+
+.teardown-hero-copy {
+  max-width: 920px;
+}
+
+.teardown-hero h1 {
+  max-width: 14ch;
+}
+
+.availability-note {
+  align-items: center;
+  color: var(--muted);
+  display: flex;
+  font-size: 0.96rem;
+  gap: 10px;
+  margin: 22px 0 0;
+}
+
+.availability-note::before {
+  background: var(--accent);
+  border-radius: 50%;
+  content: "";
+  flex: none;
+  height: 7px;
+  width: 7px;
+}
+
+.teardown-details {
+  display: grid;
+  gap: clamp(48px, 8vw, 110px);
+  grid-template-columns: minmax(280px, 0.8fr) minmax(360px, 1fr);
+  padding-top: clamp(72px, 9vw, 116px);
+  padding-bottom: clamp(72px, 9vw, 116px);
+}
+
+.teardown-intro {
+  align-self: start;
+  position: sticky;
+  top: 120px;
+}
+
+.teardown-intro > p:last-child,
+.teardown-request .section-heading > p:last-child {
+  color: var(--muted);
+  font-size: 1.12rem;
+  line-height: 1.5;
+}
+
+.teardown-output {
+  border-top: 1px solid var(--line-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.teardown-output li {
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 22px;
+  grid-template-columns: 44px 1fr;
+  padding: 26px 0;
+}
+
+.teardown-output li > span {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 600;
+  padding-top: 4px;
+}
+
+.teardown-output h3 {
+  margin-bottom: 8px;
+}
+
+.teardown-output p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.teardown-request {
+  display: grid;
+  gap: clamp(44px, 7vw, 92px);
+  grid-template-columns: minmax(0, 0.72fr) minmax(360px, 1fr);
+  padding-top: clamp(72px, 9vw, 116px);
+  padding-bottom: clamp(90px, 12vw, 150px);
+}
+
+.teardown-form {
+  scroll-margin-top: 110px;
+}
+
 /* --------------------------------------------------------------------------
    Inner pages
    -------------------------------------------------------------------------- */
@@ -1888,6 +2013,8 @@ textarea {
   .work-row,
   .note-row,
   .contact-section,
+  .teardown-details,
+  .teardown-request,
   .system-section,
   .case-body,
   .case-gallery,
@@ -1914,6 +2041,10 @@ textarea {
 
   .contact-form {
     grid-template-columns: 1fr;
+  }
+
+  .teardown-intro {
+    position: static;
   }
 
   .site-footer {
@@ -1951,6 +2082,9 @@ textarea {
   .work-section,
   .notes-section,
   .contact-section,
+  .teardown-hero,
+  .teardown-details,
+  .teardown-request,
   .system-section,
   .page-hero,
   .case-hero,

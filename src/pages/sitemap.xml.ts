@@ -3,9 +3,11 @@ import { caseStudies, notes, SITE } from "../data/site";
 export function GET() {
   const paths = [
     "/",
+    "/free-teardown/",
     "/case-studies/",
     "/notes/",
     "/thanks/",
+    "/thanks/teardown/",
     ...caseStudies.map((study) => `/case-studies/${study.slug}/`),
     ...notes.map((note) => `/notes/${note.slug}/`)
   ];

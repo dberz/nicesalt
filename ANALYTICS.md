@@ -21,7 +21,8 @@ declarative: annotate a container, never per-element handlers.
 
 `header_nav`, `header_nav_cta`, `footer`, `home_hero`, `home_offers`,
 `home_next_move`, `home_selected_work`, `work_index`, `notes_index`,
-`article_body`, `article_cta`, `case_study`.
+`article_body`, `article_cta`, `case_study`, `free_teardown_page`,
+`free_teardown_form`.
 
 Keep these stable once shipped (renaming fragments historical reporting). Add new
 ones here when you introduce a component.
