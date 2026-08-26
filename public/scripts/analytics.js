@@ -127,6 +127,17 @@
   function initLeads() {
     var form = document.querySelector("[data-inquiry-form]");
     if (form) {
+      var started = false;
+      form.addEventListener("focusin", function () {
+        if (started) return;
+        started = true;
+        var type = form.querySelector("[name='project_type']");
+        trackEvent("form_start", {
+          form_name: form.getAttribute("data-form-name") || "contact",
+          inquiry_type: (type && type.value) || "",
+          source_page: location.pathname
+        });
+      });
       form.addEventListener("submit", function () {
         var sel = form.querySelector("[name='project_type']");
         try {

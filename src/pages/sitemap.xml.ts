@@ -6,8 +6,6 @@ export function GET() {
     "/free-teardown/",
     "/case-studies/",
     "/notes/",
-    "/thanks/",
-    "/thanks/teardown/",
     ...caseStudies.map((study) => `/case-studies/${study.slug}/`),
     ...notes.map((note) => `/notes/${note.slug}/`)
   ];

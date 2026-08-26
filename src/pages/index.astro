@@ -70,6 +70,35 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
     </ul>
   </section>
 
+  <section class="engage-section" id="engagements" aria-labelledby="engage-title">
+    <div class="section-heading">
+      <p class="kicker">How it works</p>
+      <h2 id="engage-title">Three ways to start.</h2>
+      <p>
+        Prices are real starting points, not a range that moves once you
+        ask. If the numbers don't fit, say so in your note and we'll be
+        honest about whether it's worth a call.
+      </p>
+    </div>
+    <div class="engage-grid" data-analytics-component="home_engagements" data-analytics-event="cta">
+      {engagements.map((item) => (
+        <article class={item.featured ? "engage-card featured" : "engage-card"} data-reveal>
+          {item.featured && <p class="engage-flag">Most projects start here</p>}
+          <h3>{item.title}</h3>
+          <p class="engage-price">{item.price}</p>
+          <p class="engage-meta">{item.meta}</p>
+          <p class="engage-text">{item.text}</p>
+          <a
+            class={item.featured ? "button primary small" : "button ghost small"}
+            href={item.href}
+            data-engagement={item.projectType}
+            data-message={`I'm interested in: ${item.title}.`}
+          >{item.cta}</a>
+        </article>
+      ))}
+    </div>
+  </section>
+
   <section class="system-section" id="system" aria-labelledby="system-title" data-reveal>
     <div class="system-copy">
       <p class="kicker">The approach</p>
@@ -179,35 +208,6 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
     </div>
   </section>
 
-  <section class="engage-section" id="engagements" aria-labelledby="engage-title">
-    <div class="section-heading">
-      <p class="kicker">How it works</p>
-      <h2 id="engage-title">Three ways to start.</h2>
-      <p>
-        Prices are real starting points, not a range that moves once you
-        ask. If the numbers don't fit, say so in your note and we'll be
-        honest about whether it's worth a call.
-      </p>
-    </div>
-    <div class="engage-grid" data-analytics-component="home_engagements" data-analytics-event="cta">
-      {engagements.map((item) => (
-        <article class={item.featured ? "engage-card featured" : "engage-card"} data-reveal>
-          {item.featured && <p class="engage-flag">Most projects start here</p>}
-          <h3>{item.title}</h3>
-          <p class="engage-price">{item.price}</p>
-          <p class="engage-meta">{item.meta}</p>
-          <p class="engage-text">{item.text}</p>
-          <a
-            class={item.featured ? "button primary small" : "button ghost small"}
-            href={item.href}
-            data-engagement={item.projectType}
-            data-message={`I'm interested in: ${item.title}.`}
-          >{item.cta}</a>
-        </article>
-      ))}
-    </div>
-  </section>
-
   <section class="notes-section" aria-labelledby="faq-title" data-reveal>
     <div class="section-heading compact">
       <p class="kicker">Good questions</p>
@@ -235,8 +235,8 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
       <ol class="how-it-starts">
         <li>
           <strong>A short note.</strong> A few sentences is plenty. Tell us
-          what's bothering you and you'll hear back the same day, usually
-          with something useful already in it.
+          what's bothering you and you'll hear back within two business days,
+          usually with something useful already in it.
         </li>
         <li>
           <strong>A 30-minute call.</strong> We figure out what's actually
@@ -255,7 +255,7 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
         </p>
       )}
     </div>
-    <form class="contact-form" action={formAction} method={formMethod} data-inquiry-form data-form-name="contact" data-form-configured={formConfigured ? "true" : "false"}>
+    <form class="contact-form" action={formAction} method={formMethod} data-inquiry-form data-form-name="contact" data-success-url={`${SITE.url}/thanks/`} data-form-configured={formConfigured ? "true" : "false"}>
       <input type="hidden" name="access_key" value={SITE.formAccessKey} />
       <input type="hidden" name="subject" value="NiceSalt project inquiry" />
       <input type="hidden" name="from_name" value="NiceSalt.com" />

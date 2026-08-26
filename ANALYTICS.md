@@ -12,6 +12,8 @@ declarative: annotate a container, never per-element handlers.
 |-------|------|-----------|
 | `generate_lead` | Contact form success (on `/thanks/`) | `method=inquiry`, `form_name`, `value=10`, `currency`, `inquiry_type`, `lead_source`, `source_page` |
 | `inquiry_submit` | Same success, named companion | `form_name`, `inquiry_type`, `lead_source`, `source_page` |
+| `form_start` | First focus inside an inquiry form | `form_name`, `inquiry_type`, `source_page` |
+| `form_submit_error` | Web3Forms rejects a submission or cannot be reached | `form_name`, `source_page` |
 | `select_content` | CTA / button click | `content_type=cta`, `component_name`, `link_text`, `link_url` |
 | `navigation` | Header / footer chrome click | `component_name`, `link_text`, `link_url` |
 | `recirculation` | Content-to-content link (work cards, notes list) | `component_name`, `link_text`, `link_url` |

@@ -28,6 +28,7 @@ const study = caseStudies.find((item) => item.slug === "robinberzinmd")!;
       <h2>The problem</h2>
       <p>{study.problem}</p>
       <h2 class="case-gap">The outcome</h2>
+      <p class="case-result"><strong>{study.result.stat}</strong><span>{study.result.label}</span></p>
       <p>{study.outcome}</p>
     </div>
     <div>

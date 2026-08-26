@@ -47,7 +47,9 @@ if (navToggle && primaryNav) {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeNav(); });
 }
 
-// Inquiry forms: use native POST so Web3Forms can handle delivery directly.
+// Inquiry forms: submit to Web3Forms in place so the thank-you page is only
+// reached after the API confirms delivery. The native action remains in the
+// markup as a no-JavaScript fallback.
 document.querySelectorAll("[data-inquiry-form]").forEach((contactForm) => {
   const status = contactForm.querySelector("[data-form-status]");
   const configured = contactForm.dataset.formConfigured === "true";
@@ -76,7 +78,7 @@ document.querySelectorAll("[data-inquiry-form]").forEach((contactForm) => {
     return `mailto:hello@nicesalt.com?subject=${subject}&body=${body}`;
   };
 
-  contactForm.addEventListener("submit", (event) => {
+  contactForm.addEventListener("submit", async (event) => {
     const submitBtn = contactForm.querySelector("button[type='submit']");
 
     if (!configured) {
@@ -90,16 +92,59 @@ document.querySelectorAll("[data-inquiry-form]").forEach((contactForm) => {
       return;
     }
 
+    event.preventDefault();
+
     if (submitBtn) {
       if (submitBtn.disabled) return;
       submitBtn.disabled = true;
       submitBtn.dataset.label = submitBtn.textContent;
       submitBtn.textContent = "Sending…";
     }
+    contactForm.setAttribute("aria-busy", "true");
     if (status) {
       status.classList.remove("is-error");
       status.classList.add("is-success");
-      status.textContent = "Opening secure submission…";
+      status.textContent = "Sending securely…";
+    }
+
+    try {
+      const formData = new FormData(contactForm);
+      // Web3Forms recommends handling the redirect in JavaScript when using
+      // fetch. Keeping this out of the request also lets us inspect success.
+      formData.delete("redirect");
+
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" }
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "The request could not be delivered.");
+      }
+
+      if (status) status.textContent = "Received. Opening your confirmation…";
+      window.location.assign(
+        contactForm.dataset.successUrl || contactForm.querySelector("[name='redirect']")?.value || "/thanks/"
+      );
+    } catch (error) {
+      contactForm.removeAttribute("aria-busy");
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = submitBtn.dataset.label || "Send inquiry";
+      }
+      if (status) {
+        status.classList.remove("is-success");
+        status.classList.add("is-error");
+        status.textContent = `${error.message || "The request could not be delivered."} Please try again or email hello@nicesalt.com.`;
+      }
+      if (typeof window.trackEvent === "function") {
+        window.trackEvent("form_submit_error", {
+          form_name: contactForm.dataset.formName || "contact",
+          source_page: window.location.pathname
+        });
+      }
     }
   });
 });

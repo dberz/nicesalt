@@ -591,7 +591,7 @@ h3 {
     linear-gradient(180deg, transparent 0, #000 14%, #000 86%, transparent 100%);
   mask-image:
     linear-gradient(180deg, transparent 0, #000 14%, #000 86%, transparent 100%);
-  animation: fadeInHero 1s var(--ease) 0.15s forwards;
+  animation: fadeInHero 0.65s var(--ease) 0.08s forwards;
 }
 
 .is-lite-hero .hero-salt-field {
@@ -1817,6 +1817,28 @@ textarea {
   margin-bottom: 8px;
 }
 
+.case-body .case-result {
+  border-left: 2px solid var(--accent);
+  display: grid;
+  gap: 5px;
+  margin: 18px 0 22px;
+  padding: 4px 0 4px 18px;
+}
+
+.case-result strong {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.case-result span {
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
 .case-gallery {
   align-items: start;
   display: grid;
@@ -2118,17 +2140,17 @@ textarea {
 /* Hero entrance */
 .hero-copy > * {
   opacity: 0;
-  animation: rise 0.8s var(--ease) forwards;
+  animation: rise 0.58s var(--ease) forwards;
 }
 
-.hero-copy .kicker { animation-delay: 0.05s; }
+.hero-copy .kicker { animation-delay: 0.02s; }
 .hero-copy h1 {
-  animation: riseInk 0.9s var(--ease) forwards;
-  animation-delay: 0.12s;
+  animation: riseInk 0.65s var(--ease) forwards;
+  animation-delay: 0.06s;
 }
-.hero-copy .lede { animation-delay: 0.24s; }
-.hero-copy .hero-actions { animation-delay: 0.34s; }
-.hero-copy .hero-meta { animation-delay: 0.44s; }
+.hero-copy .lede { animation-delay: 0.12s; }
+.hero-copy .hero-actions { animation-delay: 0.18s; }
+.hero-copy .hero-meta { animation-delay: 0.24s; }
 
 /* --------------------------------------------------------------------------
    Responsive

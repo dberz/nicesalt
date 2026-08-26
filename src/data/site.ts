@@ -1,11 +1,13 @@
 export const SITE = {
   name: "NiceSalt",
-  url: "https://nicesalt.com",
+  // Vercel redirects the apex domain to www. Keep generated canonicals,
+  // form success URLs, and origin-scoped lead context on that final host.
+  url: "https://www.nicesalt.com",
   email: "hello@nicesalt.com",
   description:
     "A small studio with great taste. Positioning, product and platforms, content, and measurement, run as one system. Independent project work by David Berzin.",
   formAction: "https://api.web3forms.com/submit",
-  formAccessKey: import.meta.env.WEB3FORMS_ACCESS_KEY ?? "",
+  formAccessKey: (import.meta.env.WEB3FORMS_ACCESS_KEY ?? "").trim(),
   ga4Id: "G-B3RLW3R3SR",
   // Set this to a Cal.com or Calendly URL to turn on the direct-booking path.
   // Leave empty and every booking CTA falls back to the contact form.
@@ -35,9 +37,9 @@ export const engagements = [
     id: "teardown",
     title: "Teardown",
     price: "Free",
-    meta: "Back within 48 hours",
+    meta: "A few selected each month",
     text: "Send whatever exists: a site, a product, a prototype, a deck. You get a short, specific read on what's costing you and what we'd fix first. No call, nothing owed. The fastest way to judge whether the thinking is any good.",
-    cta: "Send a link",
+    cta: "Request a free teardown",
     href: "/free-teardown/",
     projectType: "Teardown"
   },
@@ -150,7 +152,11 @@ export const caseStudies = [
       "Evidence-led, privacy-first language"
     ],
     outcome:
-      "A live product that makes a complex, sensitive idea feel clear, credible, and safe enough to trust."
+      "A live product that makes a complex, sensitive idea feel clear, credible, and safe enough to trust.",
+    result: {
+      stat: "Live v1",
+      label: "Assessment, recovery profile, protocols, testing, and care in one private path."
+    }
   },
   {
     slug: "robinberzinmd",
@@ -186,7 +192,11 @@ export const caseStudies = [
       "Journeys into courses, book, and practice"
     ],
     outcome:
-      "A publishing system that compounds: every piece reinforces authority and feeds a clear path from reader to subscriber to lead."
+      "A publishing system that compounds: every piece reinforces authority and feeds a clear path from reader to subscriber to lead.",
+    result: {
+      stat: "One connected platform",
+      label: "Articles, newsletter, courses, book, and practice organized into a single reader journey."
+    }
   },
   {
     slug: "bibo",
@@ -228,7 +238,11 @@ export const caseStudies = [
       "Social-first discovery, achievements, and audio-ad concepts"
     ],
     outcome:
-      "A self-contained working demo at production polish, built in weeks with AI-assisted development. It makes the argument no deck could: one asset became five products."
+      "A self-contained working demo at production polish, built in weeks with AI-assisted development. It makes the argument no deck could: one asset became five products.",
+    result: {
+      stat: "1 asset → 5 products",
+      label: "Five complete, listenable transformations plus more than 50 AI-generated covers."
+    }
   }
 ];
 
@@ -278,6 +292,6 @@ export const faqs = [
   {
     question: "Someone referred me. What's the fastest path?",
     answer:
-      "Send a link and one line about what's bothering you. You'll get a real read back inside 48 hours, not a discovery questionnaire."
+      "Request a free teardown with a link and one line about what's bothering you. David reviews every request and will confirm availability and timing if it is selected."
   }
 ];
