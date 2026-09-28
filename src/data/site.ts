@@ -236,7 +236,7 @@ export const notes = [
     slug: "a-working-demo-beats-a-deck",
     title: "A working demo beats a deck",
     summary:
-      "We had a thesis about what AI does to audiobooks. Instead of writing it up, we built it. Why an argument you can tap settles debates a strategy document can't.",
+      "I had a thesis about what AI does to audiobooks and couldn't get anyone to react to it. So I built it instead. Why an argument you can tap settles debates a strategy document can't.",
     date: "2026-07-08",
     dateDisplay: "July 2026"
   },
@@ -244,7 +244,7 @@ export const notes = [
     slug: "production-got-cheap-judgment-didnt",
     title: "Production got cheap. Judgment didn't.",
     summary:
-      "Anyone can ship a decent-looking site in a weekend now, template or AI, take your pick. So why do most of them still do nothing? Because the scarce skill was never production.",
+      "I built this site in about a week. Then I asked Google what it thought the site was, and Google told me I sell mayonnaise. On the difference between shipping something and knowing who's coming.",
     date: "2026-07-03",
     dateDisplay: "July 2026"
   },
@@ -252,7 +252,7 @@ export const notes = [
     slug: "why-expert-sites-undersell-the-expert",
     title: "Why expert sites undersell the expert",
     summary:
-      "The person is impressive. The site isn't. Three structural reasons expert websites read weaker than the people behind them, and what fixes each one.",
+      "The person is impressive. The site isn't. Three structural reasons expert websites read weaker than the people behind them, and the one I got wrong about my own.",
     date: "2026-07-02",
     dateDisplay: "July 2026"
   }

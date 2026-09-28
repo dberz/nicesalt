@@ -2632,3 +2632,41 @@ textarea {
 
 /* Status line stays out of the layout until the form script writes to it. */
 .form-status:empty { display: none; }
+
+/* Note covers: salt-crystal art on the notes index and at the top of each note. */
+.note-row--index {
+  align-items: center;
+  grid-template-columns: 200px minmax(220px, 0.6fr) minmax(0, 1fr);
+}
+
+.note-thumb {
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  display: block;
+  padding: 6px 8px;
+  transition: border-color 0.25s var(--ease);
+}
+
+.note-thumb:hover { border-color: var(--line-2); }
+
+.note-thumb .note-cover,
+.note-hero-art .note-cover {
+  margin: 0;
+  max-width: none;
+  width: 100%;
+}
+
+.note-hero-art {
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  margin-top: 32px;
+  max-width: 440px;
+  padding: 10px 14px;
+}
+
+@media (max-width: 920px) {
+  .note-row--index { grid-template-columns: 1fr; }
+  .note-thumb { max-width: 320px; }
+}

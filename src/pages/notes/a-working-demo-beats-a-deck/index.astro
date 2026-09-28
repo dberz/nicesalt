@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import NoteIllustration from "../../../components/NoteIllustration.astro";
+import NoteCover from "../../../components/NoteCover.astro";
 import { SITE, notes } from "../../../data/site";
 
 const note = notes.find((item) => item.slug === "a-working-demo-beats-a-deck")!;
@@ -37,78 +38,71 @@ const jsonLd = [
     <p class="kicker">Notes · <time datetime={note.date}>{note.dateDisplay}</time></p>
     <h1>{note.title}</h1>
     <p>{note.summary}</p>
+    <div class="note-hero-art"><NoteCover slug={note.slug} /></div>
   </section>
 
   <article class="article-body" data-analytics-component="article_body">
     <p>
-      We had a thesis about audiobooks: every app on the market treats AI
-      as a feature. A synthetic voice here, a recommendation engine there,
-      and a catalog that stays exactly as fixed as it was in 1995. We
-      thought the more interesting question was what happens when AI is
-      native to the product, when the story itself becomes malleable.
+      I had a thesis about audiobooks I couldn't get anyone to react to.
     </p>
     <p>
-      We could have written that up as a strategy document. Instead we
-      built <a class="text-link inline" href="/case-studies/bibo/" data-analytics-event="recirculation">Bibo</a>,
-      a working demo you can open on your phone right now. That choice is
-      the point of this note.
+      Every app in the category treats AI as a feature. A synthetic voice
+      here, a recommendation engine there, sitting on a catalog as fixed as
+      it was in 1995. The more interesting question is what happens when the
+      story itself is malleable. I said that sentence out loud a few times
+      and watched people nod politely.
     </p>
-
-    <h2>The thesis, in one tap</h2>
     <p>
-      In Bibo, Moby Dick isn't one file. It's five complete versions on
-      one tap: the classic narration, a shortened cut for a commute, a
-      modern YA rewrite, a sci-fi retelling, and a Spanish literary
-      translation, each fully voiced with AI narration. One asset became
-      five products.
+      So I built it instead. Bibo. You can open it on your phone right now.
+    </p>
+    <p>
+      In Bibo, Moby Dick isn't a file. It's five: the classic narration, a
+      shortened cut for a commute, a modern YA rewrite, a sci-fi retelling,
+      and a Spanish literary translation, all fully voiced. One asset, five
+      products.
     </p>
 
     <NoteIllustration kind="multiplier" />
 
     <p>
-      That's the pattern that matters beyond audiobooks. Any organization
-      sitting on a content library (courses, a publishing backlist,
-      research, marketing assets) is sitting on raw material for versions
-      it has never shipped: other lengths, other formats, other languages,
-      other audiences. AI turns a fixed catalog into a multiplier. The
-      whole product changes with it; in Bibo, discovery became a feed,
-      covers became a generated art system, and even the ad model became
-      personalized audio.
+      The nodding stopped. People started arguing about which version they'd
+      actually listen to, which is a much better conversation than the one
+      I'd been having.
     </p>
 
-    <h2>Why not just write the deck?</h2>
+    <h2>Why the demo works and the deck doesn't</h2>
     <p>
-      Because a deck asks people to imagine, and imagination is where
-      good theses go to die in committee. Everyone reads the same slide
-      and pictures something different. Nobody can picture how it feels
-      to drag a slider and hear the same story compress, or to type
-      "retell this as a detective story in 1920s Chicago" and get one.
-      A demo replaces twenty opinions about a hypothetical with one
-      shared reaction to a real thing.
+      A deck asks people to imagine, and everyone imagines something
+      slightly different, so a room of six produces six private versions of
+      your idea and one polite consensus. Nobody can picture how it feels to
+      drag a slider and hear a story compress. You have to hand them the
+      slider.
     </p>
     <p>
-      A demo is also honest in a way a deck can't be. It has to survive
-      contact with real constraints: what the AI actually produces, what
-      the experience actually feels like, where the idea is weaker than
-      the slide version. Finding that out in weeks, before serious money
-      is committed, is the cheapest risk reduction available.
+      A demo is also harder on you than a deck is. Bibo made me find out
+      what AI narration sounds like across a whole book, which is not what
+      it sounds like in a twenty-second sample. Some of it is worse than I'd
+      have claimed on a slide. I'd rather learn that in week three than
+      after someone commits real money.
     </p>
 
-    <h2>The part that changed recently</h2>
+    <h2>What changed recently is the cost</h2>
     <p>
-      This used to be a quarter-long project with an agency invoice to
-      match. Bibo went from concept to polished, self-contained demo in
-      weeks: AI-assisted build, AI-generated narration, translations, and
-      all fifty covers under human art direction. The cost of making an
-      idea concrete has collapsed, which means the excuse for arguing
-      about abstractions is gone. We wrote about that shift in
-      <a class="text-link inline" href="/notes/production-got-cheap-judgment-didnt/" data-analytics-event="recirculation">Production
-      got cheap. Judgment didn't.</a> This is what it looks like applied.
+      This used to be a quarter and an agency invoice. Bibo went from
+      concept to a polished, self-contained demo in weeks: AI-assisted
+      build, AI narration, the translations, and more than fifty covers under
+      human art direction. Which means the excuse for spending six weeks
+      arguing about an abstraction is gone.
     </p>
-    <p class="article-cta">
-      Have a thesis that keeps stalling in meetings?
-      <a class="text-link" href="/#contact" data-analytics-event="cta">Tell us what you're working
-      on</a>. A short note is enough.
+    <p>
+      The pattern generalizes past audiobooks. Any organization sitting on a
+      library, a publishing backlist, a course catalog, years of research,
+      is sitting on versions it has never shipped. Other lengths, other
+      languages, other audiences.
+    </p>
+    <p class="article-cta" data-analytics-component="article_cta" data-analytics-event="cta">
+      But I'd stop reading here and <a class="text-link" href="/case-studies/bibo/" data-analytics-event="recirculation">go
+      open Bibo</a>. That's the whole argument.
     </p>
   </article>
 </BaseLayout>

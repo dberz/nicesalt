@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import NoteIllustration from "../../../components/NoteIllustration.astro";
+import NoteCover from "../../../components/NoteCover.astro";
 import { SITE, notes } from "../../../data/site";
 
 const note = notes.find((item) => item.slug === "why-expert-sites-undersell-the-expert")!;
@@ -37,96 +38,88 @@ const jsonLd = [
     <p class="kicker">Notes · <time datetime={note.date}>{note.dateDisplay}</time></p>
     <h1>{note.title}</h1>
     <p>{note.summary}</p>
+    <div class="note-hero-art"><NoteCover slug={note.slug} /></div>
   </section>
 
   <article class="article-body" data-analytics-component="article_body">
     <p>
-      There's a pattern we see constantly: someone with a genuinely
-      impressive body of work (a physician with a bestselling book, a
-      researcher whose papers move their field, a founder who built
-      something real) and a website that reads like a polite brochure.
-      Meet them in person and you'd remember the conversation for a week.
-      Visit the site and you've forgotten it by lunch.
+      My wife is a physician who founded and runs a healthcare company,
+      wrote State Change, and can hold a room. For years her website read
+      like a polite brochure. Meet her and you remember the conversation for
+      a week. Visit the site and you'd forgotten it by lunch.
     </p>
     <p>
-      This isn't usually a design problem, and it's almost never an effort
-      problem. It's structural. Three structures, specifically.
+      I rebuilt it. Some of what I fixed mattered and some of it didn't, and
+      the gap between those two is the actual subject here.
     </p>
 
     <NoteIllustration kind="gap" />
 
-    <h2>1. The positioning states credentials instead of stakes</h2>
+    <h2>The site opened with credentials</h2>
     <p>
-      Expert sites tend to open with the résumé: board-certified, published
-      in, featured on, founder of. Credentials answer "is this person
-      qualified?" That's a question the visitor wasn't asking yet. The question
-      they arrived with is "does this person understand my problem?"
-    </p>
-    <p>
-      The fix is to lead with the stake, not the certificate. Name the
-      problem the visitor has, in language sharper than they'd use
-      themselves, and let the credentials play defense underneath. An
-      expert who articulates your problem better than you can is presumed
-      competent. That's what expertise sounds like from the outside.
-      Credentials confirm the presumption; they can't create it.
+      Board-certified, published in, featured on, founder of. Those answer
+      "is she qualified," which is not the question anyone arrives with.
+      They arrive with "does this person understand what's happening to me."
+      An expert who describes your problem more precisely than you can is
+      presumed competent. Credentials confirm that presumption. They can't
+      create it.
     </p>
 
-    <h2>2. The content is organized by format, not by question</h2>
+    <h2>The content was filed by format</h2>
     <p>
-      Most expert sites file work the way it was produced: a blog tab, a
-      podcast tab, a press tab, a books tab. That's an archive, and archives
-      put the labor on the visitor: they have to already know what they're
-      looking for and be willing to dig.
-    </p>
-    <p>
-      But readers arrive with questions, not format preferences. Nobody
-      wants "the podcast"; they want the answer about sleep, or fundraising,
-      or protocol design, in whatever format it happens to exist. When
-      content is reorganized around the questions people actually bring,
-      three things happen at once: visitors find things, search engines
-      finally understand what the site is about, and every new piece
-      published makes the older pieces easier to find instead of burying
-      them. That's the difference between content that accumulates and
-      content that compounds.
+      A blog tab, a podcast tab, a press tab, a books tab. That's an
+      archive, and an archive puts the work on the reader. Nobody wants the
+      podcast. They want the answer about sleep, in whatever form it happens
+      to exist. Reorganizing around questions instead of formats did three
+      things at once: people found things, Google finally understood what
+      the site was about, and each new piece started making the older ones
+      easier to find instead of burying them.
     </p>
 
-    <h2>3. The conversion path assumes intent that was never built</h2>
+    <h2>The exits assumed a decision nobody had made yet</h2>
     <p>
-      The typical expert site has exactly two exits: a newsletter box in the
-      footer and a contact page behind a nav link. Both assume a visitor who
-      has already decided to act, and then quietly lose everyone else,
-      which is nearly everyone.
-    </p>
-    <p>
-      A path that works meets people at their actual temperature. A reader
-      who just finished an article about a problem they have is warm. The
-      next step should be right there, and it should be small: a related
-      piece, a specific newsletter, a short assessment. Each small yes earns
-      the right to ask for a bigger one. By the time "work with me" appears,
-      it should feel like the obvious next step in a sequence, not a cold
-      pitch bolted to the end of a bio.
+      A newsletter box in the footer, a contact page behind a nav link. Both
+      are built for someone who has already decided, and they quietly lose
+      everyone else, which is nearly everyone. What works is meeting people
+      at their actual temperature. Someone who just read about a problem
+      they have is warm. Give them something small and adjacent, right
+      there.
     </p>
 
     <NoteIllustration kind="small-yes" />
 
-    <h2>The common thread</h2>
+    <h2>Now the part I had wrong</h2>
     <p>
-      All three failures come from the same source: the site was built as a
-      collection of parts (a bio here, a blog there, a form somewhere) by
-      different people at different times, with nobody responsible for the
-      whole. The expert's actual work has a through-line. The site that
-      presents it usually doesn't.
+      I assumed the site would be the growth engine. The newsletter had a
+      strong run this summer, and when I traced the spikes they lined up
+      with our social lead's Instagram work, not with anything I'd built. She'd
+      been repurposing high-performing posts from a few months back with
+      fresh subscribe links. I had the dashboard. She had the cause. Some of
+      it gave back as unsubscribes caught up, which is its own lesson about
+      calling a peak a trend.
     </p>
     <p>
-      That's why we treat positioning, content, experience, conversion, and
-      measurement as <a class="text-link inline" href="/#system" data-analytics-event="recirculation">one loop</a>
-      rather than five projects. Fixing any single part in isolation tends
-      to move nothing, which is exactly why so many experts have already
-      paid for a redesign that didn't change their pipeline.
+      That is the argument for measuring in the first place. Without it I'd
+      have kept crediting the site and kept investing in the wrong surface.
+    </p>
+    <p>
+      I'd still make all three fixes. A site that undersells you is a tax
+      you pay on every introduction. But the site is usually where interest
+      converts, not where it originates, and it's worth knowing which one
+      you're building.
+    </p>
+    <p>
+      The through-line in all three problems is boring. The site was
+      assembled out of parts, a bio here, a blog there, a form somewhere, by
+      different people at different times, and nobody owned the whole thing.
+      Her actual work has a spine. The site presenting it didn't. That's why
+      I build the product, the content, and the measurement as one thing
+      rather than three separate projects.
     </p>
     <p class="article-cta" data-analytics-component="article_cta" data-analytics-event="cta">
-      If this describes your site, <a class="text-link" href="/#contact" data-analytics-event="cta">tell
-      us what you're working on</a>. A short note is enough.
+      If yours has that problem you probably already know. It's the thing
+      you apologize for before you <a class="text-link" href="/free-teardown/" data-analytics-event="cta">send
+      the link</a>.
     </p>
   </article>
 </BaseLayout>

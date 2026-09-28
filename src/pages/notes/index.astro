@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import NoteCover from "../../components/NoteCover.astro";
 import { notes } from "../../data/site";
 ---
 
@@ -20,6 +21,9 @@ import { notes } from "../../data/site";
     <div class="notes-list" data-analytics-component="notes_index" data-analytics-event="recirculation">
       {notes.map((note) => (
         <article class="note-row note-row--index">
+          <a class="note-thumb" href={`/notes/${note.slug}/`} tabindex="-1" aria-hidden="true">
+            <NoteCover slug={note.slug} />
+          </a>
           <div>
             <h3><a href={`/notes/${note.slug}/`}>{note.title}</a></h3>
             <time datetime={note.date}>{note.dateDisplay}</time>

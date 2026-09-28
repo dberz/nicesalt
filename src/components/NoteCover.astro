@@ -1,0 +1,85 @@
+---
+/**
+ * Note covers: one salt-crystal composition per note, used on the notes
+ * index and at the top of each note. Same rules as ServiceIllustration
+ * (docs/illustration-style.md): one full crystal, one support shape, one
+ * connector, one coral accent. Shares the si-* classes.
+ */
+interface Props {
+  slug: string;
+  class?: string;
+}
+
+const { slug, class: className = "" } = Astro.props;
+
+const n = (v: number) => Math.round(v * 10) / 10;
+const crystal = (cx: number, cy: number, h: number) => {
+  const w = h * 0.36;
+  const [t, b, l, r] = [n(cy - h / 2), n(cy + h / 2), n(cx - w), n(cx + w)];
+  return {
+    facets: [
+      { tone: "pale", d: `M${cx} ${t} L${l} ${cy} L${cx} ${cy} Z` },
+      { tone: "teal", d: `M${cx} ${t} L${r} ${cy} L${cx} ${cy} Z` },
+      { tone: "blue", d: `M${cx} ${b} L${r} ${cy} L${cx} ${cy} Z` },
+      { tone: "stone", d: `M${cx} ${b} L${l} ${cy} L${cx} ${cy} Z` }
+    ],
+    seam: `M${cx} ${t}V${b}M${l} ${cy}H${r}`,
+    outline: `M${cx} ${t} L${r} ${cy} L${cx} ${b} L${l} ${cy} Z`
+  };
+};
+
+const demo = crystal(182, 58, 48);
+const mayo = crystal(130, 40, 40);
+const expert = crystal(80, 75, 104);
+---
+
+<figure class:list={["service-illustration", "note-cover", className]} aria-hidden="true">
+  {slug === "a-working-demo-beats-a-deck" && (
+    <!-- A dim slide, then the same idea on a phone you can actually drag. The coral knob is the slider. -->
+    <svg viewBox="0 0 260 150" fill="none">
+      <rect class="si-panel" x="20" y="40" width="96" height="64" rx="8" />
+      <path class="si-line muted" d="M34 58h52M34 72h64M34 86h40" />
+      <path class="si-path" d="M120 72h26" />
+      <rect class="si-card" x="150" y="14" width="64" height="122" rx="14" />
+      <g class="si-crystal si-crystal--full">
+        {demo.facets.map((f) => <path class={`si-crystal-facet ${f.tone}`} d={f.d} />)}
+        <path class="si-crystal-seam" d={demo.seam} />
+        <path class="si-crystal-outline" d={demo.outline} />
+      </g>
+      <path class="si-line muted" d="M162 108h40" />
+      <circle class="si-node coral" cx="190" cy="108" r="6.5" />
+    </svg>
+  )}
+
+  {slug === "production-got-cheap-judgment-didnt" && (
+    <!-- A studio planted on top of a condiment jar. The coral pennant is the studio claiming the spot. -->
+    <svg viewBox="0 0 260 150" fill="none">
+      <path class="si-line muted" d="M64 134h132" />
+      <rect class="si-panel" x="98" y="74" width="64" height="58" rx="12" />
+      <rect class="si-block teal" x="112" y="90" width="36" height="22" rx="3" />
+      <rect class="si-block stone" x="93" y="62" width="74" height="14" rx="4" />
+      <g class="si-crystal si-crystal--full">
+        {mayo.facets.map((f) => <path class={`si-crystal-facet ${f.tone}`} d={f.d} />)}
+        <path class="si-crystal-seam" d={mayo.seam} />
+        <path class="si-crystal-outline" d={mayo.outline} />
+      </g>
+      <path class="si-line" d="M130 20V6" />
+      <path class="si-plane coral" d="M130 6l13 4.5-13 4.5z" />
+    </svg>
+  )}
+
+  {slug === "why-expert-sites-undersell-the-expert" && (
+    <!-- A big crystal, and a site that fills a fraction of the frame it should. The coral arrow is the room to grow. -->
+    <svg viewBox="0 0 260 150" fill="none">
+      <g class="si-crystal si-crystal--full">
+        {expert.facets.map((f) => <path class={`si-crystal-facet ${f.tone}`} d={f.d} />)}
+        <path class="si-crystal-seam" d={expert.seam} />
+        <path class="si-crystal-outline" d={expert.outline} />
+      </g>
+      <rect class="si-path" x="146" y="26" width="92" height="98" rx="10" />
+      <rect class="si-panel" x="154" y="84" width="44" height="32" rx="6" />
+      <path class="si-line muted" d="M162 96h26M162 106h18" />
+      <path class="si-plane coral" d="M218 46l-3 13-3.3-4.6-11.2 8.1-2.4-3.3 11.2-8.1-4.6-3.3z" />
+    </svg>
+  )}
+</figure>
