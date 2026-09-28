@@ -727,44 +727,9 @@ function initHeroSaltField(canvas) {
 const heroSaltCanvas = document.querySelector("[data-hero-salt]");
 if (heroSaltCanvas) initHeroSaltField(heroSaltCanvas);
 
-const nextMove = document.querySelector("[data-next-move]");
 const inquiryForm = document.querySelector("[data-inquiry-form]");
 const projectType = inquiryForm ? inquiryForm.querySelector("select[name='project_type']") : null;
 const message = inquiryForm ? inquiryForm.querySelector("textarea[name='message']") : null;
-
-if (nextMove && projectType && message) {
-  const choices = Array.from(nextMove.querySelectorAll(".next-choice"));
-  const followup = document.querySelector("[data-next-followup] span");
-
-  const choose = (choice, announce) => {
-    choices.forEach((item) => item.setAttribute("aria-pressed", String(item === choice)));
-
-    const suggestedProjectType = choice.dataset.projectType || "";
-    const suggestedMessage = choice.dataset.message || "";
-    const previousSuggestedMessage = message.dataset.suggestedMessage || "";
-    const messageWasUntouched =
-      !message.value.trim() || message.value === previousSuggestedMessage;
-
-    if (suggestedProjectType) {
-      projectType.value = suggestedProjectType;
-    }
-
-    if (messageWasUntouched && suggestedMessage) {
-      message.value = suggestedMessage;
-      message.dataset.suggestedMessage = suggestedMessage;
-    }
-
-    if (followup && announce) {
-      const title = choice.querySelector("strong");
-      followup.textContent = `“${title ? title.textContent : ""}” it is.`;
-    }
-  };
-
-  choices.forEach((choice, index) => {
-    choice.addEventListener("click", () => choose(choice, true));
-    if (index === 0) choose(choice, false);
-  });
-}
 
 // Engagement CTAs carry their context into the inquiry form, so the note
 // arrives already saying which shape of work the person had in mind.
@@ -776,6 +741,10 @@ document.querySelectorAll("[data-engagement]").forEach((link) => {
   link.addEventListener("click", () => {
     if (engagementField) {
       engagementField.value = link.dataset.engagement || "";
+    }
+
+    if (projectType && link.dataset.projectType) {
+      projectType.value = link.dataset.projectType;
     }
 
     if (!message) return;

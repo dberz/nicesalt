@@ -5,7 +5,7 @@ export const SITE = {
   url: "https://www.nicesalt.com",
   email: "hello@nicesalt.com",
   description:
-    "A small studio with great taste. Positioning, product and platforms, content, and measurement, run as one system. Independent project work by David Berzin.",
+    "NiceSalt designs and builds AI products, web apps, and publishing platforms with deep data expertise.",
   formAction: "https://api.web3forms.com/submit",
   formAccessKey: (import.meta.env.WEB3FORMS_ACCESS_KEY ?? "").trim(),
   ga4Id: "G-B3RLW3R3SR",
@@ -17,72 +17,51 @@ export const SITE = {
     url: "https://davidberzin.com",
     linkedin: "https://www.linkedin.com/in/davidberzin",
     role: "Product and data executive, New York City",
-    bio: "NiceSalt is David Berzin. Fifteen years leading product and data teams at Hearst, Viacom, and four venture-backed health startups, including as Chief Product Officer. Global scopes, multi-tenant platforms, patented ML, and data products that carried real revenue, alongside the smaller, sharper work on this page.",
-    bioSecond:
-      "That background is the point. The person deciding what your site or product should be stays in the work, and brings in trusted design, engineering, and editorial specialists when the scope calls for it. Nobody hands you to a junior team once the contract is signed."
+    bio: "NiceSalt is led by David Berzin, who has spent two decades running product and data teams, from early-stage startups to global media platforms, including as a Chief Product Officer. He stays hands-on from the first decision through launch and brings in specialists when the work calls for them."
   }
 };
 
 // Credentials, stated as outcomes. Sourced from davidberzin.com.
 export const credentials = [
-  { stat: "15+", label: "years leading product and data teams, startup to enterprise" },
+  { stat: "20", label: "years leading product and data teams, startup to enterprise" },
   { stat: "$50M+", label: "new revenue from data products at Viacom" },
   { stat: "7×", label: "first-visit conversion lift at Vori Health" },
   { stat: "6 weeks", label: "zero to launched e-commerce platform at Proper" }
 ];
 
-// How engagements actually start. Priced so people can self-qualify before they write.
+// Ways to begin a conversation about the work.
 export const engagements = [
   {
     id: "teardown",
-    title: "Teardown",
-    price: "Free",
-    meta: "A few selected each month",
-    text: "Send whatever exists: a site, a product, a prototype, a deck. You get a short, specific read on what's costing you and what we'd fix first. No call, nothing owed. The fastest way to judge whether the thinking is any good.",
-    cta: "Request a free teardown",
+    title: "Free teardown",
+    text: "Share a site, product, or prototype for a focused review. We select a few requests and confirm timing before starting.",
+    cta: "Request a teardown",
     href: "/free-teardown/",
     projectType: "Teardown"
   },
   {
-    id: "sprint",
-    title: "Project sprint",
-    price: "From $25,000",
-    meta: "4 to 6 weeks, fixed scope",
-    text: "Positioning and messaging, the site or product itself, and the measurement that tells you whether it worked. Senior hands on it start to finish, with specialists added when the scope earns them.",
-    cta: "Start a sprint",
+    id: "build",
+    title: "Product builds",
+    text: "A focused first version or a larger platform, shaped around a clear job and built to be used.",
+    cta: "Discuss a build",
     href: "#contact",
-    projectType: "Project sprint",
-    featured: true
-  },
-  {
-    id: "advisory",
-    title: "Advisory",
-    price: "From $6,000/mo",
-    meta: "Ongoing, month to month",
-    text: "Standing time for teams making real product, data, and AI decisions. Fewer decks, more decisions. Best when there's a hard, specific problem already on the table.",
-    cta: "Talk about advisory",
-    href: "#contact",
-    projectType: "Advisory"
+    projectType: "Product build"
   }
 ];
 
-// The connected disciplines we work across: the growth loop, not isolated builds.
+// Offered capabilities; case studies show delivered work separately.
 export const offers = [
   {
-    title: "Positioning & narrative",
-    text: "What you're saying, who it's for, and why it lands."
+    title: "AI products",
+    text: "Assistants and agents wired into your real data, with a person in the loop where the stakes are high."
   },
   {
-    title: "Product & platforms",
-    text: "Working software, from a demo you can click to a platform that carries load."
+    title: "Web apps",
+    text: "Customer portals, internal tools, and the workflows that connect them."
   },
   {
-    title: "Content & publishing systems",
-    text: "The site or app, plus the editorial engine behind it."
-  },
-  {
-    title: "Measurement & growth",
-    text: "Data you can trust, and the experiments that follow."
+    title: "Publishing platforms",
+    text: "Sites and newsletters where one article becomes a page, an email, and a new subscriber."
   }
 ];
 
@@ -119,7 +98,7 @@ export const caseStudies = [
     name: "ExplorerHealth.co",
     shortName: "Explorer Health",
     url: "https://explorerhealth.co/",
-    label: "AI-assisted health product",
+    label: "Self-initiated health product exploration",
     image: "/images/case-studies/explorer-health.webp",
     alt: "ExplorerHealth.co homepage screenshot.",
     preview: {
@@ -131,31 +110,31 @@ export const caseStudies = [
       {
         src: "/images/case-studies/explorer-how-it-works.webp",
         alt: "Explorer Health How it works section showing assessment, recovery profile, protocols, testing, and care.",
-        caption: "The product story moved past a landing page: assessment, recovery profile, protocols, testing, and care are framed as one private path.",
+        caption: "The experience presents assessment, recovery profile, and possible next steps as a connected journey.",
         shape: "natural"
       },
       {
         src: "/images/case-studies/explorer-recovery-read.webp",
         alt: "Explorer Health Recovery Read result card showing risk score, watch areas, suggested labs, and next step.",
-        caption: "The intake resolves into a plain-language Recovery Read: risk drivers, lab asks, protective factors, and a specific next step.",
+        caption: "The assessment concept leads to a plain-language Recovery Read with factors to discuss with a qualified clinician.",
         shape: "natural"
       }
     ],
     summary:
-      "A sensitive, complex harm-reduction idea, made usable: an interactive assessment, evidence content, and AI-assisted guidance, privacy first.",
+      "A self-initiated product exploration of an interactive assessment, recovery profile, and guidance flow for a sensitive health topic.",
     problem:
-      "A nuanced harm-reduction concept that had to feel clear, credible, and safe before anyone would trust it.",
+      "A sensitive health topic needed a clear way to introduce the concept, guide people through an assessment, and explain possible next steps.",
     work: [
       "Product narrative and positioning",
       "Interactive intake and recovery-read flow",
       "AI-assisted guidance and next-step concepts",
-      "Evidence-led, privacy-first language"
+      "Evidence-aware content and privacy language"
     ],
     outcome:
-      "A live product that makes a complex, sensitive idea feel clear, credible, and safe enough to trust.",
+      "The public site and assessment concept organize a complex topic into a clearer product journey, from first questions to a recovery profile and possible next steps.",
     result: {
-      stat: "Live v1",
-      label: "Assessment, recovery profile, protocols, testing, and care in one private path."
+      stat: "Live exploration",
+      label: "A public site and interactive assessment concept."
     }
   },
   {
@@ -163,39 +142,45 @@ export const caseStudies = [
     name: "RobinBerzinMD.com",
     shortName: "RobinBerzinMD",
     url: "https://robinberzinmd.com/",
-    label: "Health publishing & lead gen",
+    label: "Agentic publishing platform",
     image: "/images/case-studies/robinberzinmd.webp",
     alt: "RobinBerzinMD.com homepage screenshot.",
     gallery: [
       {
-        src: "/images/case-studies/robin-supplement-stack.webp",
-        alt: "Robin Berzin MD supplement stack lead magnet cover.",
-        caption: "Lead magnets and article visuals gave the publishing system a recognizable editorial world.",
-        shape: "square",
-        fit: "contain"
+        src: "/images/case-studies/robin-collage-mold.webp",
+        alt: "Cut-paper collage of a house, layered mold forms, and flowing air.",
+        caption: "Landscape editorial art for a story about mold exposure and symptoms.",
+        shape: "wide"
       },
       {
-        src: "/images/case-studies/robin-post-illustration.webp",
-        alt: "Robin Berzin MD article illustration for a nutrition and mood post.",
-        caption: "Post-level imagery carried the same warm, clinical, human tone as the site.",
-        shape: "wide"
+        src: "/images/case-studies/robin-collage-perimenopause.webp",
+        alt: "Cut-paper collage of moon phases, a lilac wave, and botanical forms.",
+        caption: "A restrained visual metaphor for Robin's perimenopause guide.",
+        shape: "portrait"
+      },
+      {
+        src: "/images/case-studies/robin-collage-vagus.webp",
+        alt: "Cut-paper collage connecting brain, heart, gut, and vagus nerve.",
+        caption: "Portrait art built for article cards and social distribution.",
+        shape: "portrait"
       }
     ],
     summary:
-      "A respected physician's ideas were scattered across formats. We built a publishing platform that gives her work one home, with a clear path from reader to lead.",
+      "A publishing platform that turns one article into a website update, newsletter, and social assets.",
     problem:
-      "A respected expert with deep, wide-ranging work and no single home for it, and no clear route from a casual reader to a real lead.",
+      "Robin Berzin's articles, newsletter, programs, book, and practice needed one coherent home. Each new issue also needed a repeatable path into the website, email, and social formats without rewriting Robin's voice.",
     work: [
       "Editorial information architecture",
-      "Fast, SEO-ready Astro build",
-      "Article and newsletter conversion paths",
-      "Journeys into courses, book, and practice"
+      "Astro publishing platform and reader journeys",
+      "Multi-platform article workflow with editorial review",
+      "Cut-paper art direction and channel-specific image assets",
+      "Beehiiv draft and social distribution handoff"
     ],
     outcome:
-      "A publishing system that compounds: every piece reinforces authority and feeds a clear path from reader to subscriber to lead.",
+      "The delivered system connects Robin's article library and reader journeys to a repeatable workflow. It prepares website, newsletter, and social material for editorial review before release.",
     result: {
-      stat: "One connected platform",
-      label: "Articles, newsletter, courses, book, and practice organized into a single reader journey."
+      stat: "Live platform",
+      label: "Articles, newsletter, programs, book, and practice in one reader experience."
     }
   },
   {

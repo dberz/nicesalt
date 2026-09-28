@@ -8,7 +8,9 @@ export function metaTitle(title?: string) {
   return title ? `${title} | ${SITE.name}` : `${SITE.name} | A small digital studio for founders, experts, and ambitious teams`;
 }
 
-export function baseJsonLd() {
+export function baseJsonLd(options: { description?: string; serviceTypes?: string[]; includeFaq?: boolean } = {}) {
+  const description = options.description ?? SITE.description;
+  const serviceTypes = options.serviceTypes ?? offers.map((offer) => offer.title);
   return [
     {
       "@context": "https://schema.org",
@@ -16,7 +18,7 @@ export function baseJsonLd() {
       name: SITE.name,
       url: SITE.url,
       email: SITE.email,
-      description: SITE.description,
+      description,
       founder: {
         "@type": "Person",
         name: SITE.principal.name,
@@ -30,17 +32,17 @@ export function baseJsonLd() {
       url: SITE.url,
       email: SITE.email,
       areaServed: "United States",
-      serviceType: offers.map((offer) => offer.title),
-      description: SITE.description
+      serviceType: serviceTypes,
+      description
     },
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
       name: SITE.name,
       url: SITE.url,
-      description: SITE.description
+      description
     },
-    {
+    ...(options.includeFaq === false ? [] : [{
       "@context": "https://schema.org",
       "@type": "FAQPage",
       mainEntity: faqs.map((item) => ({
@@ -51,7 +53,7 @@ export function baseJsonLd() {
           text: item.answer
         }
       }))
-    }
+    }])
   ];
 }
 

@@ -20,6 +20,7 @@ const study = caseStudies.find((item) => item.slug === "explorer-health")!;
     <p class="kicker">{study.label}</p>
     <h1>{study.name}</h1>
     <p>{study.summary}</p>
+    <p class="case-limitation">This is a self-initiated product exploration, not a clinically validated assessment or a confirmed care service. Its health guidance should be evaluated with a qualified clinician.</p>
     <a class="text-link" href={study.url} target="_blank" rel="noopener noreferrer">Visit live site</a>
   </section>
   <ProjectMedia study={study} class="case-image" eager />
