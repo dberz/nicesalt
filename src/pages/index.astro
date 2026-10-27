@@ -9,14 +9,6 @@ const capabilities = [
   { id: "web", title: "Web apps", text: "Customer portals, internal tools, and the workflows that connect them.", art: "webapp" },
   { id: "publishing", title: "Publishing platforms", text: "Sites and newsletters where one article becomes a page, an email, and a new subscriber.", art: "publishing" }
 ] as const;
-const pilotBackground = [
-  { company: "Viacom", role: "$50M+ in new data-product revenue" },
-  { company: "Vori Health", role: "Chief Product Officer, 7× first-visit conversion" },
-  { company: "Proper Sleep", role: "$0 to $1M ARR in five months" },
-  { company: "Parsley Health", role: "Founding product lead, zero to one" },
-  { company: "Mindbloom", role: "Founding product lead, zero to one" },
-  { company: "Hearst", role: "Global product and data teams" }
-] as const;
 const caseOrder = ["robinberzinmd", "bibo", "explorer-health"];
 const pilotCaseStudies = [...caseStudies].sort((a, b) => caseOrder.indexOf(a.slug) - caseOrder.indexOf(b.slug)).map((study) => {
   if (study.slug === "bibo") return { ...study, label: "AI-native media concept", summary: "A clickable demo of one classic becoming five listenable versions: shortened, genre-shifted, translated, and re-narrated." };
@@ -36,8 +28,8 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
       <h1>The model is the easy part.</h1>
       <p class="lede">Most AI products stall on the data underneath and the workflow around them. We design and build both, with two decades of product and data leadership behind the calls.</p>
       <div class="hero-actions" data-analytics-component="home_hero" data-analytics-event="cta">
-        <a class="button primary" href="/free-teardown/">Request a free teardown</a>
-        <a class="button ghost" href="#contact">Discuss a project</a>
+        <a class="button primary" href="#work">See the work</a>
+        <a class="button ghost" href="#contact">Get in touch</a>
       </div>
     </div>
     <canvas class="hero-salt-field" data-hero-salt aria-hidden="true"></canvas>
@@ -62,18 +54,6 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
     <p class="data-advantage-brief"><strong>Underneath all three: data.</strong> Clean integrations and measurement you can trust are what make search, personalization, and the next product decision work.</p>
   </section>
 
-  <aside class="teardown-callout" aria-labelledby="teardown-callout-title" data-reveal>
-    <div class="teardown-callout-art" aria-hidden="true">
-      <ServiceIllustration kind="teardown" />
-    </div>
-    <div class="teardown-callout-copy">
-      <p class="kicker">A useful place to start</p>
-      <h2 id="teardown-callout-title">Get a fresh read on what you have.</h2>
-      <p>Send a site, product, or prototype. Each month we take on a few and send back a short, ranked list of what to fix first.</p>
-    </div>
-    <a class="button ghost small" href="/free-teardown/" data-analytics-component="home_teardown" data-analytics-event="cta">Request a free teardown</a>
-  </aside>
-
   <section class="work-section" id="work" aria-label="Selected work">
     <div class="section-heading compact">
       <h2>Selected work</h2>
@@ -93,7 +73,7 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
     </div>
   </section>
 
-  <section class="principal-section" id="who" aria-labelledby="principal-title" data-reveal>
+  <section class="principal-section principal-solo" id="who" aria-labelledby="principal-title" data-reveal>
     <div class="principal-copy">
       <p class="kicker">Founder</p>
       <h2 id="principal-title">Experience behind the build.</h2>
@@ -103,25 +83,16 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
         data-analytics-component="home_principal"
         data-analytics-event="navigation"
       >
-        <a class="text-link" href={SITE.principal.url} rel="me">Full background</a>
-        <a class="text-link" href={SITE.principal.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+        <a class="text-link" href={SITE.principal.url} rel="me">Background</a>
       </p>
     </div>
-    <aside class="background-list" aria-label="Track record">
-      <p class="kicker">Track record</p>
-      <ul>
-        {pilotBackground.map((item) => (
-          <li><strong>{item.company}</strong><span>{item.role}</span></li>
-        ))}
-      </ul>
-    </aside>
   </section>
 
   <section class="contact-section" id="contact" aria-labelledby="contact-title">
     <div class="section-heading">
       <p class="kicker">Contact</p>
       <h2 id="contact-title">Tell us what you're working on.</h2>
-      <p>What's the problem, who does it affect, and what do you have so far? A few sentences is enough to start. Most work begins as a focused first version with a fixed scope, then grows from there.</p>
+      <p>NiceSalt takes on a small number of projects, mostly by referral. If someone sent you, mention who. A few sentences on the problem and what you have so far is enough to start.</p>
       {bookingConfigured && (
         <p class="contact-direct" data-analytics-component="contact_booking" data-analytics-event="cta">
           Rather skip the form?

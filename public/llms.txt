@@ -10,8 +10,7 @@ NiceSalt designs and builds AI products, web apps, and publishing platforms with
 
 ## How to start
 
-- Free teardown: share a site, product, or prototype for a focused review. A few requests are selected, with timing confirmed before work begins. Request at https://www.nicesalt.com/free-teardown/.
-- Product builds: most work begins as a focused first version with a fixed scope, then grows from there.
+NiceSalt takes on a small number of projects, mostly by referral. Most work begins as a focused first version with a fixed scope, then grows from there.
 
 ## Selected work
 
@@ -27,5 +26,4 @@ NiceSalt designs and builds AI products, web apps, and publishing platforms with
 
 ## Contact
 
-Free teardown requests: https://www.nicesalt.com/free-teardown/
 Project inquiries: hello@nicesalt.com

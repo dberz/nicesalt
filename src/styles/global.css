@@ -978,6 +978,10 @@ h3 {
   align-items: center;
 }
 
+.principal-section.principal-solo {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .principal-copy {
   max-width: 34em;
 }

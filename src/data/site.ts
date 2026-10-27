@@ -17,28 +17,16 @@ export const SITE = {
     url: "https://davidberzin.com",
     linkedin: "https://www.linkedin.com/in/davidberzin",
     role: "Product and data executive, New York City",
-    bio: "NiceSalt is led by David Berzin, who has spent two decades running product and data teams, from early-stage startups to global media platforms, including as a Chief Product Officer. He stays hands-on from the first decision through launch and brings in specialists when the work calls for them."
+    bio: "NiceSalt was founded by David Berzin, who has spent two decades running product and data teams, from early-stage startups to global media platforms. He sets the direction on every project and brings in specialists when the work calls for them."
   }
 };
 
-// Credentials, stated as outcomes. Sourced from davidberzin.com.
-export const credentials = [
-  { stat: "20", label: "years leading product and data teams, startup to enterprise" },
-  { stat: "$50M+", label: "new revenue from data products at Viacom" },
-  { stat: "7×", label: "first-visit conversion lift at Vori Health" },
-  { stat: "6 weeks", label: "zero to launched e-commerce platform at Proper" }
-];
+// Oct 2026: quiet mode. David starts a full-time role in November. The studio stays
+// open by referral; the free teardown stays live at its URL for direct sends but is
+// out of the nav, homepage, notes, sitemap, and llms.txt, and is noindexed.
 
 // Ways to begin a conversation about the work.
 export const engagements = [
-  {
-    id: "teardown",
-    title: "Free teardown",
-    text: "Share a site, product, or prototype for a focused review. We select a few requests and confirm timing before starting.",
-    cta: "Request a teardown",
-    href: "/free-teardown/",
-    projectType: "Teardown"
-  },
   {
     id: "build",
     title: "Product builds",
@@ -267,16 +255,16 @@ export const faqs = [
   {
     question: "Who do you work best with?",
     answer:
-      "Founders, operators, and teams building something complicated, where credibility is part of the product. That has meant a physician's publishing platform, a harm-reduction health product, an AI media concept, and multi-tenant platforms inside much larger companies. Health, science, and consumer products are where most of the recent work sits."
+      "Founders, operators, and teams building something complicated, where credibility is part of the product. That has meant a physician's publishing platform, a harm-reduction health product, and an AI media concept. Health, science, and consumer products are where most of the recent work sits."
   },
   {
     question: "How is this different from an agency?",
     answer:
-      "You work directly with the person making the decisions. Fewer hand-offs, faster proof, and specialists brought in when the scope earns them rather than staffed onto it by default. Most projects can start within two weeks."
+      "You work directly with the person making the decisions. Fewer hand-offs, faster proof, and specialists brought in when the scope earns them rather than staffed onto it by default."
   },
   {
     question: "Someone referred me. What's the fastest path?",
     answer:
-      "Request a free teardown with a link and one line about what's bothering you. David reviews every request and will confirm availability and timing if it is selected."
+      "Send a short note through the contact form or to hello@nicesalt.com and mention who referred you. NiceSalt takes on a small number of projects, so we'll confirm fit and timing before anything starts."
   }
 ];

@@ -3,7 +3,6 @@ import { caseStudies, notes, SITE } from "../data/site";
 export function GET() {
   const paths = [
     "/",
-    "/free-teardown/",
     "/case-studies/",
     "/notes/",
     ...caseStudies.map((study) => `/case-studies/${study.slug}/`),

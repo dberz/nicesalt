@@ -34,6 +34,7 @@ const teardownJsonLd = [
   description="Request a free, human-reviewed teardown of your website, product, or conversion path from NiceSalt: a focused verdict, ranked findings, evidence, and concrete fixes."
   path="/free-teardown/"
   jsonLd={teardownJsonLd}
+  noindex
 >
   <section class="teardown-hero" aria-labelledby="teardown-title">
     <div class="teardown-hero-copy">
@@ -49,7 +50,7 @@ const teardownJsonLd = [
         <a class="button ghost" href="/#contact">Already have a project?</a>
       </div>
       <p class="availability-note">
-        We take on a few free teardowns each month. Requests are subject to availability.
+        We take on a few free teardowns when there's room. Requests are subject to availability.
       </p>
     </div>
   </section>
@@ -146,7 +147,7 @@ const teardownJsonLd = [
         <textarea name="message" rows="5"></textarea>
       </label>
       <p class="form-disclaimer">
-        We take on a few free teardowns each month, so requests are subject to
+        We take on a few free teardowns when there's room, so requests are subject to
         availability. Sending one does not guarantee a teardown. We'll confirm
         timing either way.
       </p>
