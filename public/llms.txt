@@ -1,6 +1,6 @@
 # NiceSalt
 
-NiceSalt designs and builds AI products, web apps, and publishing platforms with deep data expertise. From vibes to viability: two decades of product and data experience guide what to build, what to measure, and what to improve. The studio is led by David Berzin (https://davidberzin.com).
+NiceSalt is a small studio that turns AI ideas into working products, built on the right data from day one. It is David Berzin's studio (https://davidberzin.com), and it takes on a small number of projects, mostly through people we know.
 
 ## What we build
 
@@ -10,7 +10,7 @@ NiceSalt designs and builds AI products, web apps, and publishing platforms with
 
 ## How to start
 
-NiceSalt takes on a small number of projects, mostly by referral. Most work begins as a focused first version with a fixed scope, then grows from there.
+Most work begins as a focused first version with a fixed scope, then grows from there.
 
 ## Selected work
 

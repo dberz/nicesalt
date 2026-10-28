@@ -5,7 +5,7 @@ export const SITE = {
   url: "https://www.nicesalt.com",
   email: "hello@nicesalt.com",
   description:
-    "NiceSalt designs and builds AI products, web apps, and publishing platforms with deep data expertise.",
+    "NiceSalt is a small studio that turns AI ideas into working products, built on the right data from day one.",
   formAction: "https://api.web3forms.com/submit",
   formAccessKey: (import.meta.env.WEB3FORMS_ACCESS_KEY ?? "").trim(),
   ga4Id: "G-B3RLW3R3SR",
@@ -17,7 +17,7 @@ export const SITE = {
     url: "https://davidberzin.com",
     linkedin: "https://www.linkedin.com/in/davidberzin",
     role: "Product and data executive, New York City",
-    bio: "NiceSalt was founded by David Berzin, who has spent two decades running product and data teams, from early-stage startups to global media platforms. He sets the direction on every project and brings in specialists when the work calls for them."
+    bio: "NiceSalt is David Berzin's studio. He has spent two decades building products and leading product and data teams, from early startups to global media companies. He's involved in every project and brings in specialists when the work calls for it."
   }
 };
 

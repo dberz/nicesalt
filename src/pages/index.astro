@@ -5,9 +5,9 @@ import ServiceIllustration from "../components/ServiceIllustration.astro";
 import { SITE, caseStudies } from "../data/site";
 
 const capabilities = [
-  { id: "ai", title: "AI products", text: "Assistants and agents wired into your real data, with a person in the loop where the stakes are high.", art: "ai" },
-  { id: "web", title: "Web apps", text: "Customer portals, internal tools, and the workflows that connect them.", art: "webapp" },
-  { id: "publishing", title: "Publishing platforms", text: "Sites and newsletters where one article becomes a page, an email, and a new subscriber.", art: "publishing" }
+  { id: "ai", title: "AI products", text: "An assistant or agent that works with your real data, with a person checking the work where it matters.", art: "ai" },
+  { id: "web", title: "Web apps", text: "Customer portals and internal tools that make everyday work easier for your team and your customers.", art: "webapp" },
+  { id: "publishing", title: "Publishing platforms", text: "A site and newsletter that turn each thing you write into a page, an email, and new subscribers.", art: "publishing" }
 ] as const;
 const caseOrder = ["robinberzinmd", "bibo", "explorer-health"];
 const pilotCaseStudies = [...caseStudies].sort((a, b) => caseOrder.indexOf(a.slug) - caseOrder.indexOf(b.slug)).map((study) => {
@@ -21,12 +21,12 @@ const formMethod = formConfigured ? "POST" : "GET";
 const bookingConfigured = Boolean(SITE.bookingUrl);
 ---
 
-<BaseLayout pilot title="AI product studio with deep data expertise" description="NiceSalt designs and builds AI products, web apps, and publishing platforms with deep data expertise.">
+<BaseLayout pilot title="A small studio for AI products and publishing platforms" description="NiceSalt is a small studio that turns AI ideas into working products, built on the right data from day one.">
   <section class="hero" data-hero-field>
     <div class="hero-copy">
       <p class="kicker">From vibes to viability</p>
-      <h1>The model is the easy part.</h1>
-      <p class="lede">Most AI products stall on the data underneath and the workflow around them. We design and build both, with two decades of product and data leadership behind the calls.</p>
+      <h1>You bring the idea. We help you build it.</h1>
+      <p class="lede">A small studio that turns AI ideas into working products, built on the right data from day one.</p>
       <div class="hero-actions" data-analytics-component="home_hero" data-analytics-event="cta">
         <a class="button primary" href="#work">See the work</a>
         <a class="button ghost" href="#contact">Get in touch</a>
@@ -37,10 +37,10 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
 
   <section class="offers-section" aria-labelledby="offers-title">
     <div class="section-heading compact">
-      <p class="kicker">Capabilities</p>
-      <h2 id="offers-title">What we build.</h2>
+      <p class="kicker">What we do</p>
+      <h2 id="offers-title">Where we can help.</h2>
     </div>
-    <div class="offers-band" aria-label="What we build">
+    <div class="offers-band" aria-label="Where we can help">
       {capabilities.map((offer) => (
         <article data-reveal>
           <div class="capability-art" aria-hidden="true">
@@ -51,12 +51,12 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
         </article>
       ))}
     </div>
-    <p class="data-advantage-brief"><strong>Underneath all three: data.</strong> Clean integrations and measurement you can trust are what make search, personalization, and the next product decision work.</p>
+    <p class="data-advantage-brief"><strong>And underneath all of it, your data.</strong> We set it up so you can see what's working and decide what to do next.</p>
   </section>
 
-  <section class="work-section" id="work" aria-label="Selected work">
+  <section class="work-section" id="work" aria-label="Recent work">
     <div class="section-heading compact">
-      <h2>Selected work</h2>
+      <h2>Recent work</h2>
     </div>
     <div class="work-list" data-analytics-component="home_selected_work" data-analytics-event="recirculation">
       {pilotCaseStudies.map((study) => (
@@ -75,8 +75,8 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
 
   <section class="principal-section principal-solo" id="who" aria-labelledby="principal-title" data-reveal>
     <div class="principal-copy">
-      <p class="kicker">Founder</p>
-      <h2 id="principal-title">Experience behind the build.</h2>
+      <p class="kicker">About</p>
+      <h2 id="principal-title">You'll work with David.</h2>
       <p>{SITE.principal.bio}</p>
       <p
         class="principal-links"
@@ -92,7 +92,7 @@ const bookingConfigured = Boolean(SITE.bookingUrl);
     <div class="section-heading">
       <p class="kicker">Contact</p>
       <h2 id="contact-title">Tell us what you're working on.</h2>
-      <p>NiceSalt takes on a small number of projects, mostly by referral. If someone sent you, mention who. A few sentences on the problem and what you have so far is enough to start.</p>
+      <p>We take on a small number of projects, mostly through people we know. If someone sent you, tell us who. A few sentences about what you're trying to do is plenty.</p>
       {bookingConfigured && (
         <p class="contact-direct" data-analytics-component="contact_booking" data-analytics-event="cta">
           Rather skip the form?
