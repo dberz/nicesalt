@@ -5,7 +5,7 @@ export const SITE = {
   url: "https://www.nicesalt.com",
   email: "hello@nicesalt.com",
   description:
-    "NiceSalt is a small studio that turns AI ideas into working products, built on the right data from day one.",
+    "NiceSalt is a small studio that turns ideas into winning products, built on the right data from day one.",
   formAction: "https://api.web3forms.com/submit",
   formAccessKey: (import.meta.env.WEB3FORMS_ACCESS_KEY ?? "").trim(),
   ga4Id: "G-B3RLW3R3SR",

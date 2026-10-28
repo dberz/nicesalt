@@ -1,6 +1,6 @@
 # NiceSalt
 
-NiceSalt is a small studio that turns AI ideas into working products, built on the right data from day one. It is David Berzin's studio (https://davidberzin.com), and it takes on a small number of projects, mostly through people we know.
+NiceSalt is a small studio that turns ideas into winning products, built on the right data from day one. It is David Berzin's studio (https://davidberzin.com), and it takes on a small number of projects, mostly through people we know.
 
 ## What we build
 
