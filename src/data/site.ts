@@ -86,7 +86,7 @@ export const caseStudies = [
     name: "ExplorerHealth.co",
     shortName: "Explorer Health",
     url: "https://explorerhealth.co/",
-    label: "Self-initiated health product exploration",
+    label: "AI-assisted health product",
     image: "/images/case-studies/explorer-health.webp",
     alt: "ExplorerHealth.co homepage screenshot.",
     preview: {
@@ -109,7 +109,7 @@ export const caseStudies = [
       }
     ],
     summary:
-      "A self-initiated product exploration of an interactive assessment, recovery profile, and guidance flow for a sensitive health topic.",
+      "An interactive assessment, recovery profile, and guidance flow for a sensitive health topic.",
     problem:
       "A sensitive health topic needed a clear way to introduce the concept, guide people through an assessment, and explain possible next steps.",
     work: [

@@ -16,7 +16,7 @@ Most work begins as a focused first version with a fixed scope, then grows from 
 
 - RobinBerzinMD.com (https://www.nicesalt.com/case-studies/robinberzinmd/): a publishing platform that turns one article into a website update, newsletter, and social assets, with editorial review before release.
 - Bibo (https://www.nicesalt.com/case-studies/bibo/): an independent AI audiobook concept demo using pre-generated listening experiences.
-- ExplorerHealth.co (https://www.nicesalt.com/case-studies/explorer-health/): a self-initiated health product exploration. The assessment concept is not clinically validated and does not establish care availability.
+- ExplorerHealth.co (https://www.nicesalt.com/case-studies/explorer-health/): an AI-assisted health product. The assessment concept is not clinically validated and does not establish care availability.
 
 ## Notes
 
